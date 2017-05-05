@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.Rprofile$
+^cran-comments\.md$
+^.*tmp$
+^LICENSE$

@@ -1,0 +1,107 @@
+---
+title: "dwapi quickstart"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{dwapi quickstart}
+  %\VignetteEncoding{UTF-8}
+---
+```{r, echo = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  purl = NOT_CRAN,
+  eval = NOT_CRAN
+)
+```
+
+## Configuration
+
+Make sure to configure the library at the begining of every new R session.
+To do so, invoke `dwapi::configure()` passing the data.world authentication token obtained at https://data.world/settings/advanced
+
+### DO NOT SHARE YOUR AUTHENTICATION TOKEN
+
+For your security, do not include your API authentication token in code that
+is intended to be shared with others.
+
+Call this function via console, always when possible.
+
+If you must call it in code do not include the actual API token.
+Instead, pass the token via a variable in .Renviron, and do not share
+your `.Renviron` file. For example:
+
+```{r configure}
+dwapi::configure(auth_token = Sys.getenv("DW_AUTH_TOKEN"))
+```
+
+## Creating datasets and updating datasets
+
+Use `dwapi::create_dataset()` to create a new dataset.
+The library includes number of constructor functions to facilitate the praparation of complex requests like this. The example here is `dwapi::dataset_create_request()`.
+```{r create_dataset}
+create_cars_dataset = dwapi::dataset_create_request(
+  title = sprintf("My cars dataset %s", runif(1)),
+  visibility = "PRIVATE",
+  license_string = "Other"
+)
+
+cars_dataset = dwapi::create_dataset(Sys.getenv("DW_USER"), create_cars_dataset)
+cars_dataset
+```
+
+Additional information can be added over time, with dataset updates.
+```{r update_dataset}
+update_cars_dataset = dwapi::dataset_update_request(
+  description = "This is a dataset created from R's cars dataset."
+)
+
+dwapi::update_dataset(cars_dataset$uri, update_cars_dataset)
+```
+
+## Uploading files
+
+Files can be added via URL, from the local file system, or directly as a data frame.
+```{r upload_data_frame}
+upload_response <- dwapi::upload_data_frame(cars_dataset$uri, cars, "cars.csv")
+Sys.sleep(10) # Files are processed asyncronously.
+upload_response
+```
+
+## Tables and schemas (data dictionary)
+
+data.world extracts tabular data from various tabular data formats.
+Tables are a logical representation of tabular data that has been extracted and normalized.
+```{r list_tables}
+tables = dwapi::list_tables(cars_dataset$uri)
+tables
+```
+
+At this point, it is possible to review the schema of dataset tables.
+```{r get_table_schema}
+dwapi::get_table_schema(cars_dataset$uri, tables[[1]])
+```
+
+And also, to annotate fields, providing textual description to make datasets easier to understand and work with.
+```{r update_table_schema}
+update_cars_schema = dwapi::table_schema_update_request(
+  fields = list(dwapi::table_schema_field_update_request(name = "speed", description = "Top speed"))
+)
+dwapi::update_table_schema(cars_dataset$uri, tables[[1]], update_cars_schema)
+dwapi::get_table_schema(cars_dataset$uri, tables[[1]])
+```
+
+## Queries
+
+Datasets can be queried using SQL and SPARQL.
+Once again, it's important to keep the concept of tables and their names in mind.
+```{r query}
+sql_query = "SELECT * FROM cars"
+dwapi::sql(cars_dataset$uri, sql_query)
+```
+
+## Next
+
+These are simple examples of the power of data.world's REST API and of how this library make using it convenient.
+To learn more, review the complete documentation, starting with `?dwapi`.
