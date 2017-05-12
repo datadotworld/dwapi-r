@@ -1,0 +1,25 @@
+Package: dwapi
+Title: A Client for Data.world's REST API
+Version: 0.1.0
+Authors@R: c(
+    person("Rafael", "Pereira", email = "rafael.pereira@data.world", role = c("aut", "cre")),
+    person("Triet", "Le", email = "triet.le@data.world", role = c("aut")),
+    person("Bryon", "Jacob", email = "bryon.jacob@data.world", role = c("aut")))
+Description: A set of wrapper functions for data.world's REST API endpoints.
+Depends: R (>= 3.3.0)
+Imports:
+    httr,
+    readr,
+    rjson,
+    xml2
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+License: Apache License 2.0
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/datadotworld/dwapi-r
+BugReports: https://github.com/datadotworld/dwapi-r/issues
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
