@@ -5,20 +5,7 @@
 
 ## R CMD check results
 
-There were no ERRORs or WARNINGs.
-
-There was 1 NOTE:
-
-* checking CRAN incoming feasibility ... NOTE
-
-```
-Maintainer: 'Rafael Pereira <rafael.pereira@data.world>'
-
-New submission
-
-Possibly mis-spelled words in DESCRIPTION:
-  API (2:39, 8:63)
-```
+0 errors | 0 warnings | 0 notes
 
 ## Downstream dependencies
 

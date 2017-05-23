@@ -30,7 +30,7 @@ Notice that `dataset` is parameter required by most functions and can be provide
 
 To install the package from GitHub, use `devtools::install_github`:
 ```R
-devtools::install_github("datadotworld/dwapi-r")
+devtools::install_github("datadotworld/dwapi-r", build_vignettes = TRUE)
 ```
 
 ## Configuration

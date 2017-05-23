@@ -22,7 +22,7 @@ https://data.world"
 #' @return Data frame with the contents of CSV file.
 #' @examples
 #' \dontrun{
-#'   my_df <- download_file_as_data_frame(
+#'   my_df <- dwapi::download_file_as_data_frame(
 #'     dataset = 'user/dataset',
 #'     file_name = 'file.csv')
 #' }

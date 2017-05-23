@@ -21,7 +21,7 @@ https://data.world"
 #' @return Object of type \code{\link{dataset_summary_response}}.
 #' @examples
 #' \dontrun{
-#'   get_dataset(dataset = "user/dataset")
+#'   dwapi::get_dataset(dataset = "user/dataset")
 #' }
 #' @export
 get_dataset <- function(dataset) {

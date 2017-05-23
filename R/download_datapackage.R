@@ -26,7 +26,7 @@ https://data.world"
 #' @param output_path Directory path, where data package will be saved.
 #' @examples
 #' \dontrun{
-#'   data.world::download_datapackage(
+#'   dwapi::download_datapackage(
 #'     dataset = "user/dataset",
 #'     output_path = "tmp/user/dataset")
 #' }

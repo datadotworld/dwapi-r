@@ -22,7 +22,7 @@ https://data.world"
     dwapi.api_url      = "https://api.data.world/v0",
     dwapi.query_url    = "https://query.data.world",
     dwapi.download_url = "https://download.data.world",
-    dwapi.cache_dir    = file.path("~", ".dw", "cache")
+    dwapi.cache_dir    = path.expand(file.path("~", ".dw", "cache"))
   )
   toset <- !(names(op.dwapi) %in% names(op))
   if (any(toset)) options(op.dwapi[toset])

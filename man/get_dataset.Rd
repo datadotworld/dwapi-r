@@ -17,6 +17,6 @@ Retrieve dataset information.
 }
 \examples{
 \dontrun{
-  get_dataset(dataset = "user/dataset")
+  dwapi::get_dataset(dataset = "user/dataset")
 }
 }

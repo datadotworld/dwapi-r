@@ -66,9 +66,9 @@ file_create_or_update_request <- function(file_name,
 #' @seealso \code{\link{create_dataset}}, \code{\link{replace_dataset}}
 #' @examples
 #' file_create_req <- dwapi::file_create_request(file_name = "file.csv",
-#'  url = "https://data.world/file.csv",
-#'  description = "My CSV file",
-#'  labels = list("raw data"))
+#'   url = "https://data.world/file.csv",
+#'   description = "My CSV file",
+#'   labels = list("raw data"))
 #' @export
 file_create_request <- function(file_name,
   url,
