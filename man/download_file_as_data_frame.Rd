@@ -19,7 +19,7 @@ Download dataset file onto a data frame.
 }
 \examples{
 \dontrun{
-  my_df <- download_file_as_data_frame(
+  my_df <- dwapi::download_file_as_data_frame(
     dataset = 'user/dataset',
     file_name = 'file.csv')
 }

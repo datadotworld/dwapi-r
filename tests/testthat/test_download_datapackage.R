@@ -17,7 +17,7 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 dw_test_that("download_datapackage produces valid directory structure", {
-  tmp_dir <- create_tmp_dir()
+  create_tmp_dir()
 
   tryCatch ({
     mock_response_path <- "resources/datapackage.zip"

@@ -32,6 +32,7 @@ https://data.world"
 #'
 #' Managing datasets:
 #' \enumerate{
+#'   \item \code{\link{get_dataset}}
 #'   \item \code{\link{create_dataset}}
 #'   \item \code{\link{update_dataset}}
 #'   \item \code{\link{replace_dataset}}

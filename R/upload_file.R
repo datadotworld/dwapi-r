@@ -23,7 +23,7 @@ https://data.world"
 #' @return Server response message.
 #' @examples
 #' \dontrun{
-#'   upload_file(file_name = 'file.csv',
+#'   dwapi::upload_file(file_name = 'file.csv',
 #'     path = 'file.csv', dataset = 'user/dataset')
 #' }
 #' @export
@@ -53,7 +53,7 @@ upload_file <-
 #' @return Server response message.
 #' @examples
 #' \dontrun{
-#'   upload_files(dataset = 'user/dataset',
+#'   dwapi::upload_files(dataset = 'user/dataset',
 #'     paths = c('file1.csv', 'file2.csv'))
 #' }
 #' @export

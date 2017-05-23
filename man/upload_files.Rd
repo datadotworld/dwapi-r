@@ -19,7 +19,7 @@ Upload one or more files to a dataset.
 }
 \examples{
 \dontrun{
-  upload_files(dataset = 'user/dataset',
+  dwapi::upload_files(dataset = 'user/dataset',
     paths = c('file1.csv', 'file2.csv'))
 }
 }

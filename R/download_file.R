@@ -23,8 +23,8 @@ https://data.world"
 #' @return Server response message.
 #' @examples
 #' \dontrun{
-#'   download_file(dataset = 'user/dataset', file_name = 'file.csv',
-#'     output = 'tmp/file.csv')
+#'   dwapi::download_file(dataset = 'user/dataset',
+#'    file_name = 'file.csv', output = 'tmp/file.csv')
 #' }
 #' @export
 download_file <-

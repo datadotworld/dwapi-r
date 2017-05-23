@@ -22,7 +22,7 @@ Upload a data frame as a file to a dataset.
 \examples{
 df = data.frame(a = c(1,2,3),b = c(4,5,6))
 \dontrun{
-  upload_data_frame(file_name = 'sample.csv',
+  dwapi::upload_data_frame(file_name = 'sample.csv',
     data_frame = df, dataset = 'user/dataset')
 }
 }

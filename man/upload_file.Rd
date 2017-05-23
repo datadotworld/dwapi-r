@@ -21,7 +21,7 @@ Upload a single file to a dataset.
 }
 \examples{
 \dontrun{
-  upload_file(file_name = 'file.csv',
+  dwapi::upload_file(file_name = 'file.csv',
     path = 'file.csv', dataset = 'user/dataset')
 }
 }

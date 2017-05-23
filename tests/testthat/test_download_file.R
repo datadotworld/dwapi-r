@@ -22,7 +22,7 @@ dw_test_that("downloadFile making the correct HTTR request", {
   tryCatch ({
     mock_response_local_path <- "resources/file1.csv"
     dataset <- "ownerid/datasetid"
-    tmp_output <- sprintf("%sfile1.csv", tmp_dir)
+    tmp_output <- file.path(tmp_dir, "file1.csv")
     response <- with_mock(
       `httr::GET` = function(url, header, progress, user_agent)  {
         expect_equal(url,

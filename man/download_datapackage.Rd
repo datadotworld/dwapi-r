@@ -18,7 +18,7 @@ Learn more about the Data Package specification at
 }
 \examples{
 \dontrun{
-  data.world::download_datapackage(
+  dwapi::download_datapackage(
     dataset = "user/dataset",
     output_path = "tmp/user/dataset")
 }

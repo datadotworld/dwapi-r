@@ -25,9 +25,9 @@ Create object for adding a dataset file.
 }
 \examples{
 file_create_req <- dwapi::file_create_request(file_name = "file.csv",
- url = "https://data.world/file.csv",
- description = "My CSV file",
- labels = list("raw data"))
+  url = "https://data.world/file.csv",
+  description = "My CSV file",
+  labels = list("raw data"))
 }
 \seealso{
 \code{\link{create_dataset}}, \code{\link{replace_dataset}}
