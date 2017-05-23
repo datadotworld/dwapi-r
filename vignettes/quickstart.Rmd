@@ -8,11 +8,12 @@ vignette: >
 ---
 ```{r, echo = FALSE}
 NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+CONFIGURED <- !is.null(getOption("dwapi.auth_token"))
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  purl = NOT_CRAN,
-  eval = NOT_CRAN
+  collapse = FALSE,
+  comment = "##",
+  purl = NOT_CRAN & CONFIGURED,
+  eval = NOT_CRAN & CONFIGURED
 )
 ```
 
@@ -32,7 +33,7 @@ If you must call it in code do not include the actual API token.
 Instead, pass the token via a variable in .Renviron, and do not share
 your `.Renviron` file. For example:
 
-```{r configure}
+```{r configure, eval = FALSE}
 dwapi::configure(auth_token = Sys.getenv("DW_AUTH_TOKEN"))
 ```
 
