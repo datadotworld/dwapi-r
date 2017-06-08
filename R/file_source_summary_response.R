@@ -21,6 +21,7 @@ https://data.world"
 #' @return Object of type \code{file_source_summary_response}
 file_source_summary_response <- function(structure) {
   me <- list(
+    # nolint start
     # required
     sync_status = structure$syncStatus,
     url = structure$url,
@@ -30,6 +31,7 @@ file_source_summary_response <- function(structure) {
     last_sync_start = structure$lastSyncStart,
     last_sync_success = structure$lastSyncSuccess,
     last_sync_failure = structure$lastSyncFailure
+    # nolint end
   )
   class(me) <- "file_source_summary_response"
   return(me)

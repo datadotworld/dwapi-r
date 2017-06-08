@@ -30,7 +30,7 @@ dw_test_that("download_datapackage produces valid directory structure", {
         expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
         expect_equal(user_agent$options$useragent, user_agent())
         return(
-          success_message_response_with_content(
+          success_message_with_content(
             mock_response_path, "application/zip")
         )
       },

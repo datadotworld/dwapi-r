@@ -21,11 +21,13 @@ https://data.world"
 sdk_version <- function() {
   is.nothing <- function(x)
     is.null(x)
+  # nolint start
   if (!is.nothing(utils::sessionInfo()$otherPkgs$dwapi)) {
     ret <- utils::sessionInfo()$otherPkgs$dwapi$Version
   } else {
     ret <- "X.X.X"
   }
+  # nolint end
   ret
 }
 

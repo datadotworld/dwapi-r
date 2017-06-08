@@ -32,7 +32,7 @@ dw_test_that("createDataset making the correct HTTR request", {
       expect_equal(rjson::toJSON(request), body)
       expect_equal(user_agent$options$useragent, user_agent())
       return(
-        success_message_response_with_content(
+        success_message_with_content(
           "resources/api.data.world/v0/CreateDatasetResponse.sample.json",
           "application/json"
         )

@@ -36,8 +36,6 @@ upload_data_frame <-
     if (!endsWith(file_name, ".csv")) {
       stop("we only support upload dataframe as a .csv file")
     }
-    ds_key <- extract_dataset_key(dataset)
-    ds_key_parts <- unlist(strsplit(ds_key, "/", fixed = TRUE))
     tmp_path <- tempfile(fileext = "csv")
     if (!dir.exists(dirname(tmp_path))) {
       dir.create(dirname(tmp_path), recursive = TRUE)

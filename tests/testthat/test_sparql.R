@@ -19,7 +19,7 @@ https://data.world"
 dw_test_that("SPARQL query making the correct HTTR request", {
   sql_query <- "SELECT * WHERE { ?s ?p ?o . }"
   dataset <- "ownerid/datasetid"
-  mock_response_local_content_path <- "resources/file1.csv"
+  mock_response_path <- "resources/file1.csv"
   query_parameters <- list(
     key1 = "value1",
     "?key2" = 1L,
@@ -36,12 +36,18 @@ dw_test_that("SPARQL query making the correct HTTR request", {
       expect_equal(query[["query"]], sql_query)
       expect_equal(
         query[["parameters"]],
-        "key1=\"value1\",?key2=\"1\"^^<http://www.w3.org/2001/XMLSchema#integer>,?key3=\"1\"^^<http://www.w3.org/2001/XMLSchema#decimal>,?key4=\"TRUE\"^^<http://www.w3.org/2001/XMLSchema#boolean>,?key5=\"1.5\"^^<http://www.w3.org/2001/XMLSchema#decimal>"
+        paste(
+          "key1=\"value1\"",
+          "?key2=\"1\"^^<http://www.w3.org/2001/XMLSchema#integer>",
+          "?key3=\"1\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
+          "?key4=\"TRUE\"^^<http://www.w3.org/2001/XMLSchema#boolean>",
+          "?key5=\"1.5\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
+          sep = ",")
       )
       expect_equal(user_agent$options$useragent, user_agent())
       return(
-        success_message_response_with_content(
-          mock_response_local_content_path, "application/csv")
+        success_message_with_content(
+          mock_response_path, "application/csv")
       )
     },
     `mime::guess_type` = function(...)
@@ -53,6 +59,6 @@ dw_test_that("SPARQL query making the correct HTTR request", {
     )
   )
   expect_equal(is.data.frame(response), TRUE)
-  expected <- read.csv(mock_response_local_content_path)
+  expected <- read.csv(mock_response_path)
   expect_equal(all(expected == as.data.frame(response)), TRUE)
 })

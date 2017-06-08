@@ -33,8 +33,6 @@ download_file_as_data_frame <-
       stop("only support csv extension files.")
     }
 
-    ds_key <- extract_dataset_key(dataset)
-    ds_key_parts <- unlist(strsplit(ds_key, "/", fixed = TRUE))
     tmp_path <- tempfile(fileext = "csv")
     if (!dir.exists(dirname(tmp_path))) {
       dir.create(dirname(tmp_path), recursive = TRUE)
