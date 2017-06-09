@@ -42,19 +42,19 @@ dwapi::configure(auth_token = Sys.getenv("DW_AUTH_TOKEN"))
 Use `dwapi::create_dataset()` to create a new dataset.
 The library includes number of constructor functions to facilitate the praparation of complex requests like this. The example here is `dwapi::dataset_create_request()`.
 ```{r create_dataset}
-create_cars_dataset = dwapi::dataset_create_request(
+create_cars_dataset <- dwapi::dataset_create_request(
   title = sprintf("My cars dataset %s", runif(1)),
   visibility = "PRIVATE",
   license_string = "Other"
 )
 
-cars_dataset = dwapi::create_dataset(Sys.getenv("DW_USER"), create_cars_dataset)
+cars_dataset <- dwapi::create_dataset(Sys.getenv("DW_USER"), create_cars_dataset)
 cars_dataset
 ```
 
 Additional information can be added over time, with dataset updates.
 ```{r update_dataset}
-update_cars_dataset = dwapi::dataset_update_request(
+update_cars_dataset <- dwapi::dataset_update_request(
   description = "This is a dataset created from R's cars dataset."
 )
 
@@ -86,8 +86,9 @@ dwapi::get_table_schema(cars_dataset$uri, tables[[1]])
 
 And also, to annotate fields, providing textual description to make datasets easier to understand and work with.
 ```{r update_table_schema}
-update_cars_schema = dwapi::table_schema_update_request(
-  fields = list(dwapi::table_schema_field_update_request(name = "speed", description = "Top speed"))
+update_cars_schema <- dwapi::table_schema_update_request(
+  fields = list(dwapi::table_schema_field_update_request(
+    name = "speed", description = "Top speed"))
 )
 dwapi::update_table_schema(cars_dataset$uri, tables[[1]], update_cars_schema)
 dwapi::get_table_schema(cars_dataset$uri, tables[[1]])
@@ -98,7 +99,7 @@ dwapi::get_table_schema(cars_dataset$uri, tables[[1]])
 Datasets can be queried using SQL and SPARQL.
 Once again, it's important to keep the concept of tables and their names in mind.
 ```{r query}
-sql_query = "SELECT * FROM cars"
+sql_query <- "SELECT * FROM cars"
 dwapi::sql(cars_dataset$uri, sql_query)
 ```
 

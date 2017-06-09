@@ -21,6 +21,7 @@ https://data.world"
 #' @return Object of type \code{file_summary_response}
 file_summary_response <- function(structure) {
   me <- list(
+    # nolint start
     # required
     created = structure$created,
     name = structure$name,
@@ -30,6 +31,7 @@ file_summary_response <- function(structure) {
     labels = structure$labels,
     size_in_bytes = structure$sizeInBytes,
     source = file_source_summary_response(structure$source)
+    # nolint end
   )
   class(me) <- "file_summary_response"
   return(check_file_summary_response(me))

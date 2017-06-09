@@ -20,7 +20,7 @@ dw_test_that("downloadFileAsDataFrame making the correct HTTR request", {
   create_tmp_dir()
 
   tryCatch ({
-    mock_response_local_content_path <- "resources/file1.csv"
+    mock_response_path <- "resources/file1.csv"
     dataset <- "ownerid/datasetid"
     response <- with_mock(
       `httr::GET` = function(url, header, progress, user_agent)  {
@@ -36,8 +36,8 @@ dw_test_that("downloadFileAsDataFrame making the correct HTTR request", {
         expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
         expect_equal(user_agent$options$useragent, user_agent())
         return(
-          success_message_response_with_content(
-            mock_response_local_content_path, "application/csv")
+          success_message_with_content(
+            mock_response_path, "application/csv")
         )
       },
       `mime::guess_type` = function(...)
@@ -46,7 +46,7 @@ dw_test_that("downloadFileAsDataFrame making the correct HTTR request", {
         file_name = "file1.csv")
     )
     expect <-
-      as.data.frame(readr::read_csv(mock_response_local_content_path))
+      as.data.frame(readr::read_csv(mock_response_path))
     actual <- as.data.frame(response)
     expect_equal(all(expect == actual), TRUE)
   },

@@ -1,5 +1,8 @@
 # dwapi
 
+[![CircleCI](https://circleci.com/gh/datadotworld/dwapi-r.svg?style=svg)](https://circleci.com/gh/datadotworld/dwapi-r)
+[![cran version](http://www.r-pkg.org/badges/version/dwapi)](http://cran.rstudio.com/web/packages/dwapi) 
+
 The `dwapi` R package makes it easy to use [data.world's REST API](https://docs.data.world/documentation/api) in R.  
 Using the package, users can:
 
@@ -28,7 +31,13 @@ Notice that `dataset` is parameter required by most functions and can be provide
 
 ## Installation
 
-To install the package from GitHub, use `devtools::install_github`:
+To get the current released version from CRAN:
+
+```R
+install.packages("dwapi")
+```
+
+To get the current development version from GitHub:
 ```R
 devtools::install_github("datadotworld/dwapi-r", build_vignettes = TRUE)
 ```

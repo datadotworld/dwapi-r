@@ -37,7 +37,7 @@ dw_test_that("downloadFile making the correct HTTR request", {
         expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
         expect_equal(user_agent$options$useragent, user_agent())
         return(
-          success_message_response_with_content(
+          success_message_with_content(
             mock_response_local_path, "application/csv")
         )
       },

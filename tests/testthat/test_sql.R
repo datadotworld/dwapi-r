@@ -19,7 +19,7 @@ https://data.world"
 dw_test_that("SQL query making the correct HTTR request", {
   sql_query <- "SELECT * FROM TableName LIMIT 10"
   dataset <- "ownerid/datasetid"
-  mock_response_local_content_path <- "resources/file1.csv"
+  mock_response_path <- "resources/file1.csv"
   query_parameters <- list("value1", 1L, 1, TRUE, 1.5)
   response <- with_mock(
     `httr::GET` = function(url, query, header, user_agent)  {
@@ -30,12 +30,20 @@ dw_test_that("SQL query making the correct HTTR request", {
       expect_equal(query[["query"]], sql_query)
       expect_equal(
         query[["parameters"]],
-        "$data_world_param0=\"value1\",$data_world_param1=\"1\"^^<http://www.w3.org/2001/XMLSchema#integer>,$data_world_param2=\"1\"^^<http://www.w3.org/2001/XMLSchema#decimal>,$data_world_param3=\"TRUE\"^^<http://www.w3.org/2001/XMLSchema#boolean>,$data_world_param4=\"1.5\"^^<http://www.w3.org/2001/XMLSchema#decimal>"
+        # nolint start
+        paste(
+          "$data_world_param0=\"value1\"",
+          "$data_world_param1=\"1\"^^<http://www.w3.org/2001/XMLSchema#integer>",
+          "$data_world_param2=\"1\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
+          "$data_world_param3=\"TRUE\"^^<http://www.w3.org/2001/XMLSchema#boolean>",
+          "$data_world_param4=\"1.5\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
+          sep = ",")
+        # nolint end
       )
       expect_equal(user_agent$options$useragent, user_agent())
       return(
-        success_message_response_with_content(
-          mock_response_local_content_path, "application/csv")
+        success_message_with_content(
+          mock_response_path, "application/csv")
       )
     },
     `mime::guess_type` = function(...)
@@ -47,6 +55,6 @@ dw_test_that("SQL query making the correct HTTR request", {
     )
   )
   expect_equal(is.data.frame(response), TRUE)
-  expected <- read.csv(mock_response_local_content_path)
+  expected <- read.csv(mock_response_path)
   expect_equal(all(expected == as.data.frame(response)), TRUE)
 })

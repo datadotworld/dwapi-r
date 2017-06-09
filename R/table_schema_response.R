@@ -38,12 +38,14 @@ table_schema_response <- function(structure) {
 #' @param structure httr response object
 #' @return Object of type \code{table_schema_field_response}
 table_schema_field_response <- function(structure) {
+  # nolint start
   me <- list(
     name = structure$name,
     title = structure$title,
     description = structure$description,
     rdf_type = structure$rdfType
   )
+  # nolint end
   class(me) <= "table_schema_field_response"
   me
 }
