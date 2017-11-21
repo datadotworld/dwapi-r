@@ -24,12 +24,12 @@ dw_test_that <- function(...) {
 
   options(dwapi.auth_token = "API_TOKEN")
 
-  create_tmp_dir()
+  create_tmp_dir() #nolint
   tryCatch({
     return(testthat::test_that(...))
   },
     finally = {
-      cleanup_tmp_dir()
+      cleanup_tmp_dir() #nolint
     })
 }
 
