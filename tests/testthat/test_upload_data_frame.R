@@ -17,32 +17,27 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 dw_test_that("uploadDataFrame making the correct HTTR request", {
-  tryCatch ({
-    df <- data.frame(a = c(1, 2, 3), b = c(4, 5, 6))
-    response <- with_mock(
-      `httr::PUT` = function(url, body, header, progress, user_agent)  {
-        expect_equal(url,
-          "https://api.data.world/v0/uploads/ownerid/datasetid/files/df.csv")
-        expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
-        expect_equal(
-          header$headers[["Content-Type"]], "application/octet-stream")
-        expect_equal(class(body), "form_file")
-        actual <- as.data.frame(readr::read_csv(body$path))
-        expect_equal(all(df == actual), TRUE)
-        expect_equal(user_agent$options$useragent, user_agent())
-        return(success_message_response())
-      },
-      `mime::guess_type` = function(...)
-        NULL,
-      dwapi::upload_data_frame(
-        dataset = "ownerid/datasetid",
-        file_name = "df.csv",
-        data_frame = df
-      )
+  df <- data.frame(a = c(1, 2, 3), b = c(4, 5, 6))
+  response <- with_mock(
+    `httr::PUT` = function(url, body, header, progress, user_agent)  {
+      expect_equal(url,
+        "https://api.data.world/v0/uploads/ownerid/datasetid/files/df.csv")
+      expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
+      expect_equal(
+        header$headers[["Content-Type"]], "application/octet-stream")
+      expect_equal(class(body), "form_file")
+      actual <- as.data.frame(readr::read_csv(body$path))
+      expect_equal(all(df == actual), TRUE)
+      expect_equal(user_agent$options$useragent, user_agent())
+      return(success_message_response())
+    },
+    `mime::guess_type` = function(...)
+      NULL,
+    dwapi::upload_data_frame(
+      dataset = "ownerid/datasetid",
+      file_name = "df.csv",
+      data_frame = df
     )
-    expect_equal(class(response), "success_message")
-  }
-    , finally = {
-      cleanup_tmp_dir()
-    })
+  )
+  expect_equal(class(response), "success_message")
 })

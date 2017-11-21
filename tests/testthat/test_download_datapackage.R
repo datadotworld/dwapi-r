@@ -17,35 +17,28 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 dw_test_that("download_datapackage produces valid directory structure", {
-  create_tmp_dir()
-
-  tryCatch ({
-    mock_response_path <- "resources/datapackage.zip"
-    dataset <- "jonloyens/an-intro-to-dataworld-dataset"
-    output_path <- tempfile()
-    response <- with_mock(
-      `httr::GET` = function(url, header, progress, user_agent)  {
-        expect_equal(url,
-          sprintf("https://download.data.world/datapackage/%s", dataset))
-        expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
-        expect_equal(user_agent$options$useragent, user_agent())
-        return(
-          success_message_with_content(
-            mock_response_path, "application/zip")
-        )
-      },
-      `mime::guess_type` = function(...)
-        NULL,
-      dwapi::download_datapackage(
-        dataset = dataset,
-        output_path = output_path
+  mock_response_path <- "resources/datapackage.zip"
+  dataset <- "jonloyens/an-intro-to-dataworld-dataset"
+  output_path <- tempfile()
+  response <- with_mock(
+    `httr::GET` = function(url, header, progress, user_agent)  {
+      expect_equal(url,
+        sprintf("https://download.data.world/datapackage/%s", dataset))
+      expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
+      expect_equal(user_agent$options$useragent, user_agent())
+      return(
+        success_message_with_content(
+          mock_response_path, "application/zip")
       )
+    },
+    `mime::guess_type` = function(...)
+      NULL,
+    dwapi::download_datapackage(
+      dataset = dataset,
+      output_path = output_path
     )
-    expect(
-      "datapackage.json" %in% list.files(output_path),
-      sprintf("%s directory must contain datapackage.json file.", output_path))
-  },
-    finally = {
-      cleanup_tmp_dir()
-    })
+  )
+  expect(
+    "datapackage.json" %in% list.files(output_path),
+    sprintf("%s directory must contain datapackage.json file.", output_path))
 })

@@ -17,7 +17,6 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 dw_test_that("addFilesBySource making the correct HTTR request", {
-
   request <- dwapi::file_batch_update_request()
   request <-
     dwapi::add_file(request = request,
