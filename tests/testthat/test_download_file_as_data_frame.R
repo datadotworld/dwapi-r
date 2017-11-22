@@ -17,40 +17,33 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 dw_test_that("downloadFileAsDataFrame making the correct HTTR request", {
-  create_tmp_dir()
-
-  tryCatch ({
-    mock_response_path <- "resources/file1.csv"
-    dataset <- "ownerid/datasetid"
-    response <- with_mock(
-      `httr::GET` = function(url, header, progress, user_agent)  {
-        expect_equal(url,
-          sprintf(
-            paste(
-              "https://download.data.world/file_download/",
-              "ownerid/datasetid/file1.csv",
-              sep = ""
-            ),
-            dataset
-          ))
-        expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
-        expect_equal(user_agent$options$useragent, user_agent())
-        return(
-          success_message_with_content(
-            mock_response_path, "application/csv")
-        )
-      },
-      `mime::guess_type` = function(...)
-        NULL,
-      dwapi::download_file_as_data_frame(dataset = dataset,
-        file_name = "file1.csv")
-    )
-    expect <-
-      as.data.frame(readr::read_csv(mock_response_path))
-    actual <- as.data.frame(response)
-    expect_equal(all(expect == actual), TRUE)
-  },
-    finally = {
-      cleanup_tmp_dir()
-    })
+  mock_response_path <- "resources/file1.csv"
+  dataset <- "ownerid/datasetid"
+  response <- with_mock(
+    `httr::GET` = function(url, header, progress, user_agent)  {
+      expect_equal(url,
+        sprintf(
+          paste(
+            "https://download.data.world/file_download/",
+            "ownerid/datasetid/file1.csv",
+            sep = ""
+          ),
+          dataset
+        ))
+      expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
+      expect_equal(user_agent$options$useragent, user_agent())
+      return(
+        success_message_with_content(
+          mock_response_path, "application/csv")
+      )
+    },
+    `mime::guess_type` = function(...)
+      NULL,
+    dwapi::download_file_as_data_frame(dataset = dataset,
+      file_name = "file1.csv")
+  )
+  expect <-
+    as.data.frame(readr::read_csv(mock_response_path))
+  actual <- as.data.frame(response)
+  expect_equal(all(expect == actual), TRUE)
 })

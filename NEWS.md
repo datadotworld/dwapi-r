@@ -1,3 +1,7 @@
+# 0.1.2
+
+* Address compatibility issues with testthat 2.0.0
+
 # 0.1.1
 
 * Fix tests making them compliant with CRAN policies
