@@ -28,7 +28,7 @@ https://data.world"
 #' }
 #' @export
 get_datasets_user_liked <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_assets('datasets', 'liked', limit, nextPageToken, sort)
+  get_user_library_item('datasets', 'liked', limit, nextPageToken, sort)
 }
 
 #' Search for datasets contributed-to by the currently authenticated user.
@@ -43,7 +43,7 @@ get_datasets_user_liked <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
 #' }
 #' @export
 get_datasets_user_contributing <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_assets('datasets', 'contributing', limit, nextPageToken, sort)
+  get_user_library_item('datasets', 'contributing', limit, nextPageToken, sort)
 }
 
 #' Search for datasets owned by the currently authenticated user.
@@ -58,10 +58,10 @@ get_datasets_user_contributing <- function(limit=NULL, nextPageToken=NULL, sort=
 #' }
 #' @export
 get_datasets_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_assets('datasets', 'own', limit, nextPageToken, sort)
+  get_user_library_item('datasets', 'own', limit, nextPageToken, sort)
 }
 
-#' Search for assets owned by, liked by, or contributed-to by the currently authenticated user.
+#' Search for library items owned by, liked by, or contributed-to by the currently authenticated user.
 #' @param role the user's role with respect to the asset (one of: own, liked, contributing)
 #' @param type the type of asset (one of: datasets, projects)
 #' @return a named list with at most two elements.  It will always contain a list, named \code{records},
@@ -70,7 +70,7 @@ get_datasets_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
 #' the list will also contain a single-element character vector, named \code{nextPageToken},
 #' with the token to use in a subsequent call to get the next page.
 #' @keywords internal
-get_user_assets <- function(type=c('datasets', 'projects'), role=c('own', 'liked', 'contributing'), limit=NULL, nextPageToken=NULL, sort=NULL) {
+get_user_library_item <- function(type=c('datasets', 'projects'), role=c('own', 'liked', 'contributing'), limit=NULL, nextPageToken=NULL, sort=NULL) {
 
   role <- match.arg(role)
 
@@ -120,7 +120,7 @@ get_user_assets <- function(type=c('datasets', 'projects'), role=c('own', 'liked
         encoding = "UTF-8"
       ))
     if (is.null(structured_response$records)) {
-      handle_assets_err(response)
+      handle_library_err(response)
     } else {
       dsList <- lapply(structured_response$records, function(assetStructure) {
         assetBuilderFunctions[[type]](assetStructure)
@@ -131,7 +131,7 @@ get_user_assets <- function(type=c('datasets', 'projects'), role=c('own', 'liked
       }
     }
   } else {
-    handle_assets_err(response)
+    handle_library_err(response)
   }
 
   ret
@@ -141,7 +141,7 @@ get_user_assets <- function(type=c('datasets', 'projects'), role=c('own', 'liked
 #' Stop execution with a message when the response contains an error condition
 #' @param response the response
 #' @keywords internal
-handle_assets_err <- function(response) {
+handle_library_err <- function(response) {
   error_msg <-
     error_message(rjson::fromJSON(httr::content(
       x = response,
