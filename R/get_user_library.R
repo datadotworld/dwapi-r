@@ -74,26 +74,35 @@ get_user_library_item <- function(type=c('datasets', 'projects'), role=c('own', 
 
   role <- match.arg(role)
 
-  params <- character()
+  # params <- character()
 
   if (!is.null(limit)) {
-    if (!grepl(x=limit, pattern='^[0-9]+$')) {
+    if (is.character(limit) & !grepl(x=limit, pattern='^[0-9]+$')) {
       stop(paste0('limit parameter must be an integer, supplied value was ', limit))
     }
-    params <- c(params, 'limit'=as.character(limit))
-  }
-  if (!is.null(nextPageToken)) {
-    params <- c(params, 'next'=utils::URLencode(nextPageToken, reserved=TRUE))
-  }
-  if (!is.null(sort)) {
-    params <- c(params, 'sort'=utils::URLencode(sort, reserved=TRUE))
+    limit=as.character(limit)
   }
 
-  if (length(params) > 0) {
-    params <- paste0('?', paste(mapply(paste, names(params), params, USE.NAMES=FALSE, MoreArgs=list('sep'='=')), collapse='&'))
-  }
+  # if (!is.null(nextPageToken)) {
+  #   params <- c(params, 'next'=utils::URLencode(nextPageToken, reserved=TRUE))
+  # }
+  # if (!is.null(sort)) {
+  #   params <- c(params, 'sort'=utils::URLencode(sort, reserved=TRUE))
+  # }
 
-  url <- paste0(getOption("dwapi.api_url"), "/user/", type, "/", role, params)
+  # if (length(params) > 0) {
+  #   params <- paste0('?', paste(mapply(paste, names(params), params, USE.NAMES=FALSE, MoreArgs=list('sep'='=')), collapse='&'))
+  # }
+  #
+  # url <- paste0(getOption("dwapi.api_url"), "/user/", type, "/", role, params)
+
+  queryList <- list(
+    'limit'=limit,
+    'next'=nextPageToken,
+    'sort'=sort
+  )
+
+  url <- paste0(getOption("dwapi.api_url"), "/user/", type, "/", role)
 
   auth <- sprintf("Bearer %s", auth_token())
 
@@ -109,7 +118,8 @@ get_user_library_item <- function(type=c('datasets', 'projects'), role=c('own', 
       url,
       httr::add_headers('Content-Type' = "application/json",
                         Authorization = auth),
-      httr::user_agent(user_agent())
+      httr::user_agent(user_agent()),
+      query=queryList
     )
 
   if (response$status_code == 200) {

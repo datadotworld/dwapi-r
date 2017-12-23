@@ -22,7 +22,7 @@ dw_test_that("invalid limit parameter", {
 
 dw_test_that("get_datasets_own, no params, 1 result", {
   response <- with_mock(
-    `httr::GET` = function(url, header, user_agent)  {
+    `httr::GET` = function(url, header, user_agent, query)  {
       expect_equal(url, "https://api.data.world/v0/user/datasets/own")
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
@@ -47,7 +47,7 @@ dw_test_that("get_datasets_own, no params, 1 result", {
 
 dw_test_that("get_datasets_own, no params, empty result", {
   response <- with_mock(
-    `httr::GET` = function(url, header, user_agent)  {
+    `httr::GET` = function(url, header, user_agent, query)  {
       expect_equal(url, "https://api.data.world/v0/user/datasets/own")
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
@@ -67,7 +67,7 @@ dw_test_that("get_datasets_own, no params, empty result", {
 
 dw_test_that("get_datasets_own, no params, 2 result objects", {
   response <- with_mock(
-    `httr::GET` = function(url, header, user_agent)  {
+    `httr::GET` = function(url, header, user_agent, query)  {
       expect_equal(url, "https://api.data.world/v0/user/datasets/own")
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
@@ -91,8 +91,10 @@ dw_test_that("get_datasets_own, no params, 2 result objects", {
 
 dw_test_that("get_datasets_own, limit of 1, 1 result", {
   response <- with_mock(
-    `httr::GET` = function(url, header, user_agent)  {
-      expect_equal(url, "https://api.data.world/v0/user/datasets/own?limit=1")
+    `httr::GET` = function(url, header, user_agent, query)  {
+      expect_equal(url, "https://api.data.world/v0/user/datasets/own")
+      expect_equal(length(query), 3)
+      expect_true(!is.null(query$limit))
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
       success_message_with_content(
@@ -118,8 +120,11 @@ dw_test_that("get_datasets_own, limit of 1, 1 result", {
 
 dw_test_that("get_datasets_own, limit of 1, 1 result, next page and encoding of token", {
   response <- with_mock(
-    `httr::GET` = function(url, header, user_agent)  {
-      expect_equal(url, "https://api.data.world/v0/user/datasets/own?limit=1&next=NPT%3D")
+    `httr::GET` = function(url, header, user_agent, query)  {
+      expect_equal(url, "https://api.data.world/v0/user/datasets/own")
+      expect_true(!is.null(query$limit))
+      expect_true(!is.null(query$`next`))
+      expect_equal(query$`next`, 'NPT=')
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
       success_message_with_content(
@@ -140,7 +145,7 @@ dw_test_that("get_datasets_own, limit of 1, 1 result, next page and encoding of 
 dw_test_that("get_datasets_liked, no params, 1 result", {
   # don't need to test all the other scenarios, since liked uses the same implementation as contributing and own
   response <- with_mock(
-    `httr::GET` = function(url, header, user_agent)  {
+    `httr::GET` = function(url, header, user_agent, query)  {
       expect_equal(url, "https://api.data.world/v0/user/datasets/liked")
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
@@ -161,7 +166,7 @@ dw_test_that("get_datasets_liked, no params, 1 result", {
 dw_test_that("get_datasets_contributing, no params, 1 result", {
   # don't need to test all the other scenarios, since contributing uses the same implementation as liked and own
   response <- with_mock(
-    `httr::GET` = function(url, header, user_agent)  {
+    `httr::GET` = function(url, header, user_agent, query)  {
       expect_equal(url, "https://api.data.world/v0/user/datasets/contributing")
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
