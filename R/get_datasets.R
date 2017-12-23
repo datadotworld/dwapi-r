@@ -120,7 +120,7 @@ get_user_assets <- function(type=c('datasets', 'projects'), role=c('own', 'liked
         encoding = "UTF-8"
       ))
     if (is.null(structured_response$records)) {
-      get_datasets_err(response)
+      handle_assets_err(response)
     } else {
       dsList <- lapply(structured_response$records, function(assetStructure) {
         assetBuilderFunctions[[type]](assetStructure)
@@ -131,7 +131,7 @@ get_user_assets <- function(type=c('datasets', 'projects'), role=c('own', 'liked
       }
     }
   } else {
-    get_datasets_err(response)
+    handle_assets_err(response)
   }
 
   ret
@@ -141,7 +141,7 @@ get_user_assets <- function(type=c('datasets', 'projects'), role=c('own', 'liked
 #' Stop execution with a message when the response contains an error condition
 #' @param response the response
 #' @keywords internal
-get_datasets_err <- function(response) {
+handle_assets_err <- function(response) {
   error_msg <-
     error_message(rjson::fromJSON(httr::content(
       x = response,
