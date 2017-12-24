@@ -74,27 +74,12 @@ get_user_library_item <- function(type=c('datasets', 'projects'), role=c('own', 
 
   role <- match.arg(role)
 
-  # params <- character()
-
   if (!is.null(limit)) {
     if (is.character(limit) & !grepl(x=limit, pattern='^[0-9]+$')) {
       stop(paste0('limit parameter must be an integer, supplied value was ', limit))
     }
     limit=as.character(limit)
   }
-
-  # if (!is.null(nextPageToken)) {
-  #   params <- c(params, 'next'=utils::URLencode(nextPageToken, reserved=TRUE))
-  # }
-  # if (!is.null(sort)) {
-  #   params <- c(params, 'sort'=utils::URLencode(sort, reserved=TRUE))
-  # }
-
-  # if (length(params) > 0) {
-  #   params <- paste0('?', paste(mapply(paste, names(params), params, USE.NAMES=FALSE, MoreArgs=list('sep'='=')), collapse='&'))
-  # }
-  #
-  # url <- paste0(getOption("dwapi.api_url"), "/user/", type, "/", role, params)
 
   queryList <- list(
     'limit'=limit,
