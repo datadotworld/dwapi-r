@@ -183,3 +183,64 @@ dw_test_that("get_datasets_contributing, no params, 1 result", {
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
 })
+
+dw_test_that("get_projects_own, no params, 1 result", {
+  response <- with_mock(
+    `httr::GET` = function(url, header, user_agent, query)  {
+      expect_equal(url, "https://api.data.world/v0/user/projects/own")
+      expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
+      expect_equal(user_agent$options$useragent, user_agent())
+      success_message_with_content(
+        "resources/api.data.world/v0/GetProjectsResponse1.sample.json",
+        "application/json"
+      )
+    },
+    `mime::guess_type` = function(...) NULL,
+    dwapi::get_projects_user_own()
+  )
+  expect_equal(class(response), "list")
+  expect_equal(length(response), 1)
+  expect_equal(class(response$records), "list")
+  expect_equal(length(response$records), 1)
+  for (responseElement in response$records) {
+    check_project_summary_response(responseElement)
+    expect_equal(responseElement$id, "projectid")
+    expect_equal(responseElement$owner, "ownerid")
+  }
+  p <- response$records[[1]]
+  expect_equal(length(p$tags), 2)
+  expect_equal(length(p$files), 1)
+  expect_equal(length(p$linkedDatasets), 2)
+})
+
+dw_test_that("get_projects_own, no params, 1 result, empty children", {
+  response <- with_mock(
+    `httr::GET` = function(url, header, user_agent, query)  {
+      expect_equal(url, "https://api.data.world/v0/user/projects/own")
+      expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
+      expect_equal(user_agent$options$useragent, user_agent())
+      success_message_with_content(
+        "resources/api.data.world/v0/GetProjectsResponseEmptyChildren.sample.json",
+        "application/json"
+      )
+    },
+    `mime::guess_type` = function(...) NULL,
+    dwapi::get_projects_user_own()
+  )
+  expect_equal(class(response), "list")
+  expect_equal(length(response), 1)
+  expect_equal(class(response$records), "list")
+  expect_equal(length(response$records), 1)
+  for (responseElement in response$records) {
+    check_project_summary_response(responseElement)
+    expect_equal(responseElement$id, "projectid")
+    expect_equal(responseElement$owner, "ownerid")
+  }
+  p <- response$records[[1]]
+  expect_true(!is.null(p$tags))
+  expect_true(!is.null(p$files))
+  expect_true(!is.null(p$tags))
+  expect_equal(length(p$tags), 0)
+  expect_equal(length(p$linkedDatasets), 0)
+  expect_equal(length(p$linkedDatasets), 0)
+})

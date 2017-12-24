@@ -1,0 +1,66 @@
+{
+    "count": 1,
+    "records": [
+        {
+            "owner": "ownerid",
+            "id": "projectid",
+            "title": "projectid",
+            "objective": "The objective...",
+            "summary": "The summary...",
+            "tags": [
+                "tag1",
+                "tag2"
+            ],
+            "visibility": "PRIVATE",
+            "status": "LOADED",
+            "created": "2017-06-09T19:41:03.757Z",
+            "updated": "2017-12-24T15:54:21.706Z",
+            "accessLevel": "ADMIN",
+            "files": [
+                {
+                    "name": "File1.csv",
+                    "sizeInBytes": 22233,
+                    "source": {
+                        "url": "https://data.world/some-file-name-etc.csv",
+                        "syncStatus": "OK",
+                        "lastSyncStart": "2017-12-24T15:52:07.747Z",
+                        "lastSyncSuccess": "2017-12-24T15:52:07.793Z"
+                    },
+                    "created": "2017-12-24T15:52:07.967Z",
+                    "updated": "2017-12-24T15:52:07.967Z"
+                }
+            ],
+            "linkedDatasets": [
+                {
+                    "owner": "ownerid",
+                    "id": "datasetid",
+                    "title": "datasetid",
+                    "description": "A description...",
+                    "summary": "http://somesite.com/summary",
+                    "tags": [
+                        "tag3"
+                    ],
+                    "visibility": "OPEN",
+                    "created": "2017-03-23T15:03:34.464Z",
+                    "updated": "2017-03-23T15:05:52.161Z",
+                    "accessLevel": "READ"
+                },
+                {
+                    "owner": "ownerid2",
+                    "id": "datasetid2",
+                    "title": "datasetid21",
+                    "description": "A description...",
+                    "summary": "A summary...",
+                    "tags": [
+                        "tag4",
+                        "tag5"
+                    ],
+                    "visibility": "OPEN",
+                    "created": "2017-01-11T04:27:44.285Z",
+                    "updated": "2017-05-26T18:29:58.122Z",
+                    "accessLevel": "ADMIN"
+                }
+            ]
+        }
+    ]
+}

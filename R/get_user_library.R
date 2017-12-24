@@ -61,6 +61,51 @@ get_datasets_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
   get_user_library_item('datasets', 'own', limit, nextPageToken, sort)
 }
 
+#' Search for projects owned by the currently authenticated user.
+#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
+#' of objects of type \code{\link{project_summary_response}}. If the call to \code{get_projects_user_own()} was made with a non-null
+#' \code{limit} parameter, and if further pages remain for retrieval, then
+#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' with the token to use in a subsequent call to get the next page.
+#' @examples
+#' \dontrun{
+#'   dwapi::get_projects_user_own()
+#' }
+#' @export
+get_projects_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
+  get_user_library_item('projects', 'own', limit, nextPageToken, sort)
+}
+
+#' Search for projects contributed-to by the currently authenticated user.
+#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
+#' of objects of type \code{\link{project_summary_response}}. If the call to \code{get_projects_user_contributing()} was made with a non-null
+#' \code{limit} parameter, and if further pages remain for retrieval, then
+#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' with the token to use in a subsequent call to get the next page.
+#' @examples
+#' \dontrun{
+#'   dwapi::get_projects_user_contributing()
+#' }
+#' @export
+get_projects_user_contributing <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
+  get_user_library_item('projects', 'contributing', limit, nextPageToken, sort)
+}
+
+#' Search for projects liked by the currently authenticated user.
+#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
+#' of objects of type \code{\link{project_summary_response}}. If the call to \code{get_projects_user_liked()} was made with a non-null
+#' \code{limit} parameter, and if further pages remain for retrieval, then
+#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' with the token to use in a subsequent call to get the next page.
+#' @examples
+#' \dontrun{
+#'   dwapi::get_projects_user_liked()
+#' }
+#' @export
+get_projects_user_liked <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
+  get_user_library_item('projects', 'liked', limit, nextPageToken, sort)
+}
+
 #' Search for library items owned by, liked by, or contributed-to by the currently authenticated user.
 #' @param role the user's role with respect to the asset (one of: own, liked, contributing)
 #' @param type the type of asset (one of: datasets, projects)
@@ -95,7 +140,7 @@ get_user_library_item <- function(type=c('datasets', 'projects'), role=c('own', 
 
   assetBuilderFunctions <- list(
     'datasets'=dataset_summary_response,
-    'projects'=NULL # tbd
+    'projects'=project_summary_response
   )
 
   response <-
