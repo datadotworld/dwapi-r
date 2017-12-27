@@ -17,7 +17,7 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 dw_test_that("invalid limit parameter", {
-  expect_error(dwapi::get_datasets_user_own(limit='a'), regexp='must be an integer')
+  expect_error(dwapi::get_datasets_user_own(limit="a"), regexp="must be an integer")
 })
 
 dw_test_that("get_datasets_own, no params, 1 result", {
@@ -124,7 +124,7 @@ dw_test_that("get_datasets_own, limit of 1, 1 result, next page and encoding of 
       expect_equal(url, "https://api.data.world/v0/user/datasets/own")
       expect_true(!is.null(query$limit))
       expect_true(!is.null(query$`next`))
-      expect_equal(query$`next`, 'NPT=')
+      expect_equal(query$`next`, "NPT=")
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
       success_message_with_content(
@@ -133,7 +133,7 @@ dw_test_that("get_datasets_own, limit of 1, 1 result, next page and encoding of 
       )
     },
     `mime::guess_type` = function(...) NULL,
-    dwapi::get_datasets_user_own(limit=1, nextPageToken='NPT=')
+    dwapi::get_datasets_user_own(limit=1, nextPageToken="NPT=")
   )
   expect_equal(class(response), "list")
   expect_equal(length(response), 2)

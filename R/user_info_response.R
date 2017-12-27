@@ -29,7 +29,7 @@ user_info_response <- function(structure) {
 }
 
 get_required_elements <- function() {
-  c('avatarUrl', 'displayName', 'id', 'created', 'updated')
+  c("avatarUrl", "displayName", "id", "created", "updated")
 }
 
 #' Validate \code{get_user} response object, returning the object if valid, and stopping with an error message if invalid.

@@ -28,7 +28,7 @@ https://data.world"
 #' }
 #' @export
 get_datasets_user_liked <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item('datasets', 'liked', limit, nextPageToken, sort)
+  get_user_library_item("datasets", "liked", limit, nextPageToken, sort)
 }
 
 #' Search for datasets contributed-to by the currently authenticated user.
@@ -43,7 +43,7 @@ get_datasets_user_liked <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
 #' }
 #' @export
 get_datasets_user_contributing <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item('datasets', 'contributing', limit, nextPageToken, sort)
+  get_user_library_item("datasets", "contributing", limit, nextPageToken, sort)
 }
 
 #' Search for datasets owned by the currently authenticated user.
@@ -58,7 +58,7 @@ get_datasets_user_contributing <- function(limit=NULL, nextPageToken=NULL, sort=
 #' }
 #' @export
 get_datasets_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item('datasets', 'own', limit, nextPageToken, sort)
+  get_user_library_item("datasets", "own", limit, nextPageToken, sort)
 }
 
 #' Search for projects owned by the currently authenticated user.
@@ -73,7 +73,7 @@ get_datasets_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
 #' }
 #' @export
 get_projects_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item('projects', 'own', limit, nextPageToken, sort)
+  get_user_library_item("projects", "own", limit, nextPageToken, sort)
 }
 
 #' Search for projects contributed-to by the currently authenticated user.
@@ -88,7 +88,7 @@ get_projects_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
 #' }
 #' @export
 get_projects_user_contributing <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item('projects', 'contributing', limit, nextPageToken, sort)
+  get_user_library_item("projects", "contributing", limit, nextPageToken, sort)
 }
 
 #' Search for projects liked by the currently authenticated user.
@@ -103,7 +103,7 @@ get_projects_user_contributing <- function(limit=NULL, nextPageToken=NULL, sort=
 #' }
 #' @export
 get_projects_user_liked <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item('projects', 'liked', limit, nextPageToken, sort)
+  get_user_library_item("projects", "liked", limit, nextPageToken, sort)
 }
 
 #' Search for library items owned by, liked by, or contributed-to by the currently authenticated user.
@@ -115,21 +115,21 @@ get_projects_user_liked <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
 #' the list will also contain a single-element character vector, named \code{nextPageToken},
 #' with the token to use in a subsequent call to get the next page.
 #' @keywords internal
-get_user_library_item <- function(type=c('datasets', 'projects'), role=c('own', 'liked', 'contributing'), limit=NULL, nextPageToken=NULL, sort=NULL) {
+get_user_library_item <- function(type=c("datasets", "projects"), role=c("own", "liked", "contributing"), limit=NULL, nextPageToken=NULL, sort=NULL) {
 
   role <- match.arg(role)
 
   if (!is.null(limit)) {
-    if (is.character(limit) & !grepl(x=limit, pattern='^[0-9]+$')) {
-      stop(paste0('limit parameter must be an integer, supplied value was ', limit))
+    if (is.character(limit) & !grepl(x=limit, pattern="^[0-9]+$")) {
+      stop(paste0("limit parameter must be an integer, supplied value was ", limit))
     }
     limit=as.character(limit)
   }
 
   queryList <- list(
-    'limit'=limit,
-    'next'=nextPageToken,
-    'sort'=sort
+    "limit"=limit,
+    "next"=nextPageToken,
+    "sort"=sort
   )
 
   url <- paste0(getOption("dwapi.api_url"), "/user/", type, "/", role)
@@ -139,14 +139,14 @@ get_user_library_item <- function(type=c('datasets', 'projects'), role=c('own', 
   dsList <- list()
 
   assetBuilderFunctions <- list(
-    'datasets'=dataset_summary_response,
-    'projects'=project_summary_response
+    "datasets"=dataset_summary_response,
+    "projects"=project_summary_response
   )
 
   response <-
     httr::GET(
       url,
-      httr::add_headers('Content-Type' = "application/json",
+      httr::add_headers("Content-Type" = "application/json",
                         Authorization = auth),
       httr::user_agent(user_agent()),
       query=queryList
@@ -165,7 +165,7 @@ get_user_library_item <- function(type=c('datasets', 'projects'), role=c('own', 
       dsList <- lapply(structured_response$records, function(assetStructure) {
         assetBuilderFunctions[[type]](assetStructure)
       })
-      ret <- list('records'=dsList)
+      ret <- list("records"=dsList)
       if (!is.null(structured_response$nextPageToken)) {
         ret$nextPageToken <- structured_response$nextPageToken
       }

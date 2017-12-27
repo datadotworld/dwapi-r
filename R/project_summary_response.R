@@ -28,15 +28,15 @@ projectRequiredFields <- c(
 )
 
 projectOptionalFields <- c(
-  'objective',
-  'summary',
-  'license'
+  "objective",
+  "summary",
+  "license"
 )
 
 projectArrayHandlers <- list(
-  'tags'=function(tag) tag,
-  'files'=file_summary_response,
-  'linkedDatasets'=dataset_summary_response
+  "tags"=function(tag) tag,
+  "files"=file_summary_response,
+  "linkedDatasets"=dataset_summary_response
 )
 
 #' Deserialize \code{get_project} response object.
