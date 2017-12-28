@@ -27,7 +27,7 @@ https://data.world"
 #'   dwapi::create_insight(
 #'     project_owner = 'user',
 #'     project_id = 'project',
-#'     insight_create_request(title='My Insight', image_url='https://...')
+#'     insight_create_request(title='My Insight', image_url='https://...'))
 #' }
 #' @export
 create_insight <-
