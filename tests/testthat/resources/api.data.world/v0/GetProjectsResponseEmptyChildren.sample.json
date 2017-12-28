@@ -1,0 +1,20 @@
+{
+    "count": 1,
+    "records": [
+        {
+            "owner": "ownerid",
+            "id": "projectid",
+            "title": "projectid",
+            "objective": "The objective...",
+            "summary": "The summary...",
+            "tags": [],
+            "visibility": "PRIVATE",
+            "status": "LOADED",
+            "created": "2017-06-09T19:41:03.757Z",
+            "updated": "2017-12-24T15:54:21.706Z",
+            "accessLevel": "ADMIN",
+            "files": [],
+            "linkedDatasets": []
+        }
+    ]
+}
