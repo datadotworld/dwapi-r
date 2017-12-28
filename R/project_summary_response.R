@@ -16,28 +16,36 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
-projectRequiredFields <- c(
-  "accessLevel",
-  "created",
-  "id",
-  "owner",
-  "status",
-  "title",
-  "updated",
-  "visibility"
-)
+#' Get the project required fields
+#' @keywords internal
+get_project_required_fields <- function() {
+  c(
+    "accessLevel",
+    "created",
+    "id",
+    "owner",
+    "status",
+    "title",
+    "updated",
+    "visibility"
+  )
+}
 
-projectOptionalFields <- c(
-  "objective",
-  "summary",
-  "license"
-)
+get_project_optional_fields <- function() {
+  c(
+    "objective",
+    "summary",
+    "license"
+  )
+}
 
-projectArrayHandlers <- list(
-  "tags"=function(tag) tag,
-  "files"=file_summary_response,
-  "linkedDatasets"=dataset_summary_response
-)
+get_project_array_handlers <- function() {
+  list(
+    "tags" = function(tag) tag,
+    "files" = file_summary_response,
+    "linkedDatasets" = dataset_summary_response
+  )
+}
 
 #' Deserialize \code{get_project} response object.
 #' @param structure httr response object.
@@ -45,12 +53,15 @@ projectArrayHandlers <- list(
 #' @seealso \code{\link{get_project}}
 project_summary_response <- function(structure) {
 
-  fields <- c(projectRequiredFields, projectOptionalFields)
-  me <- setNames(lapply(fields, function(fieldName) structure[[fieldName]]), fields)
-  me <- c(me, setNames(lapply(names(projectArrayHandlers), function(handlerName) {
-    f <- projectArrayHandlers[[handlerName]]
-    lapply(structure[[handlerName]], f)
-  }), names(projectArrayHandlers)))
+  fields <- c(get_project_required_fields(), get_project_optional_fields())
+  me <- setNames(lapply(
+    fields, function(field_name) structure[[field_name]]), fields)
+  me <- c(me, setNames(lapply(
+    names(get_project_array_handlers()), function(handler_name) {
+      f <- get_project_array_handlers()[[handler_name]]
+      lapply(structure[[handler_name]], f)
+    }
+  ), names(get_project_array_handlers())))
 
   class(me) <- "project_summary_response"
   check_project_summary_response(me)
@@ -63,7 +74,11 @@ check_project_summary_response <- function(object) {
   if (class(object) != "project_summary_response") {
     stop("object is not of class project_summary_response")
   }
-  if (any(sapply(projectRequiredFields, function(v) {is.null(object[[v]])}))) {
+  if (any(sapply(
+    get_project_required_fields(), function(v) {
+      is.null(object[[v]])
+    }
+  ))) {
     stop("invalid project_summary_response object")
   }
   object

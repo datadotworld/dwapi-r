@@ -17,130 +17,173 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Search for datasets liked by the currently authenticated user.
-#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
-#' of objects of type \code{\link{dataset_summary_response}}. If the call to \code{get_datasets_user_liked()} was made with a non-null
-#' \code{limit} parameter, and if further pages remain for retrieval, then
-#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' @return a named list with at most two elements.  It will always
+#' contain a list, named \code{records},
+#' of objects of type \code{\link{dataset_summary_response}}. If the
+#' call to \code{get_datasets_user_liked()} was made with a non-null
+#' \code{limit} parameter, and if further pages remain for
+#' retrieval, then the list will also contain a single-element
+#' character vector, named \code{next_page_token},
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
 #'   dwapi::get_datasets_user_liked()
 #' }
 #' @export
-get_datasets_user_liked <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item("datasets", "liked", limit, nextPageToken, sort)
+get_datasets_user_liked <-
+  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  get_user_library_item("datasets", "liked", limit, next_page_token, sort)
 }
 
 #' Search for datasets contributed-to by the currently authenticated user.
-#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
-#' of objects of type \code{\link{dataset_summary_response}}. If the call to \code{get_datasets_user_contributing()} was made with a non-null
+#' @return a named list with at most two elements.  It will always
+#' contain a list, named \code{records},
+#' of objects of type \code{\link{dataset_summary_response}}. If the call
+#' to \code{get_datasets_user_contributing()} was made with a non-null
 #' \code{limit} parameter, and if further pages remain for retrieval, then
-#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' the list will also contain a single-element character vector,
+#' named \code{next_page_token},
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
 #'   dwapi::get_datasets_user_contributing()
 #' }
 #' @export
-get_datasets_user_contributing <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item("datasets", "contributing", limit, nextPageToken, sort)
+get_datasets_user_contributing <-
+  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  get_user_library_item("datasets", "contributing",
+                        limit, next_page_token, sort)
 }
 
 #' Search for datasets owned by the currently authenticated user.
-#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
-#' of objects of type \code{\link{dataset_summary_response}}. If the call to \code{get_datasets_user_own()} was made with a non-null
-#' \code{limit} parameter, and if further pages remain for retrieval, then
-#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' @return a named list with at most two elements.  It will always
+#' contain a list, named \code{records},
+#' of objects of type \code{\link{dataset_summary_response}}. If
+#' the call to \code{get_datasets_user_own()} was made with a non-null
+#' \code{limit} parameter, and if further pages remain for
+#' retrieval, then
+#' the list will also contain a single-element character vector,
+#' named \code{next_page_token},
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
 #'   dwapi::get_datasets_user_own()
 #' }
 #' @export
-get_datasets_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item("datasets", "own", limit, nextPageToken, sort)
+get_datasets_user_own <-
+  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  get_user_library_item("datasets", "own",
+                        limit, next_page_token, sort)
 }
 
 #' Search for projects owned by the currently authenticated user.
-#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
-#' of objects of type \code{\link{project_summary_response}}. If the call to \code{get_projects_user_own()} was made with a non-null
-#' \code{limit} parameter, and if further pages remain for retrieval, then
-#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' @return a named list with at most two elements.  It will always
+#' contain a list, named \code{records},
+#' of objects of type \code{\link{project_summary_response}}. If
+#' the call to \code{get_projects_user_own()} was made with a non-null
+#' \code{limit} parameter, and if further pages remain for
+#' retrieval, then
+#' the list will also contain a single-element character vector,
+#' named \code{next_page_token},
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
 #'   dwapi::get_projects_user_own()
 #' }
 #' @export
-get_projects_user_own <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item("projects", "own", limit, nextPageToken, sort)
+get_projects_user_own <-
+  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  get_user_library_item("projects", "own",
+                        limit, next_page_token, sort)
 }
 
 #' Search for projects contributed-to by the currently authenticated user.
-#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
-#' of objects of type \code{\link{project_summary_response}}. If the call to \code{get_projects_user_contributing()} was made with a non-null
+#' @return a named list with at most two elements.  It will always
+#' contain a list, named \code{records},
+#' of objects of type \code{\link{project_summary_response}}. If the
+#' call to \code{get_projects_user_contributing()} was made with a non-null
 #' \code{limit} parameter, and if further pages remain for retrieval, then
-#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' the list will also contain a single-element character
+#' vector, named \code{next_page_token},
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
 #'   dwapi::get_projects_user_contributing()
 #' }
 #' @export
-get_projects_user_contributing <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item("projects", "contributing", limit, nextPageToken, sort)
+get_projects_user_contributing <-
+  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  get_user_library_item("projects", "contributing",
+                        limit, next_page_token, sort)
 }
 
 #' Search for projects liked by the currently authenticated user.
-#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
-#' of objects of type \code{\link{project_summary_response}}. If the call to \code{get_projects_user_liked()} was made with a non-null
-#' \code{limit} parameter, and if further pages remain for retrieval, then
-#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' @return a named list with at most two elements.  It will always
+#' contain a list, named \code{records},
+#' of objects of type \code{\link{project_summary_response}}. If
+#' the call to \code{get_projects_user_liked()} was made with a non-null
+#' \code{limit} parameter, and if further pages remain for retrieval,
+#' then
+#' the list will also contain a single-element character vector,
+#' named \code{next_page_token},
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
 #'   dwapi::get_projects_user_liked()
 #' }
 #' @export
-get_projects_user_liked <- function(limit=NULL, nextPageToken=NULL, sort=NULL) {
-  get_user_library_item("projects", "liked", limit, nextPageToken, sort)
+get_projects_user_liked <-
+  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  get_user_library_item("projects", "liked",
+                        limit, next_page_token, sort)
 }
 
-#' Search for library items owned by, liked by, or contributed-to by the currently authenticated user.
-#' @param role the user's role with respect to the asset (one of: own, liked, contributing)
+#' Search for library items owned by, liked by, or contributed-to by
+#' the currently authenticated user.
+#' @param role the user's role with respect to the asset
+#' (one of: own, liked, contributing)
 #' @param type the type of asset (one of: datasets, projects)
-#' @return a named list with at most two elements.  It will always contain a list, named \code{records},
-#' of objects of a list structure type appropriate for the kind of asset queried. If the call to \code{get_datasets()} was made with a non-null
-#' \code{limit} parameter, and if further pages remain for retrieval, then
-#' the list will also contain a single-element character vector, named \code{nextPageToken},
+#' @return a named list with at most two elements.  It will
+#' always contain a list, named \code{records},
+#' of objects of a list structure type appropriate for the
+#' kind of asset queried. If the call to \code{get_datasets()}
+#' was made with a non-null
+#' \code{limit} parameter, and if further pages remain for
+#' retrieval, then
+#' the list will also contain a single-element character vector,
+#' named \code{next_page_token},
 #' with the token to use in a subsequent call to get the next page.
 #' @keywords internal
-get_user_library_item <- function(type=c("datasets", "projects"), role=c("own", "liked", "contributing"), limit=NULL, nextPageToken=NULL, sort=NULL) {
+get_user_library_item <-
+  function(type=c("datasets", "projects"),
+           role=c("own", "liked", "contributing"),
+           limit=NULL, next_page_token=NULL, sort=NULL) {
 
   role <- match.arg(role)
 
   if (!is.null(limit)) {
-    if (is.character(limit) & !grepl(x=limit, pattern="^[0-9]+$")) {
-      stop(paste0("limit parameter must be an integer, supplied value was ", limit))
+    if (is.character(limit) & !grepl(x = limit, pattern = "^[0-9]+$")) {
+      stop(paste0(
+        "limit parameter must be an integer, supplied value was ", limit))
     }
-    limit=as.character(limit)
+    limit <- as.character(limit)
   }
 
-  queryList <- list(
-    "limit"=limit,
-    "next"=nextPageToken,
-    "sort"=sort
+  query_list <- list(
+    "limit" = limit,
+    "next" = next_page_token,
+    "sort" = sort
   )
 
-  url <- paste0(getOption("dwapi.api_url"), "/user/", type, "/", role)
+  url <- paste0(getOption("dwapi.api_url"), "/", "user", "/", type, "/", role)
 
   auth <- sprintf("Bearer %s", auth_token())
 
-  dsList <- list()
+  ds_list <- list()
 
-  assetBuilderFunctions <- list(
-    "datasets"=dataset_summary_response,
-    "projects"=project_summary_response
+  abf <- list(
+    "datasets" = dataset_summary_response,
+    "projects" = project_summary_response
   )
 
   response <-
@@ -149,7 +192,7 @@ get_user_library_item <- function(type=c("datasets", "projects"), role=c("own", 
       httr::add_headers("Content-Type" = "application/json",
                         Authorization = auth),
       httr::user_agent(user_agent()),
-      query=queryList
+      query = query_list
     )
 
   if (response$status_code == 200) {
@@ -162,12 +205,13 @@ get_user_library_item <- function(type=c("datasets", "projects"), role=c("own", 
     if (is.null(structured_response$records)) {
       handle_library_err(response)
     } else {
-      dsList <- lapply(structured_response$records, function(assetStructure) {
-        assetBuilderFunctions[[type]](assetStructure)
+      ds_list <- lapply(
+        structured_response$records, function(asset_structure) {
+        abf[[type]](asset_structure)
       })
-      ret <- list("records"=dsList)
-      if (!is.null(structured_response$nextPageToken)) {
-        ret$nextPageToken <- structured_response$nextPageToken
+      ret <- list("records" = ds_list)
+      if (!is.null(structured_response[["nextPageToken"]])) {
+        ret[["nextPageToken"]] <- structured_response[["nextPageToken"]]
       }
     }
   } else {

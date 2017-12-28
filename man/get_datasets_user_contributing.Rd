@@ -4,14 +4,17 @@
 \alias{get_datasets_user_contributing}
 \title{Search for datasets contributed-to by the currently authenticated user.}
 \usage{
-get_datasets_user_contributing(limit = NULL, nextPageToken = NULL,
+get_datasets_user_contributing(limit = NULL, next_page_token = NULL,
   sort = NULL)
 }
 \value{
-a named list with at most two elements.  It will always contain a list, named \code{records},
-of objects of type \code{\link{dataset_summary_response}}. If the call to \code{get_datasets_user_contributing()} was made with a non-null
+a named list with at most two elements.  It will always
+contain a list, named \code{records},
+of objects of type \code{\link{dataset_summary_response}}. If the call
+to \code{get_datasets_user_contributing()} was made with a non-null
 \code{limit} parameter, and if further pages remain for retrieval, then
-the list will also contain a single-element character vector, named \code{nextPageToken},
+the list will also contain a single-element character vector,
+named \code{next_page_token},
 with the token to use in a subsequent call to get the next page.
 }
 \description{

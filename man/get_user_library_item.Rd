@@ -2,25 +2,33 @@
 % Please edit documentation in R/get_user_library.R
 \name{get_user_library_item}
 \alias{get_user_library_item}
-\title{Search for library items owned by, liked by, or contributed-to by the currently authenticated user.}
+\title{Search for library items owned by, liked by, or contributed-to by
+the currently authenticated user.}
 \usage{
 get_user_library_item(type = c("datasets", "projects"), role = c("own",
-  "liked", "contributing"), limit = NULL, nextPageToken = NULL,
+  "liked", "contributing"), limit = NULL, next_page_token = NULL,
   sort = NULL)
 }
 \arguments{
 \item{type}{the type of asset (one of: datasets, projects)}
 
-\item{role}{the user's role with respect to the asset (one of: own, liked, contributing)}
+\item{role}{the user's role with respect to the asset
+(one of: own, liked, contributing)}
 }
 \value{
-a named list with at most two elements.  It will always contain a list, named \code{records},
-of objects of a list structure type appropriate for the kind of asset queried. If the call to \code{get_datasets()} was made with a non-null
-\code{limit} parameter, and if further pages remain for retrieval, then
-the list will also contain a single-element character vector, named \code{nextPageToken},
+a named list with at most two elements.  It will
+always contain a list, named \code{records},
+of objects of a list structure type appropriate for the
+kind of asset queried. If the call to \code{get_datasets()}
+was made with a non-null
+\code{limit} parameter, and if further pages remain for
+retrieval, then
+the list will also contain a single-element character vector,
+named \code{next_page_token},
 with the token to use in a subsequent call to get the next page.
 }
 \description{
-Search for library items owned by, liked by, or contributed-to by the currently authenticated user.
+Search for library items owned by, liked by, or contributed-to by
+the currently authenticated user.
 }
 \keyword{internal}

@@ -37,9 +37,10 @@ dw_test_that("get_user making the correct HTTR request", {
   )
   expect_equal(class(response), "user_info_response")
   check_user_info_response(response)
-  expect_equal(response$avatarUrl, "https://cdn.filepicker.io/api/file/ABCDEF1234567890")
+  expect_equal(response[["avatarUrl"]],
+               "https://cdn.filepicker.io/api/file/ABCDEF1234567890")
   expect_equal(response$id, "ownerid")
-  expect_equal(response$displayName, "DW User")
+  expect_equal(response[["displayName"]], "DW User")
   expect_equal(response$created, "2017-01-11T01:35:35.426Z")
   expect_equal(response$updated, "2017-11-02T16:08:36.509Z")
 })

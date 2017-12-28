@@ -4,13 +4,17 @@
 \alias{get_projects_user_liked}
 \title{Search for projects liked by the currently authenticated user.}
 \usage{
-get_projects_user_liked(limit = NULL, nextPageToken = NULL, sort = NULL)
+get_projects_user_liked(limit = NULL, next_page_token = NULL, sort = NULL)
 }
 \value{
-a named list with at most two elements.  It will always contain a list, named \code{records},
-of objects of type \code{\link{project_summary_response}}. If the call to \code{get_projects_user_liked()} was made with a non-null
-\code{limit} parameter, and if further pages remain for retrieval, then
-the list will also contain a single-element character vector, named \code{nextPageToken},
+a named list with at most two elements.  It will always
+contain a list, named \code{records},
+of objects of type \code{\link{project_summary_response}}. If
+the call to \code{get_projects_user_liked()} was made with a non-null
+\code{limit} parameter, and if further pages remain for retrieval,
+then
+the list will also contain a single-element character vector,
+named \code{next_page_token},
 with the token to use in a subsequent call to get the next page.
 }
 \description{

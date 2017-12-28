@@ -17,7 +17,8 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 dw_test_that("invalid limit parameter", {
-  expect_error(dwapi::get_datasets_user_own(limit="a"), regexp="must be an integer")
+  expect_error(dwapi::get_datasets_user_own(limit = "a"),
+               regexp = "must be an integer")
 })
 
 dw_test_that("get_datasets_own, no params, 1 result", {
@@ -38,10 +39,10 @@ dw_test_that("get_datasets_own, no params, 1 result", {
   expect_equal(length(response), 1)
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
-  for (responseElement in response$records) {
-    check_dataset_summary_response(responseElement)
-    expect_equal(responseElement$id, "datasetid")
-    expect_equal(responseElement$owner, "ownerid")
+  for (response_element in response$records) {
+    check_dataset_summary_response(response_element)
+    expect_equal(response_element$id, "datasetid")
+    expect_equal(response_element$owner, "ownerid")
   }
 })
 
@@ -83,9 +84,9 @@ dw_test_that("get_datasets_own, no params, 2 result objects", {
   expect_equal(length(response), 1)
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 2)
-  for (responseElement in response$records) {
-    check_dataset_summary_response(responseElement)
-    expect_equal(responseElement$owner, "ownerid")
+  for (response_element in response$records) {
+    check_dataset_summary_response(response_element)
+    expect_equal(response_element$owner, "ownerid")
   }
 })
 
@@ -103,22 +104,22 @@ dw_test_that("get_datasets_own, limit of 1, 1 result", {
       )
     },
     `mime::guess_type` = function(...) NULL,
-    dwapi::get_datasets_user_own(limit=1)
+    dwapi::get_datasets_user_own(limit = 1)
   )
   expect_equal(class(response), "list")
   expect_equal(length(response), 2)
-  expect_true(!is.null(response$nextPageToken))
+  expect_true(!is.null(response[["nextPageToken"]]))
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
-  for (responseElement in response$records) {
-    check_dataset_summary_response(responseElement)
-    expect_equal(responseElement$id, "datasetid")
-    expect_equal(responseElement$owner, "ownerid")
-    # no need to test other dataset attributes...defer to get_dataset unit test
+  for (response_element in response$records) {
+    check_dataset_summary_response(response_element)
+    expect_equal(response_element$id, "datasetid")
+    expect_equal(response_element$owner, "ownerid")
+    # no need to test other attributes...defer to get_dataset unit test
   }
 })
 
-dw_test_that("get_datasets_own, limit of 1, 1 result, next page and encoding of token", {
+dw_test_that("get_datasets_own, limit of 1, 1 result, next page token", {
   response <- with_mock(
     `httr::GET` = function(url, header, user_agent, query)  {
       expect_equal(url, "https://api.data.world/v0/user/datasets/own")
@@ -133,17 +134,18 @@ dw_test_that("get_datasets_own, limit of 1, 1 result, next page and encoding of 
       )
     },
     `mime::guess_type` = function(...) NULL,
-    dwapi::get_datasets_user_own(limit=1, nextPageToken="NPT=")
+    dwapi::get_datasets_user_own(limit = 1, next_page_token = "NPT=")
   )
   expect_equal(class(response), "list")
   expect_equal(length(response), 2)
-  expect_true(!is.null(response$nextPageToken))
+  expect_true(!is.null(response[["nextPageToken"]]))
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
 })
 
 dw_test_that("get_datasets_liked, no params, 1 result", {
-  # don't need to test all the other scenarios, since liked uses the same implementation as contributing and own
+  # don't need to test all the other scenarios,
+  #  since liked uses the same implementation as contributing and own
   response <- with_mock(
     `httr::GET` = function(url, header, user_agent, query)  {
       expect_equal(url, "https://api.data.world/v0/user/datasets/liked")
@@ -164,7 +166,8 @@ dw_test_that("get_datasets_liked, no params, 1 result", {
 })
 
 dw_test_that("get_datasets_contributing, no params, 1 result", {
-  # don't need to test all the other scenarios, since contributing uses the same implementation as liked and own
+  # don't need to test all the other scenarios, since
+  # contributing uses the same implementation as liked and own
   response <- with_mock(
     `httr::GET` = function(url, header, user_agent, query)  {
       expect_equal(url, "https://api.data.world/v0/user/datasets/contributing")
@@ -202,15 +205,15 @@ dw_test_that("get_projects_own, no params, 1 result", {
   expect_equal(length(response), 1)
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
-  for (responseElement in response$records) {
-    check_project_summary_response(responseElement)
-    expect_equal(responseElement$id, "projectid")
-    expect_equal(responseElement$owner, "ownerid")
+  for (response_element in response$records) {
+    check_project_summary_response(response_element)
+    expect_equal(response_element$id, "projectid")
+    expect_equal(response_element$owner, "ownerid")
   }
   p <- response$records[[1]]
   expect_equal(length(p$tags), 2)
   expect_equal(length(p$files), 1)
-  expect_equal(length(p$linkedDatasets), 2)
+  expect_equal(length(p[["linkedDatasets"]]), 2)
 })
 
 dw_test_that("get_projects_own, no params, 1 result, empty children", {
@@ -220,7 +223,8 @@ dw_test_that("get_projects_own, no params, 1 result, empty children", {
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
       success_message_with_content(
-        "resources/api.data.world/v0/GetProjectsResponseEmptyChildren.sample.json",
+        paste0("resources/api.data.world/v0/",
+               "GetProjectsResponseEmptyChildren.sample.json"),
         "application/json"
       )
     },
@@ -231,16 +235,16 @@ dw_test_that("get_projects_own, no params, 1 result, empty children", {
   expect_equal(length(response), 1)
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
-  for (responseElement in response$records) {
-    check_project_summary_response(responseElement)
-    expect_equal(responseElement$id, "projectid")
-    expect_equal(responseElement$owner, "ownerid")
+  for (response_element in response$records) {
+    check_project_summary_response(response_element)
+    expect_equal(response_element$id, "projectid")
+    expect_equal(response_element$owner, "ownerid")
   }
   p <- response$records[[1]]
   expect_true(!is.null(p$tags))
   expect_true(!is.null(p$files))
   expect_true(!is.null(p$tags))
   expect_equal(length(p$tags), 0)
-  expect_equal(length(p$linkedDatasets), 0)
-  expect_equal(length(p$linkedDatasets), 0)
+  expect_equal(length(p[["linkedDatasets"]]), 0)
+  expect_equal(length(p[["linkedDatasets"]]), 0)
 })

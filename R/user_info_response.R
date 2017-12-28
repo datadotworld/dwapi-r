@@ -21,9 +21,9 @@ https://data.world"
 #' @return Object of type \code{\link{user_info_response}}.
 #' @seealso \code{\link{get_dataset}}
 user_info_response <- function(structure) {
-  requiredElements <- get_required_elements()
-  optionalElements <- character()
-  me <- c(structure[requiredElements], structure[optionalElements])
+  required_elements <- get_required_elements()
+  optional_elements <- character()
+  me <- c(structure[required_elements], structure[optional_elements])
   class(me) <- "user_info_response"
   return(check_user_info_response(me))
 }
@@ -40,7 +40,10 @@ check_user_info_response <- function(object) {
     stop("object is not of class user_info_response")
   }
   ret <- object
-  if (!all(sapply(get_required_elements(), function(v) {!is.null(object[[v]])}))) {
+  if (!all(sapply(get_required_elements(), function(v) {
+    !is.null(object[[v]])
+  }
+  ))) {
     stop("invalid user_info_response object")
   }
   ret
