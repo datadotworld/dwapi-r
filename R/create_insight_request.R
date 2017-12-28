@@ -32,7 +32,7 @@ https://data.world"
 #' request <- dwapi::insight_create_request(title='A title',
 #'   description = 'A description',
 #'   image_url = 'https://site.org/image.png',
-#'   source_link = 'https://site.org/data'))
+#'   source_link = 'https://site.org/data')
 #' @export
 insight_create_request <-
   function(title, description = NULL,
