@@ -1,6 +1,11 @@
 # 0.1.2
 
 * Address compatibility issues with testthat 2.0.0
+* Additional wrapper functions for API endpoints
+  * `get_user`
+  * `get_datasets_user_own`, `get_datasets_user_liked`, `get_datasets_user_contributing`
+  * `get_projects_user_own`, `get_projects_user_liked`, `get_projects_user_contributing`
+  * `create_insight`
 
 # 0.1.1
 
