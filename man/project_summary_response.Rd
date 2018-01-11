@@ -10,11 +10,11 @@ project_summary_response(structure)
 \item{structure}{httr response object.}
 }
 \value{
-Object of type \code{\link{dataset_project_response}}.
+Object of type \code{\link{project_summary_response}}.
 }
 \description{
 Deserialize \code{get_project} response object.
 }
 \seealso{
-\code{\link{get_project}}
+\code{\link{get_projects_user_own}}
 }

@@ -1,11 +1,11 @@
 Package: dwapi
-Title: A Client for Data.world's REST API
+Title: A Client for 'data.world' REST API
 Version: 0.1.2
 Authors@R: c(
     person("Rafael", "Pereira", email = "rafael.pereira@data.world", role = c("aut", "cre")),
     person("Triet", "Le", email = "triet.le@data.world", role = c("aut")),
     person("Bryon", "Jacob", email = "bryon.jacob@data.world", role = c("aut")))
-Description: A set of wrapper functions for data.world's REST API endpoints.
+Description: A set of wrapper functions for 'data.world' REST API endpoints <https://apidocs.data.world>.
 Depends: R (>= 3.3.0)
 Imports:
     httr,

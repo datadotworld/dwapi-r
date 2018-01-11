@@ -22,6 +22,6 @@ Download file from dataset onto the local file system.
 \examples{
 \dontrun{
   dwapi::download_file(dataset = 'user/dataset',
-   file_name = 'file.csv', output = 'tmp/file.csv')
+   file_name = 'file.csv', output = tempfile(fileext = 'csv'))
 }
 }

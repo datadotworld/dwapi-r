@@ -28,7 +28,7 @@ https://data.world"
 #' \dontrun{
 #'   dwapi::download_datapackage(
 #'     dataset = "user/dataset",
-#'     output_path = "tmp/user/dataset")
+#'     output_path = tempdir())
 #' }
 #' @export
 download_datapackage <- function(dataset, output_path = NULL) {

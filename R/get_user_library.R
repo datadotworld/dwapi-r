@@ -17,6 +17,8 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Search for datasets liked by the currently authenticated user.
+#' @param limit Maximum number of items to return
+#' @param next_page_token Unique token used to retrieve next page
 #' @return a named list with at most two elements.  It will always
 #' contain a list, named \code{records},
 #' of objects of type \code{\link{dataset_summary_response}}. If the
@@ -27,15 +29,17 @@ https://data.world"
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
-#'   dwapi::get_datasets_user_liked()
+#'   datasets_liked <- dwapi::get_datasets_user_liked()
 #' }
 #' @export
 get_datasets_user_liked <-
-  function(limit=NULL, next_page_token=NULL, sort=NULL) {
-  get_user_library_item("datasets", "liked", limit, next_page_token, sort)
+  function(limit=NULL, next_page_token=NULL) {
+  get_user_library_item("datasets", "liked", limit, next_page_token)
 }
 
 #' Search for datasets contributed-to by the currently authenticated user.
+#' @param limit Maximum number of items to return
+#' @param next_page_token Unique token used to retrieve next page
 #' @return a named list with at most two elements.  It will always
 #' contain a list, named \code{records},
 #' of objects of type \code{\link{dataset_summary_response}}. If the call
@@ -46,16 +50,18 @@ get_datasets_user_liked <-
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
-#'   dwapi::get_datasets_user_contributing()
+#'   datasets_contributing <- dwapi::get_datasets_user_contributing()
 #' }
 #' @export
 get_datasets_user_contributing <-
-  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  function(limit=NULL, next_page_token=NULL) {
   get_user_library_item("datasets", "contributing",
-                        limit, next_page_token, sort)
+                        limit, next_page_token)
 }
 
 #' Search for datasets owned by the currently authenticated user.
+#' @param limit Maximum number of items to return
+#' @param next_page_token Unique token used to retrieve next page
 #' @return a named list with at most two elements.  It will always
 #' contain a list, named \code{records},
 #' of objects of type \code{\link{dataset_summary_response}}. If
@@ -67,16 +73,18 @@ get_datasets_user_contributing <-
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
-#'   dwapi::get_datasets_user_own()
+#'   datasets_own <- dwapi::get_datasets_user_own()
 #' }
 #' @export
 get_datasets_user_own <-
-  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  function(limit=NULL, next_page_token=NULL) {
   get_user_library_item("datasets", "own",
-                        limit, next_page_token, sort)
+                        limit, next_page_token)
 }
 
 #' Search for projects owned by the currently authenticated user.
+#' @param limit Maximum number of items to return
+#' @param next_page_token Unique token used to retrieve next page
 #' @return a named list with at most two elements.  It will always
 #' contain a list, named \code{records},
 #' of objects of type \code{\link{project_summary_response}}. If
@@ -88,16 +96,18 @@ get_datasets_user_own <-
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
-#'   dwapi::get_projects_user_own()
+#'   projects_own <- dwapi::get_projects_user_own()
 #' }
 #' @export
 get_projects_user_own <-
-  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  function(limit=NULL, next_page_token=NULL) {
   get_user_library_item("projects", "own",
-                        limit, next_page_token, sort)
+                        limit, next_page_token)
 }
 
 #' Search for projects contributed-to by the currently authenticated user.
+#' @param limit Maximum number of items to return
+#' @param next_page_token Unique token used to retrieve next page
 #' @return a named list with at most two elements.  It will always
 #' contain a list, named \code{records},
 #' of objects of type \code{\link{project_summary_response}}. If the
@@ -108,16 +118,18 @@ get_projects_user_own <-
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
-#'   dwapi::get_projects_user_contributing()
+#'   projects_contributing <- dwapi::get_projects_user_contributing()
 #' }
 #' @export
 get_projects_user_contributing <-
-  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  function(limit=NULL, next_page_token=NULL) {
   get_user_library_item("projects", "contributing",
-                        limit, next_page_token, sort)
+                        limit, next_page_token)
 }
 
 #' Search for projects liked by the currently authenticated user.
+#' @param limit Maximum number of items to return
+#' @param next_page_token Unique token used to retrieve next page
 #' @return a named list with at most two elements.  It will always
 #' contain a list, named \code{records},
 #' of objects of type \code{\link{project_summary_response}}. If
@@ -129,17 +141,19 @@ get_projects_user_contributing <-
 #' with the token to use in a subsequent call to get the next page.
 #' @examples
 #' \dontrun{
-#'   dwapi::get_projects_user_liked()
+#'   projects_liked <- dwapi::get_projects_user_liked()
 #' }
 #' @export
 get_projects_user_liked <-
-  function(limit=NULL, next_page_token=NULL, sort=NULL) {
+  function(limit=NULL, next_page_token=NULL) {
   get_user_library_item("projects", "liked",
-                        limit, next_page_token, sort)
+                        limit, next_page_token)
 }
 
 #' Search for library items owned by, liked by, or contributed-to by
 #' the currently authenticated user.
+#' @param limit Maximum number of items to return
+#' @param next_page_token Unique token used to retrieve next page
 #' @param role the user's role with respect to the asset
 #' (one of: own, liked, contributing)
 #' @param type the type of asset (one of: datasets, projects)
@@ -157,7 +171,7 @@ get_projects_user_liked <-
 get_user_library_item <-
   function(type=c("datasets", "projects"),
            role=c("own", "liked", "contributing"),
-           limit=NULL, next_page_token=NULL, sort=NULL) {
+           limit=NULL, next_page_token=NULL) {
 
   role <- match.arg(role)
 
@@ -171,8 +185,7 @@ get_user_library_item <-
 
   query_list <- list(
     "limit" = limit,
-    "next" = next_page_token,
-    "sort" = sort
+    "next" = next_page_token
   )
 
   url <- paste0(getOption("dwapi.api_url"), "/", "user", "/", type, "/", role)

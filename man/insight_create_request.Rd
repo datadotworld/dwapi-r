@@ -35,7 +35,7 @@ Create insight object for new insights
 request <- dwapi::insight_create_request(title='A title',
   description = 'A description',
   image_url = 'https://site.org/image.png',
-  source_link = 'https://site.org/data'))
+  source_link = 'https://site.org/data')
 }
 \seealso{
 \code{\link{create_insight}}

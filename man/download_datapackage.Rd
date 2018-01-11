@@ -20,6 +20,6 @@ Learn more about the Data Package specification at
 \dontrun{
   dwapi::download_datapackage(
     dataset = "user/dataset",
-    output_path = "tmp/user/dataset")
+    output_path = tempdir())
 }
 }
