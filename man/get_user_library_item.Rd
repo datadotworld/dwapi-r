@@ -6,14 +6,17 @@
 the currently authenticated user.}
 \usage{
 get_user_library_item(type = c("datasets", "projects"), role = c("own",
-  "liked", "contributing"), limit = NULL, next_page_token = NULL,
-  sort = NULL)
+  "liked", "contributing"), limit = NULL, next_page_token = NULL)
 }
 \arguments{
 \item{type}{the type of asset (one of: datasets, projects)}
 
 \item{role}{the user's role with respect to the asset
 (one of: own, liked, contributing)}
+
+\item{limit}{Maximum number of items to return}
+
+\item{next_page_token}{Unique token used to retrieve next page}
 }
 \value{
 a named list with at most two elements.  It will

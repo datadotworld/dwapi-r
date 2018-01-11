@@ -6,5 +6,4 @@
 ^LICENSE$
 ^revdep$
 ^.circleci$
-^build$
 ^.lintr$

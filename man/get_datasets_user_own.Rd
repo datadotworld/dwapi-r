@@ -4,7 +4,12 @@
 \alias{get_datasets_user_own}
 \title{Search for datasets owned by the currently authenticated user.}
 \usage{
-get_datasets_user_own(limit = NULL, next_page_token = NULL, sort = NULL)
+get_datasets_user_own(limit = NULL, next_page_token = NULL)
+}
+\arguments{
+\item{limit}{Maximum number of items to return}
+
+\item{next_page_token}{Unique token used to retrieve next page}
 }
 \value{
 a named list with at most two elements.  It will always
@@ -22,6 +27,6 @@ Search for datasets owned by the currently authenticated user.
 }
 \examples{
 \dontrun{
-  dwapi::get_datasets_user_own()
+  datasets_own <- dwapi::get_datasets_user_own()
 }
 }

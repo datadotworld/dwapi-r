@@ -20,7 +20,7 @@ https://data.world"
 #' @return Object of type \code{\link{user_info_response}}.
 #' @examples
 #' \dontrun{
-#'   dwapi::get_user()
+#'   my_dw_user <- dwapi::get_user()
 #' }
 #' @export
 get_user <- function() {

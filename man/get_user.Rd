@@ -14,6 +14,6 @@ Retrieve user information for the currently authenticated user.
 }
 \examples{
 \dontrun{
-  dwapi::get_user()
+  my_dw_user <- dwapi::get_user()
 }
 }

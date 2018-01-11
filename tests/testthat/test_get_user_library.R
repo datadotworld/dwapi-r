@@ -94,7 +94,7 @@ dw_test_that("get_datasets_own, limit of 1, 1 result", {
   response <- with_mock(
     `httr::GET` = function(url, header, user_agent, query)  {
       expect_equal(url, "https://api.data.world/v0/user/datasets/own")
-      expect_equal(length(query), 3)
+      expect_equal(length(query), 2)
       expect_true(!is.null(query$limit))
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())

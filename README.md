@@ -1,7 +1,7 @@
 # dwapi
 
 [![CircleCI](https://circleci.com/gh/datadotworld/dwapi-r.svg?style=svg)](https://circleci.com/gh/datadotworld/dwapi-r)
-[![cran version](http://www.r-pkg.org/badges/version/dwapi)](http://cran.rstudio.com/web/packages/dwapi) 
+[![cran version](https://www.r-pkg.org/badges/version/dwapi)](https://CRAN.R-project.org/package=dwapi) 
 
 The `dwapi` R package makes it easy to use [data.world's REST API](https://docs.data.world/documentation/api) in R.  
 Using the package, users can:

@@ -49,8 +49,9 @@ get_project_array_handlers <- function() {
 
 #' Deserialize \code{get_project} response object.
 #' @param structure httr response object.
-#' @return Object of type \code{\link{dataset_project_response}}.
-#' @seealso \code{\link{get_project}}
+#' @return Object of type \code{\link{project_summary_response}}.
+#' @seealso \code{\link{get_projects_user_own}}
+#' @importFrom stats setNames
 project_summary_response <- function(structure) {
 
   fields <- c(get_project_required_fields(), get_project_optional_fields())
