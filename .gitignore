@@ -5,3 +5,5 @@
 .Rprofile
 tmp/
 inst/doc
+vignettes/quickstart.R
+vignettes/quickstart.html
