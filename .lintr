@@ -1,1 +1,0 @@
-exclusions: list("inst/doc/quickstart.R")
