@@ -55,6 +55,20 @@ success_message_with_content <-
     ))
   }
 
+error_message_with_content <-
+  function(path_to_local_content, content_type) {
+    content <- readBin("ErrorMessage.sample.json",
+                       what = "raw", n = 1e6)
+    return (structure(
+      list(
+        status_code = 200,
+        content = content,
+        headers = list("Content-Type", content_type)
+      ),
+      class = "response"
+    ))
+  }
+
 cleanup_tmp_dir <- function() {
   unlink(tempdir(), recursive = TRUE, force = FALSE)
 }
