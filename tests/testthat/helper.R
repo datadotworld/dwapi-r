@@ -24,12 +24,12 @@ dw_test_that <- function(...) {
 
   options(dwapi.auth_token = "API_TOKEN")
 
-  temp_dir <- create_tmp_dir()
+  temp_dir <- create_tmp_dir() #nolint
   tryCatch({
     return(testthat::test_that(...))
   },
     finally = {
-      cleanup_tmp_dir(temp_dir)
+      cleanup_tmp_dir(temp_dir) #nolint
     })
 }
 
@@ -87,7 +87,7 @@ cleanup_tmp_dir <- function(dir_name) {
 }
 
 create_tmp_dir <- function() {
-  tmp_dir <- paste0(tempfile(), '-dwapi-test-support')
+  tmp_dir <- paste0(tempfile(), "-dwapi-test-support")
   if (!dir.exists(tmp_dir)) {
     dir.create(tmp_dir, recursive = TRUE)
   }
