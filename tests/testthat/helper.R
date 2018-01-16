@@ -56,17 +56,31 @@ success_message_with_content <-
   }
 
 error_message_with_content <-
-  function(path_to_local_content, content_type) {
-    content <- readBin("ErrorMessage.sample.json",
-                       what = "raw", n = 1e6)
-    return (structure(
+  function(error_code, request_id, message) {
+    content_string <- error_message_json(error_code, request_id, message)
+    bc <- rawConnection(raw(0), "r+")
+    writeBin(content_string, bc)
+    rv <- rawConnectionValue(bc)
+    close(bc)
+    content <- readBin(rv,  what = "raw", n = 1e6)
+    ret <- structure(
       list(
-        status_code = 200,
+        status_code = error_code,
         content = content,
-        headers = list("Content-Type", content_type)
+        headers = list("Content-Type", "application/json")
       ),
       class = "response"
-    ))
+    )
+    ret
+  }
+
+error_message_json <-
+  function(error_code, request_id, message) {
+    rjson::toJSON(
+      list(code = error_code,
+           request = request_id,
+           message = message)
+    )
   }
 
 cleanup_tmp_dir <- function() {

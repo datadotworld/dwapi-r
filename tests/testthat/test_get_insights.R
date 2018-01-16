@@ -27,9 +27,9 @@ dw_test_that("stop_on_insights_error", {
   expect_error(
     with_mock(
       `httr::content` = function(x, as, encoding, ...) {
-        paste0(
-          "{\"code\":404,\"request\":\"94454588-ea84-42ca-aefd-dc63e16390fe\",",
-          "\"message\":\"HTTP 404 Not Found\"}")
+        error_message_json(404,
+                           "94454588-ea84-42ca-aefd-dc63e16390fe",
+                           "HTTP 404 Not Found")
       },
       stop_on_insights_error(NULL)),
     regexp = "404"
