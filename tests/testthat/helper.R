@@ -57,7 +57,7 @@ success_message_with_content <-
 
 error_message_with_content <-
   function(error_code, request_id, message) {
-    content_string <- error_message_json(error_code, request_id, message)
+    content_string <- error_message_json(error_code, request_id, message) #nolint
     bc <- rawConnection(raw(0), "r+")
     writeBin(content_string, bc)
     rv <- rawConnectionValue(bc)
@@ -74,14 +74,13 @@ error_message_with_content <-
     ret
   }
 
-error_message_json <-
-  function(error_code, request_id, message) {
-    rjson::toJSON(
-      list(code = error_code,
-           request = request_id,
-           message = message)
-    )
-  }
+error_message_json <- function(error_code, request_id, message) {
+  rjson::toJSON(
+    list(code = error_code,
+         request = request_id,
+         message = message)
+  )
+}
 
 cleanup_tmp_dir <- function() {
   unlink(tempdir(), recursive = TRUE, force = FALSE)
