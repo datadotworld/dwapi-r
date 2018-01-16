@@ -35,14 +35,60 @@ https://data.world"
 #' }
 #' @export
 create_project <- function(owner_id, create_project_req) {
-  url <-
-    paste0(getOption("dwapi.api_url"),
-           "/", "projects", "/", owner_id)
+  create_or_update_project(owner_id, create_project_req, httr::POST)
+}
+
+#' Create a new project with a specific ID, replacing a project with that ID
+#' if it exists.
+#' @param owner_id data.world user name of the project owner.
+#' @param project_id identifier to use for the new project, or identifier of
+#' existing project to replace with the newly created project.
+#' @param create_project_req Request object of type \code{\link{project_create_request}}.
+#' @return Object of type \code{\link{create_project_response}}.
+#' @examples
+#' request <- dwapi::project_create_request(
+#'   title='testproject', visibility = 'OPEN',
+#'   description = 'Test project by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
+#'   license_string = 'Public Domain')
+#'
+#' request <- dwapi::add_file(request = request, name = 'file4.csv',
+#'   url = 'https://data.world/file4.csv')
+#'
+#' \dontrun{
+#' dwapi::replace_project(create_project_req = request,
+#'   owner_id = 'user', project_id = 'projectid')
+#' }
+#' @export
+replace_project <- function(owner_id, project_id, create_project_req) {
+  create_or_update_project(owner_id, create_project_req,
+                           httr::PUT, project_id)
+}
+
+#' De-serialize a structured list into create_project_reponse object.
+#' @param structure httr response object.
+#' @return Object of type \code{\link{create_project_response}}.
+create_project_response <- function(structure) {
+  me <- list(uri = structure$uri,
+             # optional
+             message = structure$message)
+  class(me) <- "create_project_response"
+  me
+}
+
+create_or_update_project <- function(owner_id, create_project_req,
+                                     http_method, project_id = NULL) {
+
+  url <- paste0(getOption("dwapi.api_url"), "/", "projects", "/", owner_id)
+
+  if (!is.null(project_id)) {
+    url <- paste0(url, "/", project_id)
+  }
+
   auth <- sprintf("Bearer %s", auth_token())
   accept_header <- "application/json"
   content_type <- "application/json"
   response <-
-    httr::POST(
+    http_method(
       url,
       body = rjson::toJSON(create_project_req),
       httr::add_headers(
@@ -70,15 +116,5 @@ create_project <- function(owner_id, create_project_req) {
     stop(error_msg$message)
   }
   ret
-}
 
-#' De-serialize a structured list into create_project_reponse object.
-#' @param structure httr response object.
-#' @return Object of type \code{\link{create_project_response}}.
-create_project_response <- function(structure) {
-  me <- list(uri = structure$uri,
-             # optional
-             message = structure$message)
-  class(me) <- "create_project_response"
-  me
 }
