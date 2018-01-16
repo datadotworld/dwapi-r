@@ -104,3 +104,40 @@ insight_replace_request <-
     ret
 
   }
+
+#' Create insight object for updating existing insights
+#' @param title Insight title
+#' @param description Optional insight description
+#' @param image_url URL of image representing the insight
+#' @param embed_url URL of content to embed
+#' @param markdown_body Markdown text containing the insight
+#' @param source_link Permalink to source code or platform this
+#' insight was generated with
+#' @param data_source_links List containing one or more permalinks
+#' to the data sources used to generate this insight
+#' @return Request object of type \code{insight_replace_request}.
+#' @seealso \code{\link{create_insight}}
+#' @examples
+#' request <- dwapi::insight_update_request(title='New title')
+#' request <- dwapi::insight_update_request(title='New title',
+#'     description = 'New description')
+#' @export
+insight_update_request <-
+  function(title = NULL, description = NULL,
+           image_url = NULL, embed_url = NULL, markdown_body = NULL,
+           source_link = NULL, data_source_links = NULL) {
+
+    ret <- insight_create_request(title, description,
+                                  image_url, embed_url,
+                                  markdown_body,
+                                  source_link,
+                                  data_source_links)
+
+    ret <- Filter(Negate(is.null), ret)
+    ret <- Filter(length, ret) # removes empty body child
+
+    class(ret) <- "insight_update_request"
+
+    ret
+
+  }
