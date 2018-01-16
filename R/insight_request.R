@@ -39,34 +39,26 @@ insight_create_request <-
            image_url = NULL, embed_url = NULL, markdown_body = NULL,
            source_link = NULL, data_source_links = NULL) {
 
-    if (is.null(title) || is.na(title) || trimws(title) == "") {
+    if (is.blank(title)) {
       stop("title can't be null or empty")
     }
 
-    if (all(is.null(image_url), is.null(embed_url), is.null(markdown_body))) {
+    if (all(is.blank(image_url), is.blank(embed_url),
+            is.blank(markdown_body))) {
       stop("Must provide one of image_url, embed_url, or markdown_body")
     }
 
-    if (sum(!is.null(image_url), !is.null(embed_url),
-            !is.null(markdown_body)) > 1) {
+    if (sum(!is.blank(image_url), !is.blank(embed_url),
+            !is.blank(markdown_body)) > 1) {
       stop("Must provide only one of image_url, embed_url, or markdown_body")
     }
 
-    ret <- list(
-      title = title,
-      description = description,
-      body = list(
-        imageUrl = image_url,
-        embedUrl = embed_url,
-        markdownBody = markdown_body
-      ),
-      sourceLink = source_link,
-      dataSourceLinks = data_source_links
-    )
-
-    class(ret) <- "insight_create_request"
-
-    ret
+    base_insight_request(title, description,
+                         image_url, embed_url,
+                         markdown_body,
+                         source_link,
+                         data_source_links,
+                         "insight_create_request")
 
   }
 
@@ -93,13 +85,26 @@ insight_replace_request <-
            image_url = NULL, embed_url = NULL, markdown_body = NULL,
            source_link = NULL, data_source_links = NULL) {
 
-    ret <- insight_create_request(title, description,
-                                  image_url, embed_url,
-                                  markdown_body,
-                                  source_link,
-                                  data_source_links)
+    if (is.blank(title)) {
+      stop("title can't be null or empty")
+    }
 
-    class(ret) <- "insight_replace_request"
+    if (all(is.blank(image_url), is.blank(embed_url),
+            is.blank(markdown_body))) {
+      stop("Must provide one of image_url, embed_url, or markdown_body")
+    }
+
+    if (sum(!is.blank(image_url), !is.blank(embed_url),
+            !is.blank(markdown_body)) > 1) {
+      stop("Must provide only one of image_url, embed_url, or markdown_body")
+    }
+
+    ret <- base_insight_request(title, description,
+                                image_url, embed_url,
+                                markdown_body,
+                                source_link,
+                                data_source_links,
+                                "insight_replace_request")
 
     ret
 
@@ -127,16 +132,38 @@ insight_update_request <-
            image_url = NULL, embed_url = NULL, markdown_body = NULL,
            source_link = NULL, data_source_links = NULL) {
 
-    ret <- insight_create_request(title, description,
-                                  image_url, embed_url,
-                                  markdown_body,
-                                  source_link,
-                                  data_source_links)
+    ret <- base_insight_request(title, description,
+                                image_url, embed_url,
+                                markdown_body,
+                                source_link,
+                                data_source_links,
+                                "insight_update_request")
 
     ret <- Filter(Negate(is.null), ret)
     ret <- Filter(length, ret) # removes empty body child
 
-    class(ret) <- "insight_update_request"
+    ret
+
+  }
+
+base_insight_request <-
+  function(title = NULL, description = NULL,
+           image_url = NULL, embed_url = NULL, markdown_body = NULL,
+           source_link = NULL, data_source_links = NULL, request_class) {
+
+    ret <- list(
+      title = title,
+      description = description,
+      body = list(
+        imageUrl = image_url,
+        embedUrl = embed_url,
+        markdownBody = markdown_body
+      ),
+      sourceLink = source_link,
+      dataSourceLinks = data_source_links
+    )
+
+    class(ret) <- request_class
 
     ret
 

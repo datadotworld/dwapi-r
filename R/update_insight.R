@@ -20,7 +20,7 @@ https://data.world"
 #' @param project_owner ID of project owner
 #' @param project_id ID of project of which insight is a component
 #' @param id ID of insight to be replaced
-#' @param replace_insight_req Request object of
+#' @param update_insight_req Request object of
 #' type \code{\link{insight_update_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples

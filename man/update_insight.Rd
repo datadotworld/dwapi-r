@@ -13,7 +13,7 @@ update_insight(project_owner, project_id, id, update_insight_req)
 
 \item{id}{ID of insight to be replaced}
 
-\item{replace_insight_req}{Request object of
+\item{update_insight_req}{Request object of
 type \code{\link{insight_update_request}}.}
 }
 \value{

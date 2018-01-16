@@ -16,5 +16,5 @@ Object of type \code{\link{insight_summary_response}}.
 Deserialize \code{get_insight} response object.
 }
 \seealso{
-\code{\link{get_insights}} \code{\link{retrieve_insight}}
+\code{\link{get_insights}} \code{\link{get_insight}}
 }

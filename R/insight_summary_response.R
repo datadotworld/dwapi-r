@@ -42,7 +42,7 @@ get_insight_optional_fields <- function() {
 #' Deserialize \code{get_insight} response object.
 #' @param structure httr response object.
 #' @return Object of type \code{\link{insight_summary_response}}.
-#' @seealso \code{\link{get_insights}} \code{\link{retrieve_insight}}
+#' @seealso \code{\link{get_insights}} \code{\link{get_insight}}
 #' @importFrom stats setNames
 insight_summary_response <- function(structure) {
 

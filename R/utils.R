@@ -110,3 +110,24 @@ convert_to_sparql_literal <- function(v) {
   }
   return(sprintf(iri_template, v))
 }
+
+#' Determine if a value has NA or zero-length character elements, or is NULL
+#' @param value the value to test
+#' @return a boolean vector of the same length as \code{value}, whose elements
+#' are TRUE if the corresponding element in \code{value} is NA or zero-length
+#' character, and FALSE otherwise. If \code{value} is NULL, then a singleton
+#' TRUE vector is returned.
+#' @keywords internal
+is.blank <- function(value) {
+
+  if (is.null(value)) {
+    TRUE
+  } else {
+    if (!is.character(value)) {
+      warning(paste0("is.blank called on non-character vector of type ",
+                     class(value)))
+    }
+    is.na(value) | trimws(value) == ""
+  }
+
+}
