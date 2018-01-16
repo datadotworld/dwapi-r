@@ -16,7 +16,7 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
-dw_test_that("create_insight making the correct HTTP request", {
+dw_test_that("update_insight making the correct HTTP request", {
   request <- dwapi::insight_update_request(
     title = "iid",
     description = "description",
