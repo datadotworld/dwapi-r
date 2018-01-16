@@ -25,8 +25,8 @@ if it exists.
 \examples{
 request <- dwapi::project_create_request(
   title='testproject', visibility = 'OPEN',
-  description = 'Test project by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
-  license_string = 'Public Domain')
+  objective = 'Test project by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
+  license = 'Public Domain')
 
 request <- dwapi::add_file(request = request, name = 'file4.csv',
   url = 'https://data.world/file4.csv')

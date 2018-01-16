@@ -4,7 +4,7 @@
 \alias{delete_project}
 \title{Delete a project.}
 \usage{
-delete_project(project_owner, project_id, id)
+delete_project(project_owner, project_id)
 }
 \arguments{
 \item{project_owner}{ID of project owner}

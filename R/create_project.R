@@ -23,8 +23,8 @@ https://data.world"
 #' @examples
 #' request <- dwapi::project_create_request(
 #'   title='testproject', visibility = 'OPEN',
-#'   description = 'Test project by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
-#'   license_string = 'Public Domain')
+#'   objective = 'Test project by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
+#'   license = 'Public Domain')
 #'
 #' request <- dwapi::add_file(request = request, name = 'file4.csv',
 #'   url = 'https://data.world/file4.csv')
@@ -48,8 +48,8 @@ create_project <- function(owner_id, create_project_req) {
 #' @examples
 #' request <- dwapi::project_create_request(
 #'   title='testproject', visibility = 'OPEN',
-#'   description = 'Test project by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
-#'   license_string = 'Public Domain')
+#'   objective = 'Test project by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
+#'   license = 'Public Domain')
 #'
 #' request <- dwapi::add_file(request = request, name = 'file4.csv',
 #'   url = 'https://data.world/file4.csv')

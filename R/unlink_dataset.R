@@ -16,22 +16,28 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
-#' Delete a project.
-#' @param project_owner ID of project owner
-#' @param project_id ID of project to delete
+#' Unlink a dataset from a project.
+#' @param project_owner ID of project owner.
+#' @param project_id ID of project from which the dataset is to be unlinked.
+#' @param dataset_owner ID of dataset owner.
+#' @param dataset_id ID of dataset to be unlinked.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' \dontrun{
-#'   dwapi::delete_insight(
-#'     project_owner = 'user',
-#'     project_id = 'project')
+#'   dwapi::unlink_dataset(
+#'     project_owner = 'user1',
+#'     project_id = 'project',
+#'     dataset_owner = 'user2',
+#'     dataset_id = 'dataset')
 #' }
 #' @export
-delete_project <-
-  function(project_owner, project_id) {
+unlink_dataset <-
+  function(project_owner, project_id, dataset_owner, dataset_id) {
 
     url <- paste0(getOption("dwapi.api_url"), "/", "projects", "/",
-                  project_owner, "/", project_id)
+                  project_owner, "/", project_id, "/",
+                  "linkedDatasets", "/",
+                  dataset_owner, "/", dataset_id)
     auth <- paste0("Bearer ", auth_token())
 
     response <-

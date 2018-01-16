@@ -22,7 +22,7 @@ https://data.world"
 #' @param objective (optional) Short project objective.
 #' @param summary (optional) Long-form project summary (Markdown supported).
 #' @param tags Character vector of project tags (letters, numbers and spaces).
-#' @param license_string Dataset license ("Public Domain", "PDDL", "CC-0",
+#' @param license Dataset license ("Public Domain", "PDDL", "CC-0",
 #' "CC-BY", "ODC-BY", "CC-BY-SA", "ODC-ODbL", "CC BY-NC-SA" or Other).
 #' @param files (optional) List of \code{\link{file_create_request}} objects.
 #' @param linked_datasets List of
@@ -31,7 +31,7 @@ https://data.world"
 #' @seealso \code{\link{create_project}}
 #' @examples
 #' request <- dwapi::project_create_request(title='My Project', visibility = 'OPEN',
-#'   objective = 'objective', tags = c('sdk') , license_string = 'Public Domain')
+#'   objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 #' @export
 project_create_request <-
   function(title,

@@ -19,13 +19,13 @@ project_create_request(title, visibility = c("PRIVATE", "OPEN"),
 
 \item{tags}{Character vector of project tags (letters, numbers and spaces).}
 
+\item{license}{Dataset license ("Public Domain", "PDDL", "CC-0",
+"CC-BY", "ODC-BY", "CC-BY-SA", "ODC-ODbL", "CC BY-NC-SA" or Other).}
+
 \item{files}{(optional) List of \code{\link{file_create_request}} objects.}
 
 \item{linked_datasets}{List of
 \code{\link{linked_dataset_create_or_update_request}} objects.}
-
-\item{license_string}{Dataset license ("Public Domain", "PDDL", "CC-0",
-"CC-BY", "ODC-BY", "CC-BY-SA", "ODC-ODbL", "CC BY-NC-SA" or Other).}
 }
 \value{
 Request object of type \code{project_create_request}.
@@ -35,7 +35,7 @@ Create request object for new projects.
 }
 \examples{
 request <- dwapi::project_create_request(title='My Project', visibility = 'OPEN',
-  objective = 'objective', tags = c('sdk') , license_string = 'Public Domain')
+  objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 }
 \seealso{
 \code{\link{create_project}}
