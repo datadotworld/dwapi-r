@@ -66,7 +66,6 @@ get_insights <- function(project_owner, project_id,
       httr::user_agent(user_agent()),
       query = query_list
     )
-  response <<- response
   if (response$status_code == 200) {
     structured_response <-
       rjson::fromJSON(httr::content(
