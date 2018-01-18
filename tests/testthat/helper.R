@@ -24,12 +24,12 @@ dw_test_that <- function(...) {
 
   options(dwapi.auth_token = "API_TOKEN")
 
-  create_tmp_dir() #nolint
+  temp_dir <- create_tmp_dir() #nolint
   tryCatch({
     return(testthat::test_that(...))
   },
     finally = {
-      cleanup_tmp_dir() #nolint
+      cleanup_tmp_dir(temp_dir) #nolint
     })
 }
 
@@ -55,14 +55,41 @@ success_message_with_content <-
     ))
   }
 
-cleanup_tmp_dir <- function() {
-  unlink(tempdir(), recursive = TRUE, force = FALSE)
+error_message_with_content <-
+  function(error_code, request_id, message) {
+    content_string <- error_message_json(error_code, request_id, message) #nolint
+    bc <- rawConnection(raw(0), "r+")
+    writeBin(content_string, bc)
+    rv <- rawConnectionValue(bc)
+    close(bc)
+    content <- readBin(rv,  what = "raw", n = 1e6)
+    ret <- structure(
+      list(
+        status_code = error_code,
+        content = content,
+        headers = list("Content-Type", "application/json")
+      ),
+      class = "response"
+    )
+    ret
+  }
+
+error_message_json <- function(error_code, request_id, message) {
+  rjson::toJSON(
+    list(code = error_code,
+         request = request_id,
+         message = message)
+  )
+}
+
+cleanup_tmp_dir <- function(dir_name) {
+  unlink(dir_name, recursive = TRUE)
 }
 
 create_tmp_dir <- function() {
-  tmp_dir <- tempdir()
+  tmp_dir <- paste0(tempfile(), "-dwapi-test-support")
   if (!dir.exists(tmp_dir)) {
     dir.create(tmp_dir, recursive = TRUE)
   }
-  return(tmp_dir)
+  tmp_dir
 }
