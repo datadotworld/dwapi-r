@@ -22,7 +22,7 @@ dw_test_that("update_insight making the correct HTTP request", {
     description = "description",
     image_url = "https://test"
   )
-  expect_setequal(c("title", "description", "body"), names(request))
+  expect_true(setequal(c("title", "description", "body"), names(request)))
   expect_equal(request$body[["imageUrl"]], "https://test")
   response <- with_mock(
     `httr::PATCH` = function(url, body, header, user_agent)  {
