@@ -11,11 +11,13 @@ Imports:
     httr,
     readr,
     rjson,
-    xml2
+    xml2,
+    jsonlite
 Suggests: 
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    mockery
 License: Apache License 2.0
 Encoding: UTF-8
 LazyData: true
