@@ -17,7 +17,7 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    testthat,
+    testthat (>= 2.0.0),
     mockery
 License: Apache License 2.0
 Encoding: UTF-8
