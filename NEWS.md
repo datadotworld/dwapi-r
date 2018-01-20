@@ -1,3 +1,18 @@
+# 0.1.3
+
+* Additional wrapper functions for API endpoints:
+  * `append_data_frame_to_stream`
+  * `append_record_to_stream`
+  * `append_values_to_stream`
+  * `delete_insight`
+  * `delete_project`
+  * `get_insight`
+  * `get_insights`
+  * `get_project`
+  * `replace_insight`
+  * `replace_project`
+  * `update_insight`
+
 # 0.1.2
 
 * Address compatibility issues with testthat 2.0.0

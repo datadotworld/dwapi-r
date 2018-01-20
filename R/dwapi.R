@@ -50,6 +50,34 @@ https://data.world"
 #'   \item \code{\link{delete_file}}
 #' }
 #'
+#' Managing projects:
+#' \enumerate{
+#'   \item \code{\link{create_project}}
+#'   \item \code{\link{delete_project}}
+#'   \item \code{\link{get_project}}
+#'   \item \code{\link{get_projects_user_contributing}}
+#'   \item \code{\link{get_projects_user_liked}}
+#'   \item \code{\link{get_projects_user_own}}
+#'   \item \code{\link{replace_project}}
+#' }
+#'
+#' Managing insights:
+#' \enumerate{
+#'   \item \code{\link{create_insight}}
+#'   \item \code{\link{delete_insight}}
+#'   \item \code{\link{get_insight}}
+#'   \item \code{\link{get_insights}}
+#'   \item \code{\link{replace_insight}}
+#'   \item \code{\link{update_insight}}
+#' }
+#'
+#' Appending data to streams:
+#' \enumerate{
+#'   \item \code{\link{append_data_frame_to_stream}}
+#'   \item \code{\link{append_record_to_stream}}
+#'   \item \code{\link{append_values_to_stream}}
+#' }
+#'
 #' Managing tables and schemas (data dictionary):
 #' \enumerate{
 #'   \item \code{\link{list_tables}}
@@ -73,6 +101,10 @@ https://data.world"
 #'   \item \code{\link{dataset_replace_request}}
 #'   \item \code{\link{file_batch_update_request}}
 #'   \item \code{\link{table_schema_update_request}}
+#'   \item \code{\link{project_create_request}}
+#'   \item \code{\link{insight_create_request}}
+#'   \item \code{\link{insight_replace_request}}
+#'   \item \code{\link{insight_update_request}}
 #' }
 #'
 #' @docType package
