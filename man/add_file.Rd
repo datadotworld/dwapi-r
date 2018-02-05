@@ -72,7 +72,7 @@ dataset_create_req <- dwapi::add_file(request = dataset_create_req,
   name = 'file4.csv', url = 'https://data.world/file4.csv')
 
 dataset_replace_req <- dwapi::dataset_replace_request(visibility = 'OPEN',
-  description = 'updated description', files = list())
+  description = 'updated description', title = 'updated title', files = list())
 
 dataset_replace_req <- dwapi::add_file(request = dataset_replace_req,
   name = 'file4.csv', url = 'https://data.world/file4.csv',
