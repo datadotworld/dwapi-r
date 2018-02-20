@@ -14,10 +14,6 @@
        - run: mkdir build build/reports build/dist
 
        - run:
-           name: Install mockery
-           command: Rscript -e "install.packages('mockery')"
-
-       - run:
            name: Install dwapi-r
            command: RDscript -e 'devtools::install()'
 
