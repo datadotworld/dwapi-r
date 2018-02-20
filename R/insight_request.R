@@ -39,19 +39,7 @@ insight_create_request <-
            image_url = NULL, embed_url = NULL, markdown_body = NULL,
            source_link = NULL, data_source_links = NULL) {
 
-    if (is.blank(title)) {
-      stop("title can't be null or empty")
-    }
-
-    if (all(is.blank(image_url), is.blank(embed_url),
-            is.blank(markdown_body))) {
-      stop("Must provide one of image_url, embed_url, or markdown_body")
-    }
-
-    if (sum(!is.blank(image_url), !is.blank(embed_url),
-            !is.blank(markdown_body)) > 1) {
-      stop("Must provide only one of image_url, embed_url, or markdown_body")
-    }
+    validate_insight_request_params(title, image_url, embed_url, markdown_body)
 
     base_insight_request(title, description,
                          image_url, embed_url,
@@ -85,19 +73,7 @@ insight_replace_request <-
            image_url = NULL, embed_url = NULL, markdown_body = NULL,
            source_link = NULL, data_source_links = NULL) {
 
-    if (is.blank(title)) {
-      stop("title can't be null or empty")
-    }
-
-    if (all(is.blank(image_url), is.blank(embed_url),
-            is.blank(markdown_body))) {
-      stop("Must provide one of image_url, embed_url, or markdown_body")
-    }
-
-    if (sum(!is.blank(image_url), !is.blank(embed_url),
-            !is.blank(markdown_body)) > 1) {
-      stop("Must provide only one of image_url, embed_url, or markdown_body")
-    }
+    validate_insight_request_params(title, image_url, embed_url, markdown_body)
 
     ret <- base_insight_request(title, description,
                                 image_url, embed_url,
@@ -145,6 +121,21 @@ insight_update_request <-
     ret
 
   }
+
+validate_insight_request_params <- function(title, image_url,
+                                            embed_url, markdown_body) {
+  if (is.blank(title)) {
+    stop("title can't be null or empty")
+  }
+  if (all(is.blank(image_url), is.blank(embed_url),
+          is.blank(markdown_body))) {
+    stop("Must provide one of image_url, embed_url, or markdown_body")
+  }
+  if (sum(!is.blank(image_url), !is.blank(embed_url),
+          !is.blank(markdown_body)) > 1) {
+    stop("Must provide only one of image_url, embed_url, or markdown_body")
+  }
+}
 
 base_insight_request <-
   function(title = NULL, description = NULL,
