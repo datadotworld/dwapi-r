@@ -73,17 +73,13 @@ get_insights <- function(project_owner, project_id,
         as = "text",
         encoding = "UTF-8"
       ))
-    if (is.null(structured_response$records)) {
-      stop_on_insights_error(response)
-    } else {
-      ds_list <- lapply(
-        structured_response$records, function(record) {
-          insight_summary_response(record)
-        })
-      ret <- list("records" = ds_list)
-      if (!is.null(structured_response[["nextPageToken"]])) {
-        ret[["nextPageToken"]] <- structured_response[["nextPageToken"]]
-      }
+    ds_list <- lapply(
+      structured_response$records, function(record) {
+        insight_summary_response(record)
+      })
+    ret <- list("records" = ds_list)
+    if (!is.null(structured_response[["nextPageToken"]])) {
+      ret[["nextPageToken"]] <- structured_response[["nextPageToken"]]
     }
   } else {
     stop_on_insights_error(response)

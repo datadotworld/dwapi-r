@@ -81,6 +81,26 @@ dw_test_that("get_insights, no params, empty result", {
   expect_equal(length(response$records), 0)
 })
 
+dw_test_that("get_insights, no params, null records", {
+  response <- with_mock(
+    `httr::GET` = function(url, header, user_agent, query)  {
+      expect_equal(url, "https://api.data.world/v0/insights/user/project")
+      expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
+      expect_equal(user_agent$options$useragent, user_agent())
+      success_message_with_content(
+        "resources/api.data.world/v0/GetInsightsResponseNullRecs.sample.json",
+        "application/json"
+      )
+    },
+    `mime::guess_type` = function(...) NULL,
+    dwapi::get_insights("user", "project")
+  )
+  expect_equal(class(response), "list")
+  expect_equal(length(response), 1)
+  expect_equal(class(response$records), "list")
+  expect_equal(length(response$records), 0)
+})
+
 dw_test_that("get_insights, no params, 2 result objects", {
   response <- with_mock(
     `httr::GET` = function(url, header, user_agent, query)  {
