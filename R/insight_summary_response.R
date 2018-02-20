@@ -47,26 +47,10 @@ get_insight_optional_fields <- function() {
 insight_summary_response <- function(structure) {
 
   fields <- c(get_insight_required_fields(), get_insight_optional_fields())
-  me <- setNames(lapply(
+  ret <- setNames(lapply(
     fields, function(field_name) structure[[field_name]]), fields)
 
-  class(me) <- "insight_summary_response"
-  check_insight_summary_response(me)
+  class(ret) <- "insight_summary_response"
+  ret
 
-}
-
-#' Validate \code{insight_summary_response} object.
-#' @param object Object of type \code{\link{insight_summary_response}}.
-check_insight_summary_response <- function(object) {
-  if (class(object) != "insight_summary_response") {
-    stop("object is not of class insight_summary_response")
-  }
-  if (any(sapply(
-    get_insight_required_fields(), function(v) {
-      is.null(object[[v]])
-    }
-  ))) {
-    stop("invalid insight_summary_response object")
-  }
-  object
 }

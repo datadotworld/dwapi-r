@@ -55,7 +55,6 @@ dw_test_that("get_insights, no params, 1 result", {
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
   for (response_element in response$records) {
-    check_insight_summary_response(response_element)
     expect_equal(response_element$id, "11223344-aaaa-bbbb-aaaa-aabbccddeeff")
     expect_equal(response_element$author, "user")
   }
@@ -120,7 +119,6 @@ dw_test_that("get_insights, no params, 2 result objects", {
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 2)
   for (response_element in response$records) {
-    check_insight_summary_response(response_element)
     expect_equal(response_element$author, "user")
   }
 })
@@ -147,7 +145,6 @@ dw_test_that("get_insights, limit of 1, 1 result", {
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
   for (response_element in response$records) {
-    check_insight_summary_response(response_element)
     expect_equal(response_element$id, "11223344-aaaa-bbbb-aaaa-aabbccddeeff")
     expect_equal(response_element$author, "user")
   }
