@@ -4,14 +4,19 @@
   * `append_data_frame_to_stream`
   * `append_record_to_stream`
   * `append_values_to_stream`
+  * `create_project`
   * `delete_insight`
   * `delete_project`
+  * `delete_dataset`
   * `get_insight`
   * `get_insights`
   * `get_project`
+  * `link_dataset`
+  * `unlink_dataset`
   * `replace_insight`
   * `replace_project`
   * `update_insight`
+  * `update_project`
 
 # 0.1.2
 
