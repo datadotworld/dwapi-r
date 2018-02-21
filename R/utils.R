@@ -93,10 +93,16 @@ convert_to_sparql_literal <- function(v) {
   iri_template <-
     switch(
       type,
-      logical = "\"%s\"^^<http://www.w3.org/2001/XMLSchema#boolean>",
-      numeric = "\"%s\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
-      integer = "\"%s\"^^<http://www.w3.org/2001/XMLSchema#integer>",
-      character = "\"%s\""
+      logical = "%s^^<http://www.w3.org/2001/XMLSchema#boolean>",
+      numeric = "%s^^<http://www.w3.org/2001/XMLSchema#decimal>",
+      integer = "%s^^<http://www.w3.org/2001/XMLSchema#integer>",
+      character = "%s"
+    )
+  wrapped_v <- 
+    switch(
+      type,
+      logical = sprintf("\"%s\"", tolower(v)),
+      sprintf("\"%s\"", v)
     )
   if (is.null(iri_template)) {
     stop(
@@ -108,5 +114,5 @@ convert_to_sparql_literal <- function(v) {
       )
     )
   }
-  return(sprintf(iri_template, v))
+  return(sprintf(iri_template, wrapped_v))
 }

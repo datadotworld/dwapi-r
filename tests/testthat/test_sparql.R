@@ -40,7 +40,7 @@ dw_test_that("SPARQL query making the correct HTTR request", {
           "key1=\"value1\"",
           "?key2=\"1\"^^<http://www.w3.org/2001/XMLSchema#integer>",
           "?key3=\"1\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
-          "?key4=\"TRUE\"^^<http://www.w3.org/2001/XMLSchema#boolean>",
+          "?key4=\"true\"^^<http://www.w3.org/2001/XMLSchema#boolean>",
           "?key5=\"1.5\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
           sep = ",")
       )

@@ -35,7 +35,7 @@ dw_test_that("SQL query making the correct HTTR request", {
           "$data_world_param0=\"value1\"",
           "$data_world_param1=\"1\"^^<http://www.w3.org/2001/XMLSchema#integer>",
           "$data_world_param2=\"1\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
-          "$data_world_param3=\"TRUE\"^^<http://www.w3.org/2001/XMLSchema#boolean>",
+          "$data_world_param3=\"true\"^^<http://www.w3.org/2001/XMLSchema#boolean>",
           "$data_world_param4=\"1.5\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
           sep = ",")
         # nolint end
