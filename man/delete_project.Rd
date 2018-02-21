@@ -19,7 +19,7 @@ Delete a project.
 }
 \examples{
 \dontrun{
-  dwapi::delete_insight(
+  dwapi::delete_project(
     project_owner = 'user',
     project_id = 'project')
 }

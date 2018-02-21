@@ -1,5 +1,5 @@
 "dwapi-r
-Copyright 2017 data.world, Inc.
+Copyright 2018 data.world, Inc.
 
 Licensed under the Apache License, Version 2.0 (the \"License\");
 you may not use this file except in compliance with the License.
@@ -16,35 +16,32 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
-#' Update an existing project.
-#' @param project Project URL or path.
-#' @param project_update_req Request object of type \code{\link{project_update_request}}.
+#' Delete a dataset
+#' @param dataset_owner ID of dataset owner
+#' @param dataset_id ID of dataset to delete
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
-#' request <- dwapi::project_update_request(
-#'   objective = 'UPDATED OBJECTIVE !')
-#'
 #' \dontrun{
-#'   dwapi::update_project(project_update_req = request,
-#'     dataset = 'user/project')
+#'   dwapi::delete_dataset(
+#'     dataset_owner = 'user',
+#'     dataset_id = 'project')
 #' }
 #' @export
-update_project <-
-  function(project,
-           project_update_req) {
-    url <- sprintf(
-      "%s/projects/%s",
-      getOption("dwapi.api_url"),
-      extract_project_key(project))
-    auth <- sprintf("Bearer %s", auth_token())
+delete_dataset <-
+  function(dataset_owner, dataset_id) {
+
+    url <- paste0(getOption("dwapi.api_url"), "/", "datasets", "/",
+                  dataset_owner, "/", dataset_id)
+    auth <- paste0("Bearer ", auth_token())
+
     response <-
-      httr::PATCH(
+      httr::DELETE(
         url,
-        body = rjson::toJSON(project_update_req),
         httr::add_headers(`Content-Type` = "application/json",
                           Authorization = auth),
         httr::user_agent(user_agent())
       )
-    ret <- parse_success_or_error(response)
-    ret
+
+    parse_success_or_error(response)
+
   }

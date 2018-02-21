@@ -46,4 +46,3 @@ dataset_summary_response <- function(structure) {
   class(me) <- "dataset_summary_response"
   me
 }
-

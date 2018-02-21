@@ -19,7 +19,7 @@ Update an existing project.
 }
 \examples{
 request <- dwapi::project_update_request(
-  description = 'UPDATED DESCRIPTION !')
+  objective = 'UPDATED OBJECTIVE !')
 
 \dontrun{
   dwapi::update_project(project_update_req = request,
