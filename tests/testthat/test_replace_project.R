@@ -17,7 +17,7 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 dw_test_that("replace_project making the correct HTTR request", {
-  request <- dwapi::project_create_request(
+  request <- dwapi::project_replace_request(
     title = "datasetid",
     visibility = "OPEN",
     objective = "it's data",

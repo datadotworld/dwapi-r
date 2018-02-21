@@ -46,6 +46,13 @@ extract_dataset_key <- function(tentative_key) {
   return(url$path)
 }
 
+#' Extract the project key from URL or as provided
+#' @param tentative_key key or URL
+#' @return project key extracted form URL or as provided
+extract_project_key <- function(tentative_key) {
+  extract_dataset_key(tentative_key)
+}
+
 #' Parse simple responses (success or error).
 #' @param response httr response.
 #' @return Deserialized success or error.
