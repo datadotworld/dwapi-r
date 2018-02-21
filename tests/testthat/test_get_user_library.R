@@ -40,7 +40,6 @@ dw_test_that("get_datasets_own, no params, 1 result", {
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
   for (response_element in response$records) {
-    check_dataset_summary_response(response_element)
     expect_equal(response_element$id, "datasetid")
     expect_equal(response_element$owner, "ownerid")
   }
@@ -85,7 +84,6 @@ dw_test_that("get_datasets_own, no params, 2 result objects", {
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 2)
   for (response_element in response$records) {
-    check_dataset_summary_response(response_element)
     expect_equal(response_element$owner, "ownerid")
   }
 })
@@ -112,7 +110,6 @@ dw_test_that("get_datasets_own, limit of 1, 1 result", {
   expect_equal(class(response$records), "list")
   expect_equal(length(response$records), 1)
   for (response_element in response$records) {
-    check_dataset_summary_response(response_element)
     expect_equal(response_element$id, "datasetid")
     expect_equal(response_element$owner, "ownerid")
     # no need to test other attributes...defer to get_dataset unit test
