@@ -44,3 +44,18 @@ dw_test_that("get_user making the correct HTTR request", {
   expect_equal(response$created, "2017-01-11T01:35:35.426Z")
   expect_equal(response$updated, "2017-11-02T16:08:36.509Z")
 })
+
+test_that("optional fields are optional", {
+  obj <- list()
+  obj$id <- "id"
+  obj$created <- "created"
+  obj$updated <- "updated"
+  obj[["avatarUrl"]] <- "au"
+  obj[["displayName"]] <- "displayName"
+  class(obj) <- "user_info_response"
+  expect_equal(obj, check_user_info_response(obj))
+  obj[["avatarUrl"]] <- NULL
+  expect_equal(obj, check_user_info_response(obj))
+  obj[["displayName"]] <- NULL
+  expect_equal(obj, check_user_info_response(obj))
+})

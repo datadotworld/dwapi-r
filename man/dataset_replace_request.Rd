@@ -4,10 +4,12 @@
 \alias{dataset_replace_request}
 \title{Create request object for replacing existing datasets.}
 \usage{
-dataset_replace_request(description = NULL, summary = NULL, tags = NULL,
-  license_string = NULL, visibility, files = NULL)
+dataset_replace_request(title, description = NULL, summary = NULL,
+  tags = NULL, license_string = NULL, visibility, files = NULL)
 }
 \arguments{
+\item{title}{Dataset title}
+
 \item{description}{(optional) Dataset description.}
 
 \item{summary}{(optional) Dataset summary (markdown supported).}
@@ -29,7 +31,7 @@ Create request object for replacing existing datasets.
 }
 \examples{
 dataset_put_req <- dwapi::dataset_replace_request(visibility = 'OPEN',
-  description = 'updated description')
+  description = 'updated description', title = 'updated title')
 }
 \seealso{
 \code{\link{replace_dataset}}, \code{\link{add_file}}

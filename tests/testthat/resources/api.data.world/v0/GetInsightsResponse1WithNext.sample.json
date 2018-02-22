@@ -1,0 +1,17 @@
+{
+  "count": 1,
+  "records": [
+    {
+      "id": "11223344-aaaa-bbbb-aaaa-aabbccddeeff",
+      "author": "user",
+      "title": "Test Insight",
+      "description": "An insight",
+      "body": {
+        "imageUrl": "https://data.world/api/user/dataset/project/file/raw/abc.png"
+      },
+      "created": "2017-12-28T22:34:42.066Z",
+      "updated": "2017-12-28T22:34:42.057Z"
+    }
+    ],
+  "nextPageToken": "tokenValueABCDEF1234567890"
+}

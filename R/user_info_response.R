@@ -22,14 +22,18 @@ https://data.world"
 #' @seealso \code{\link{get_dataset}}
 user_info_response <- function(structure) {
   required_elements <- get_required_elements()
-  optional_elements <- character()
+  optional_elements <- get_optional_elements()
   me <- c(structure[required_elements], structure[optional_elements])
   class(me) <- "user_info_response"
   return(check_user_info_response(me))
 }
 
 get_required_elements <- function() {
-  c("avatarUrl", "displayName", "id", "created", "updated")
+  c("id", "created", "updated")
+}
+
+get_optional_elements <- function() {
+  c("avatarUrl", "displayName")
 }
 
 #' Validate \code{get_user} response object, returning the object if valid, and stopping with an error message if invalid.

@@ -22,7 +22,7 @@ https://data.world"
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' dataset_replace_req <- dwapi::dataset_replace_request(visibility = 'OPEN',
-#'  description = 'UPDATED DESCRIPTION !')
+#'  description = 'UPDATED DESCRIPTION !', title = 'Updated Title')
 #' \dontrun{
 #'   dwapi::replace_dataset('user/dataset', dataset_replace_req)
 #' }

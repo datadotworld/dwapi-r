@@ -36,7 +36,6 @@ dw_test_that("getDataset making the correct HTTR request", {
     dwapi::get_dataset("ownerid/datasetid")
   )
   expect_equal(class(response), "dataset_summary_response")
-  check_dataset_summary_response(response)
   expect_equal(response$id, "datasetid")
   expect_equal(response$owner, "ownerid")
 })
