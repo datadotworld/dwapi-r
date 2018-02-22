@@ -44,25 +44,5 @@ dataset_summary_response <- function(structure) {
     }
   }
   class(me) <- "dataset_summary_response"
-  return(check_dataset_summary_response(me))
-}
-
-#' Validate \code{get_dataset} response object.
-#' @param object Object of type \code{\link{dataset_summary_response}}.
-#' @return TRUE/FALSE based on validity of object.
-check_dataset_summary_response <- function(object) {
-  if (class(object) != "dataset_summary_response") {
-    stop("object is not of class dataset_summary_response")
-  }
-  ret <- object
-  if (is.null(object$created) |
-      is.null(object$id) |
-      is.null(object$owner) |
-      # is.null(object$status) |
-      is.null(object$title) |
-      # is.null(object$updated) |
-      is.null(object$visibility)) {
-    stop("invalid dataset_summary_response object")
-  }
-  ret
+  me
 }

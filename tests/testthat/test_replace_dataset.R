@@ -19,7 +19,8 @@ https://data.world"
 dw_test_that("replaceDataset making the correct HTTR request", {
   request <-
     dwapi::dataset_replace_request(
-      visibility = "OPEN", description = "UPDATED DESCRIPTION !")
+      visibility = "OPEN", description = "UPDATED DESCRIPTION",
+      title = "UPDATED TITLE")
   response <- with_mock(
     `httr::PUT` = function(url, body, header, user_agent)  {
       expect_equal(url,
@@ -35,4 +36,11 @@ dw_test_that("replaceDataset making the correct HTTR request", {
       dataset_replace_req = request)
   )
   expect_equal(class(response), "success_message")
+})
+
+dw_test_that("replace_dataset() request invalid, missing title", {
+    expect_error({
+      dwapi::dataset_replace_request(
+        visibility = "OPEN", description = "UPDATED DESCRIPTION !")
+    })
 })

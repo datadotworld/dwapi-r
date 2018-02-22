@@ -5,3 +5,8 @@
 .Rprofile
 tmp/
 inst/doc
+build/
+vignettes/quickstart.R
+vignettes/quickstart.html
+revdep/
+*.Rcheck/

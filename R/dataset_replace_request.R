@@ -18,6 +18,7 @@ https://data.world"
 
 #' Create request object for replacing existing datasets.
 #' @param visibility Dataset visibility ("PRIVATE" or "OPEN").
+#' @param title Dataset title
 #' @param description (optional) Dataset description.
 #' @param summary (optional) Dataset summary (markdown supported).
 #' @param tags (optional) List of dataset tags (letters, numbers and spaces).
@@ -28,10 +29,11 @@ https://data.world"
 #' @seealso \code{\link{replace_dataset}}, \code{\link{add_file}}
 #' @examples
 #' dataset_put_req <- dwapi::dataset_replace_request(visibility = 'OPEN',
-#'   description = 'updated description')
+#'   description = 'updated description', title = 'updated title')
 #' @export
 dataset_replace_request <-
-  function(description = NULL,
+  function(title,
+    description = NULL,
     summary = NULL,
     tags = NULL,
     license_string = NULL,
@@ -44,6 +46,7 @@ dataset_replace_request <-
     }
     me <- list()
     me$visibility <- visibility
+    me$title <- title
     if (!is.nothing(description)) {
       me$description <- description
     }

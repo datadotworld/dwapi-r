@@ -36,6 +36,7 @@ https://data.world"
 #'   \item \code{\link{create_dataset}}
 #'   \item \code{\link{update_dataset}}
 #'   \item \code{\link{replace_dataset}}
+#'   \item \code{\link{delete_dataset}}
 #'   \item \code{\link{sync}}
 #'   \item \code{\link{download_datapackage}}
 #' }
@@ -48,6 +49,35 @@ https://data.world"
 #'   \item \code{\link{upload_data_frame}}
 #'   \item \code{\link{add_files_by_source}}
 #'   \item \code{\link{delete_file}}
+#' }
+#'
+#' Managing projects:
+#' \enumerate{
+#'   \item \code{\link{get_project}}
+#'   \item \code{\link{get_projects_user_contributing}}
+#'   \item \code{\link{get_projects_user_liked}}
+#'   \item \code{\link{get_projects_user_own}}
+#'   \item \code{\link{create_project}}
+#'   \item \code{\link{update_project}}
+#'   \item \code{\link{replace_project}}
+#'   \item \code{\link{delete_project}}
+#' }
+#'
+#' Managing insights:
+#' \enumerate{
+#'   \item \code{\link{get_insight}}
+#'   \item \code{\link{get_insights}}
+#'   \item \code{\link{create_insight}}
+#'   \item \code{\link{update_insight}}
+#'   \item \code{\link{replace_insight}}
+#'   \item \code{\link{delete_insight}}
+#' }
+#'
+#' Appending data to streams:
+#' \enumerate{
+#'   \item \code{\link{append_data_frame_to_stream}}
+#'   \item \code{\link{append_record_to_stream}}
+#'   \item \code{\link{append_values_to_stream}}
 #' }
 #'
 #' Managing tables and schemas (data dictionary):
@@ -72,7 +102,18 @@ https://data.world"
 #'   \item \code{\link{dataset_update_request}}
 #'   \item \code{\link{dataset_replace_request}}
 #'   \item \code{\link{file_batch_update_request}}
+#'   \item \code{\link{file_create_request}}
+#'   \item \code{\link{file_create_or_update_request}}
+#'   \item \code{\link{file_source_create_request}}
+#'   \item \code{\link{file_source_create_or_update_request}}
 #'   \item \code{\link{table_schema_update_request}}
+#'   \item \code{\link{project_create_request}}
+#'   \item \code{\link{project_update_request}}
+#'   \item \code{\link{project_replace_request}}
+#'   \item \code{\link{insight_create_request}}
+#'   \item \code{\link{insight_update_request}}
+#'   \item \code{\link{insight_replace_request}}
+#'   \item \code{\link{linked_dataset_create_or_update_request}}
 #' }
 #'
 #' @docType package
