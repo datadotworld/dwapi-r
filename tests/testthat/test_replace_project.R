@@ -43,15 +43,10 @@ dw_test_that("replace_project making the correct HTTR request", {
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(rjson::toJSON(request), body)
       expect_equal(user_agent$options$useragent, user_agent())
-      return(
-        success_message_with_content(
-          "resources/api.data.world/v0/CreateProjectResponse.sample.json",
-          "application/json"
-        )
-      )
+      return(success_message_response())
     },
     `mime::guess_type` = function(...) NULL,
-    dwapi::replace_project("ownerid", "projectid", create_project_req = request)
+    dwapi::replace_project("ownerid", "projectid", replace_project_req = request)
   )
-  expect_equal(class(response), "create_project_response")
+  expect_equal(class(response), "success_message")
 })

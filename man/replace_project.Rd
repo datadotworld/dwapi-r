@@ -5,7 +5,7 @@
 \title{Create a new project with a specific ID, replacing a project with that ID
 if it exists.}
 \usage{
-replace_project(owner_id, project_id, create_project_req)
+replace_project(owner_id, project_id, replace_project_req)
 }
 \arguments{
 \item{owner_id}{data.world user name of the project owner.}
@@ -13,17 +13,17 @@ replace_project(owner_id, project_id, create_project_req)
 \item{project_id}{identifier to use for the new project, or identifier of
 existing project to replace with the newly created project.}
 
-\item{create_project_req}{Request object of type \code{\link{project_create_request}}.}
+\item{replace_project_req}{Request object of type \code{\link{project_replace_request}}.}
 }
 \value{
-Object of type \code{\link{create_project_response}}.
+Object of type \code{\link{success_message}}.
 }
 \description{
 Create a new project with a specific ID, replacing a project with that ID
 if it exists.
 }
 \examples{
-request <- dwapi::project_create_request(
+request <- dwapi::project_replace_request(
   title='testproject', visibility = 'OPEN',
   objective = 'Test project by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
   license = 'Public Domain')

@@ -21,10 +21,10 @@ https://data.world"
 #' @param owner_id data.world user name of the project owner.
 #' @param project_id identifier to use for the new project, or identifier of
 #' existing project to replace with the newly created project.
-#' @param create_project_req Request object of type \code{\link{project_create_request}}.
-#' @return Object of type \code{\link{create_project_response}}.
+#' @param replace_project_req Request object of type \code{\link{project_replace_request}}.
+#' @return Object of type \code{\link{success_message}}.
 #' @examples
-#' request <- dwapi::project_create_request(
+#' request <- dwapi::project_replace_request(
 #'   title='testproject', visibility = 'OPEN',
 #'   objective = 'Test project by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
 #'   license = 'Public Domain')
@@ -37,7 +37,7 @@ https://data.world"
 #'   owner_id = 'user', project_id = 'projectid')
 #' }
 #' @export
-replace_project <- function(owner_id, project_id, create_project_req) {
+replace_project <- function(owner_id, project_id, replace_project_req) {
 
   url <- paste0(getOption("dwapi.api_url"), "/", "projects", "/", owner_id)
 
@@ -51,7 +51,7 @@ replace_project <- function(owner_id, project_id, create_project_req) {
   response <-
     httr::PUT(
       url,
-      body = rjson::toJSON(create_project_req),
+      body = rjson::toJSON(replace_project_req),
       httr::add_headers(
         Accept = accept_header,
         `Content-Type` = content_type,
@@ -59,35 +59,6 @@ replace_project <- function(owner_id, project_id, create_project_req) {
       ),
       httr::user_agent(user_agent())
     )
-  ret <- httr::http_status(response)
-  if (response$status_code == 200 | response$status_code == 202) {
-    ret <-
-      replace_project_response(rjson::fromJSON(httr::content(
-        x = response,
-        as = "text",
-        encoding = "UTF-8"
-      )))
-  } else {
-    error_msg <-
-      error_message(rjson::fromJSON(httr::content(
-        x = response,
-        as = "text",
-        encoding = "UTF-8"
-      )))
-    stop(error_msg$message)
-  }
-
+  ret <- parse_success_or_error(response)
   ret
-
-}
-
-#' De-serialize a structured list into create_project_reponse object.
-#' @param structure httr response object.
-#' @return Object of type \code{\link{create_project_response}}.
-replace_project_response <- function(structure) {
-  me <- list(uri = structure$uri,
-             # optional
-             message = structure$message)
-  class(me) <- "create_project_response"
-  me
 }
