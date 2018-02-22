@@ -17,21 +17,20 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Delete a dataset
-#' @param dataset_owner ID of dataset owner
-#' @param dataset_id ID of dataset to delete
+#' @param dataset Dataset URL or path.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' \dontrun{
 #'   dwapi::delete_dataset(
-#'     dataset_owner = 'user',
-#'     dataset_id = 'project')
+#'     dataset = 'user/dataset')
 #' }
 #' @export
 delete_dataset <-
-  function(dataset_owner, dataset_id) {
-
-    url <- paste0(getOption("dwapi.api_url"), "/", "datasets", "/",
-                  dataset_owner, "/", dataset_id)
+  function(dataset) {
+    url <- sprintf(
+      "%s/datasets/%s",
+      getOption("dwapi.api_url"),
+      extract_dataset_key(dataset))
     auth <- paste0("Bearer ", auth_token())
 
     response <-

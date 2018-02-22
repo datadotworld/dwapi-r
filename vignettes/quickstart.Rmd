@@ -8,7 +8,7 @@ vignette: >
 ---
 ```{r, echo = FALSE}
 NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-CONFIGURED <- !is.null(getOption("dwapi.auth_token"))
+CONFIGURED <- Sys.getenv("DW_AUTH_TOKEN", unset = "") != ""
 knitr::opts_chunk$set(
   collapse = FALSE,
   comment = "##",
@@ -33,7 +33,7 @@ If you must call it in code do not include the actual API token.
 Instead, pass the token via a variable in .Renviron, and do not share
 your `.Renviron` file. For example:
 
-```{r configure, eval = FALSE}
+```{r configure}
 dwapi::configure(auth_token = Sys.getenv("DW_AUTH_TOKEN"))
 ```
 
@@ -70,30 +70,6 @@ Sys.sleep(10) # Files are processed asyncronously.
 upload_response
 ```
 
-## Tables and schemas (data dictionary)
-
-data.world extracts tabular data from various tabular data formats.
-Tables are a logical representation of tabular data that has been extracted and normalized.
-```{r list_tables}
-tables = dwapi::list_tables(cars_dataset$uri)
-tables
-```
-
-At this point, it is possible to review the schema of dataset tables.
-```{r get_table_schema}
-dwapi::get_table_schema(cars_dataset$uri, tables[[1]])
-```
-
-And also, to annotate fields, providing textual description to make datasets easier to understand and work with.
-```{r update_table_schema}
-update_cars_schema <- dwapi::table_schema_update_request(
-  fields = list(dwapi::table_schema_field_update_request(
-    name = "speed", description = "Top speed"))
-)
-dwapi::update_table_schema(cars_dataset$uri, tables[[1]], update_cars_schema)
-dwapi::get_table_schema(cars_dataset$uri, tables[[1]])
-```
-
 ## Queries
 
 Datasets can be queried using SQL and SPARQL.
@@ -101,6 +77,10 @@ Once again, it's important to keep the concept of tables and their names in mind
 ```{r query}
 sql_query <- "SELECT * FROM cars"
 dwapi::sql(cars_dataset$uri, sql_query)
+```
+
+```{r cleanup, echo = FALSE}
+dwapi::delete_dataset(cars_dataset$uri)
 ```
 
 ## Next
