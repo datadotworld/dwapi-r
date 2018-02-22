@@ -46,7 +46,8 @@ dw_test_that("replace_project making the correct HTTR request", {
       return(success_message_response())
     },
     `mime::guess_type` = function(...) NULL,
-    dwapi::replace_project("ownerid", "projectid", replace_project_req = request)
+    dwapi::replace_project("ownerid", "projectid",
+      replace_project_req = request)
   )
   expect_equal(class(response), "success_message")
 })
