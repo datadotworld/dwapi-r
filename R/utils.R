@@ -105,7 +105,7 @@ convert_to_sparql_literal <- function(v) {
       integer = "%s^^<http://www.w3.org/2001/XMLSchema#integer>",
       character = "%s"
     )
-  wrapped_v <- 
+  wrapped_v <-
     switch(
       type,
       logical = sprintf("\"%s\"", tolower(v)),
