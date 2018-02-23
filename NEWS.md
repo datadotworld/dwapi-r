@@ -1,22 +1,30 @@
 # 0.1.3
 
-* Additional wrapper functions for API endpoints:
+* Wrapper functions for Streams API:
   * `append_data_frame_to_stream`
   * `append_record_to_stream`
   * `append_values_to_stream`
+
+* Wrapper functions for Projects API:
   * `create_project`
-  * `delete_insight`
-  * `delete_project`
-  * `delete_dataset`
-  * `get_insight`
-  * `get_insights`
+  * `replace_project`
+  * `update_project`
   * `get_project`
+  * `delete_project`
   * `link_dataset`
   * `unlink_dataset`
+  
+* Wrapper functions for Insights API:
+  * `get_insight`
+  * `get_insights`
+  * `delete_insight`
   * `replace_insight`
-  * `replace_project`
   * `update_insight`
-  * `update_project`
+  
+* Wrapper functions for Datasets API:
+  * `delete_dataset`
+  
+* Misc improvements and bug fixes
 
 # 0.1.2
 
