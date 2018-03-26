@@ -1,6 +1,6 @@
 Package: dwapi
 Title: A Client for 'data.world' REST API
-Version: 0.1.3
+Version: 0.2.0
 Authors@R: c(
     person("Rafael", "Pereira", email = "rafael.pereira@data.world", role = c("aut", "cre")),
     person("Triet", "Le", email = "triet.le@data.world", role = c("aut")),
