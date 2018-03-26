@@ -16,34 +16,26 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
-dw_test_that("downloadFileAsDataFrame making the correct HTTR request", {
-  mock_response_path <- "resources/file1.csv"
-  dataset <- "ownerid/datasetid"
+dw_test_that("download_dataset produces valid directory structure", {
+  mock_response_path <- "resources/dataset.zip"
+  dataset <- "jonloyens/an-intro-to-dataworld-dataset"
+  output_path <- tempfile()
   response <- with_mock(
     `httr::GET` = function(url, header, progress, user_agent)  {
       expect_equal(url,
-        sprintf(
-          paste(
-            "https://api.data.world/v0/file_download/",
-            "ownerid/datasetid/file1.csv",
-            sep = ""
-          ),
-          dataset
-        ))
+                   paste0("https://api.data.world/v0/download/", dataset))
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
-      return(
-        success_message_with_content(
-          mock_response_path, "application/csv")
+      return(success_message_with_content(
+        mock_response_path, "application/zip")
       )
     },
-    `mime::guess_type` = function(...)
-      NULL,
-    dwapi::download_file_as_data_frame(dataset = dataset,
-      file_name = "file1.csv")
+    `mime::guess_type` = function(...) NULL,
+    dwapi::download_dataset(dataset = dataset, output_path = output_path)
   )
-  expect <-
-    as.data.frame(readr::read_csv(mock_response_path))
-  actual <- as.data.frame(response)
-  expect_equal(all(expect == actual), TRUE)
+  expect_equal("OK", response$reason)
+  expect_identical(
+    unzip(output_path, list = TRUE),
+    unzip(mock_response_path, list = TRUE)
+  )
 })

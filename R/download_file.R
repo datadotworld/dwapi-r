@@ -31,7 +31,7 @@ download_file <-
   function(dataset, file_name, output) {
     url <- sprintf(
       "%s/file_download/%s/%s",
-      getOption("dwapi.download_url"),
+      getOption("dwapi.api_url"),
       extract_dataset_key(dataset),
       file_name
     )
