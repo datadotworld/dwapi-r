@@ -45,8 +45,8 @@ download_dataset <- function(dataset, output_path) {
     writeBin(raw, output_path)
   } else {
     stop(sprintf(
-      "Failed to download %s (HTTP Error: %s)",
-      file_name,
+      "Failed to download dataset %s (HTTP Error: %s)",
+      dataset,
       response$status_code
     ))
   }
