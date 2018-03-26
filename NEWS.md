@@ -1,3 +1,7 @@
+# 0.2.1
+
+* Change `download_file*()` to use API rather than legacy download.data.world endpoint
+
 # 0.2.0
 
 * Wrapper function `download_dataset()` for /download/{owner}/{id} API endpoint

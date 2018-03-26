@@ -24,7 +24,7 @@ dw_test_that("downloadFileAsDataFrame making the correct HTTR request", {
       expect_equal(url,
         sprintf(
           paste(
-            "https://download.data.world/file_download/",
+            "https://api.data.world/v0/file_download/",
             "ownerid/datasetid/file1.csv",
             sep = ""
           ),
