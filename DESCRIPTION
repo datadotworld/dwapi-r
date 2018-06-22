@@ -12,8 +12,8 @@ Imports:
     httr,
     readr,
     rjson,
-    xml2,
-    jsonlite
+    jsonlite,
+    curl
 Suggests: 
     knitr,
     rmarkdown,
