@@ -7,3 +7,4 @@
 ^revdep$
 ^.circleci$
 ^.lintr$
+^CONTRIBUTING\.md$

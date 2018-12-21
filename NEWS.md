@@ -1,3 +1,7 @@
+# 0.1.4
+
+* Fix dependencies per CRAN requests
+
 # 0.1.3
 
 * Wrapper functions for Streams API:

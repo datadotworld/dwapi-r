@@ -4,8 +4,9 @@
 \alias{dataset_create_request}
 \title{Create request object for new datasets.}
 \usage{
-dataset_create_request(title, visibility, description = "", summary = "",
-  tags = list(), license_string = "", file_create_requests = list())
+dataset_create_request(title, visibility, description = "",
+  summary = "", tags = list(), license_string = "",
+  file_create_requests = list())
 }
 \arguments{
 \item{title}{Dataset title (3 to 60 characters).}

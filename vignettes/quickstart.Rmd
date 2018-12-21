@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 ## Configuration
 
 Make sure to configure the library at the begining of every new R session.
-To do so, invoke `dwapi::configure()` passing the data.world authentication token obtained at https://data.world/settings/advanced
+To do so, invoke `dwapi::configure()` passing the data.world authentication token obtained at https://data.world/integrations/r-and-r-studio
 
 ### DO NOT SHARE YOUR AUTHENTICATION TOKEN
 
