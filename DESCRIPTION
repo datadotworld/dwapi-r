@@ -1,6 +1,6 @@
 Package: dwapi
 Title: A Client for 'data.world' REST API
-Version: 0.2.1
+Version: 0.3.0
 Authors@R: c(
     person("Rafael", "Pereira", email = "rafael.pereira@data.world", role = c("aut", "cre")),
     person("Triet", "Le", email = "triet.le@data.world", role = c("aut")),
@@ -16,7 +16,7 @@ Imports:
     curl,
     purrr,
     dplyr
-Suggests: 
+Suggests:
     knitr,
     rmarkdown,
     testthat (>= 2.0.0),

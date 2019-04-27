@@ -1,3 +1,11 @@
+# 0.3.0
+
+* functions that return data frames return them as tibbles
+* `readr::read_csv()` is used behind the scenes now, so returned data frames (tibbles)
+  automatically have `stringsAsFactors=FALSE`
+* functions that take a dataset or project reference represent that reference consistently
+  with separate owner_id and dataset_id (or project_id) parameters
+
 # 0.2.1
 
 * Change `download_file*()` to use API rather than legacy download.data.world endpoint
@@ -21,17 +29,17 @@
   * `delete_project`
   * `link_dataset`
   * `unlink_dataset`
-  
+
 * Wrapper functions for Insights API:
   * `get_insight`
   * `get_insights`
   * `delete_insight`
   * `replace_insight`
   * `update_insight`
-  
+
 * Wrapper functions for Datasets API:
   * `delete_dataset`
-  
+
 * Misc improvements and bug fixes
 
 # 0.1.2

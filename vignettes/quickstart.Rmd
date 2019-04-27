@@ -58,14 +58,14 @@ update_cars_dataset <- dwapi::dataset_update_request(
   description = "This is a dataset created from R's cars dataset."
 )
 
-dwapi::update_dataset(cars_dataset$uri, update_cars_dataset)
+dwapi::update_dataset(cars_dataset$owner, cars_dataset$id, update_cars_dataset)
 ```
 
 ## Uploading files
 
 Files can be added via URL, from the local file system, or directly as a data frame.
 ```{r upload_data_frame}
-upload_response <- dwapi::upload_data_frame(cars_dataset$uri, cars, "cars.csv")
+upload_response <- dwapi::upload_data_frame(cars_dataset$owner, cars_dataset$id, cars, "cars.csv")
 Sys.sleep(10) # Files are processed asyncronously.
 upload_response
 ```
@@ -76,11 +76,11 @@ Datasets can be queried using SQL and SPARQL.
 Once again, it's important to keep the concept of tables and their names in mind.
 ```{r query}
 sql_query <- "SELECT * FROM cars"
-dwapi::sql(cars_dataset$uri, sql_query)
+dwapi::sql(cars_dataset$owner, cars_dataset$id, sql_query)
 ```
 
 ```{r cleanup, echo = FALSE}
-dwapi::delete_dataset(cars_dataset$uri)
+dwapi::delete_dataset(cars_dataset$owner, cars_dataset$id)
 ```
 
 ## Next

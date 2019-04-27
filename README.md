@@ -1,7 +1,7 @@
 # dwapi
 
 [![CircleCI](https://circleci.com/gh/datadotworld/dwapi-r.svg?style=svg)](https://circleci.com/gh/datadotworld/dwapi-r)
-[![cran version](https://www.r-pkg.org/badges/version/dwapi)](https://CRAN.R-project.org/package=dwapi) 
+[![cran version](https://www.r-pkg.org/badges/version/dwapi)](https://CRAN.R-project.org/package=dwapi)
 
 The `dwapi` R package makes it easy to use [data.world's REST API](https://docs.data.world/documentation/api) in R.  
 Using the package, users can:
@@ -21,13 +21,9 @@ vignette("quickstart", package = "dwapi")
 Here is a simple example:
 ```R
 intro_dataset <- dwapi::get_dataset(
-  dataset = "https://data.world/jonloyens/an-intro-to-dataworld-dataset")
+  owner_id = "jonloyens",
+  dataset_id = "an-intro-to-dataworld-dataset")
 ```
-
-Notice that `dataset` is parameter required by most functions and can be provided in two formats:
-
-1. URL: "https://data.world/jonloyens/an-intro-to-dataworld-dataset"
-2. Path: "jonloyens/an-intro-to-dataworld-dataset"
 
 ## Installation
 
