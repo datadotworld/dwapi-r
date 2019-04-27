@@ -4,8 +4,8 @@
 \alias{file_create_or_update_request}
 \title{Create object for adding/updating a dataset file.}
 \usage{
-file_create_or_update_request(file_name, url = NULL, description = NULL,
-  labels = NULL)
+file_create_or_update_request(file_name, url = NULL,
+  description = NULL, labels = NULL)
 }
 \arguments{
 \item{file_name}{File name including the file extension. If a file by that name already

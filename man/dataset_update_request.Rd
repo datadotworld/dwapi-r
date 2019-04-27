@@ -4,8 +4,9 @@
 \alias{dataset_update_request}
 \title{Create request object for updating existing datasets.}
 \usage{
-dataset_update_request(description = NULL, summary = NULL, tags = NULL,
-  license_string = NULL, visibility = NULL, files = NULL)
+dataset_update_request(description = NULL, summary = NULL,
+  tags = NULL, license_string = NULL, visibility = NULL,
+  files = NULL)
 }
 \arguments{
 \item{description}{(optional) Dataset description.}
