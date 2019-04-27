@@ -4,10 +4,13 @@
 \alias{update_project}
 \title{Update an existing project.}
 \usage{
-update_project(project, project_update_req)
+update_project(owner_id, project_id, project_update_req)
 }
 \arguments{
-\item{project}{Project URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{project_id}{Project unique identifier}
 
 \item{project_update_req}{Request object of type \code{\link{project_update_request}}.}
 }
@@ -22,7 +25,6 @@ request <- dwapi::project_update_request(
   objective = 'UPDATED OBJECTIVE !')
 
 \dontrun{
-  dwapi::update_project(project_update_req = request,
-    dataset = 'user/project')
+  dwapi::update_project('user', 'project', project_update_req = request)
 }
 }

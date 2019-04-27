@@ -4,12 +4,15 @@
 \alias{upload_data_frame}
 \title{Upload a data frame as a file to a dataset.}
 \usage{
-upload_data_frame(dataset, data_frame, file_name)
+upload_data_frame(data_frame, owner_id, dataset_id, file_name)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
-
 \item{data_frame}{Data frame object.}
+
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{file_name}{File name, including file extension.}
 }
@@ -20,9 +23,11 @@ Server response message.
 Upload a data frame as a file to a dataset.
 }
 \examples{
-df = data.frame(a = c(1,2,3),b = c(4,5,6))
+df = data.frame(a = c(1,2,3), b = c(4,5,6))
 \dontrun{
   dwapi::upload_data_frame(file_name = 'sample.csv',
-    data_frame = df, dataset = 'user/dataset')
+    data_frame = df, owner_id = 'user', dataset_id = 'dataset')
+  df \%>\% dwapi::upload_data_frame('user', 'dataset',
+    file_name = 'sample.csv')
 }
 }

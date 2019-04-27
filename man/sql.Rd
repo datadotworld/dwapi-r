@@ -4,10 +4,13 @@
 \alias{sql}
 \title{Execute SQL query against a dataset.}
 \usage{
-sql(dataset, query, query_params = list())
+sql(owner_id, dataset_id, query, query_params = list())
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{query}{SQL query.}
 
@@ -21,7 +24,7 @@ Execute SQL query against a dataset.
 }
 \examples{
 \dontrun{
-  dwapi::sql(dataset="user/dataset",
+  dwapi::sql("user", "dataset",
     query="SELECT *
            FROM TableName
            LIMIT 10")

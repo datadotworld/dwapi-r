@@ -4,10 +4,13 @@
 \alias{download_dataset}
 \title{Download a dataset as a zip archive and store at the specified path.}
 \usage{
-download_dataset(dataset, output_path)
+download_dataset(owner_id, dataset_id, output_path)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{output_path}{Local file path where dataset zip file will be saved.}
 }
@@ -19,7 +22,7 @@ Download a dataset as a zip archive and store at the specified path.
 }
 \examples{
 \dontrun{
-  dwapi::download_dataset(dataset = 'user/dataset',
+  dwapi::download_dataset('user', 'dataset',
    output_path = tempfile(fileext = 'zip'))
 }
 }

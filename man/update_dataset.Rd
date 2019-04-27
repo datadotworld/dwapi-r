@@ -4,10 +4,13 @@
 \alias{update_dataset}
 \title{Update an existing dataset.}
 \usage{
-update_dataset(dataset, dataset_update_req)
+update_dataset(owner_id, dataset_id, dataset_update_req)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{dataset_update_req}{Request object of type \code{\link{dataset_update_request}}.}
 }
@@ -22,7 +25,6 @@ request <- dwapi::dataset_update_request(visibility = 'OPEN',
   description = 'UPDATED DESCRIPTION !')
 
 \dontrun{
-  dwapi::update_dataset(dataset_update_req = request,
-    dataset = 'user/dataset')
+  dwapi::update_dataset('user', 'dataset', dataset_update_req = request)
 }
 }

@@ -4,10 +4,14 @@
 \alias{update_table_schema}
 \title{Update table schema.}
 \usage{
-update_table_schema(dataset, table_name, table_schema_update_req)
+update_table_schema(owner_id, dataset_id, table_name,
+  table_schema_update_req)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{table_name}{Table name.}
 
@@ -23,6 +27,6 @@ Update table schema.
 field_update_req <- dwapi::table_schema_field_update_request("field", "new desc")
 schema_update_req <- dwapi::table_schema_update_request(c(field_update_req))
 \dontrun{
-  dwapi::update_table_schema("user/dataset", "table", schema_update_req)
+  dwapi::update_table_schema("user", "dataset", "table", schema_update_req)
 }
 }

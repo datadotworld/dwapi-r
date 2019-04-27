@@ -4,10 +4,13 @@
 \alias{sync}
 \title{Fetch latest files from source and update dataset.}
 \usage{
-sync(dataset)
+sync(owner_id, dataset_id)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 }
 \value{
 Object of type \code{\link{success_message}}.
@@ -17,6 +20,6 @@ Fetch latest files from source and update dataset.
 }
 \examples{
 \dontrun{
-  dwapi::sync(dataset='user/dataset')
+  dwapi::sync('user', 'dataset')
 }
 }

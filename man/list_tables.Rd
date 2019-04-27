@@ -4,10 +4,13 @@
 \alias{list_tables}
 \title{List tables in a dataset.}
 \usage{
-list_tables(dataset)
+list_tables(owner_id, dataset_id)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 }
 \value{
 list of table names.
@@ -22,6 +25,6 @@ backwards-compability is not guaranteed in future releases.
 }
 \examples{
 \dontrun{
-  tables <- dwapi::list_tables("user/dataset")
+  tables <- dwapi::list_tables("user", "dataset")
 }
 }

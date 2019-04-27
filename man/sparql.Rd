@@ -4,10 +4,13 @@
 \alias{sparql}
 \title{Execute SPARQL query against a dataset.}
 \usage{
-sparql(dataset, query, query_params = list())
+sparql(owner_id, dataset_id, query, query_params = list())
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{query}{SPARQL query.}
 
@@ -22,7 +25,7 @@ backwards-compability is not guaranteed in future releases.
 }
 \examples{
 \dontrun{
- dwapi::sparql(dataset="user/dataset",
+ dwapi::sparql("user", "dataset",
    query="SELECT *
           WHERE {
             ?s ?p ?o .

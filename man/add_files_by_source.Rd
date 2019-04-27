@@ -4,10 +4,13 @@
 \alias{add_files_by_source}
 \title{Add one or more files to a dataset.}
 \usage{
-add_files_by_source(dataset, file_batch_update_req)
+add_files_by_source(owner_id, dataset_id, file_batch_update_req)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{file_batch_update_req}{Object of type \code{\link{file_batch_update_request}}.}
 }

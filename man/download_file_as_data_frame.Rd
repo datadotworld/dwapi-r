@@ -4,10 +4,13 @@
 \alias{download_file_as_data_frame}
 \title{Download dataset file onto a data frame.}
 \usage{
-download_file_as_data_frame(dataset, file_name)
+download_file_as_data_frame(owner_id, dataset_id, file_name)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{file_name}{File name, including file extension.}
 }
@@ -20,7 +23,7 @@ Download dataset file onto a data frame.
 \examples{
 \dontrun{
   my_df <- dwapi::download_file_as_data_frame(
-    dataset = 'user/dataset',
+    'user', 'dataset',
     file_name = 'file.csv')
 }
 }

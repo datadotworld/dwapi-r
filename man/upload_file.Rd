@@ -4,10 +4,13 @@
 \alias{upload_file}
 \title{Upload a single file to a dataset.}
 \usage{
-upload_file(dataset, path, file_name)
+upload_file(owner_id, dataset_id, path, file_name)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{path}{File path on local file system.}
 
@@ -21,7 +24,7 @@ Upload a single file to a dataset.
 }
 \examples{
 \dontrun{
-  dwapi::upload_file(file_name = 'file.csv',
-    path = 'file.csv', dataset = 'user/dataset')
+  dwapi::upload_file('user', 'dataset', file_name = 'file.csv',
+    path = 'file.csv')
 }
 }

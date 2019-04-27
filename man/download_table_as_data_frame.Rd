@@ -4,10 +4,13 @@
 \alias{download_table_as_data_frame}
 \title{Download a dataset table onto a data frame.}
 \usage{
-download_table_as_data_frame(dataset, table_name)
+download_table_as_data_frame(owner_id, dataset_id, table_name)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{table_name}{Table name.}
 }
@@ -19,7 +22,7 @@ Download a dataset table onto a data frame.
 }
 \examples{
 \dontrun{
-  table_df <- dwapi::download_table_as_data_frame("user/dataset", "table")
+  table_df <- dwapi::download_table_as_data_frame("user", "dataset", "table")
 }
 }
 \seealso{
