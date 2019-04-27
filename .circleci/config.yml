@@ -16,7 +16,7 @@
 
        - run:
            name: Install dwapi-r
-           command: RDscript -e 'devtools::install()'
+           command: RDscript -e 'install.packages("devtools"); devtools::install()'
 
        - run:
            name: Lint
