@@ -160,14 +160,35 @@ dw_test_that("stream values making the correct HTTR request", {
 })
 
 test_that("Invalid record scenarios", {
+  # not a list
+  expect_error(
+    dwapi::append_record_to_stream("ownerid", "datasetid", "streamid", 1),
+    "requires representation.+as a list"
+  )
   # field of length > 1
   expect_error(
     dwapi::append_record_to_stream("ownerid", "datasetid", "streamid",
-                                   list(a = 1:2))
+                                   list(a = 1:2)),
+    "must be an atomic vector of length 1"
   )
   # non-atomic field
   expect_error(
     dwapi::append_record_to_stream("ownerid", "datasetid", "streamid",
-                                   list(a = list(a = 1)))
+                                   list(a = list(a = 1))),
+    "must be an atomic vector of length 1"
+  )
+})
+
+test_that("Invalid values scenarios", {
+  # field of length > 1
+  expect_error(
+    dwapi::append_values_to_stream("ownerid", "datasetid", "streamid", v=1:2),
+    "streamed must be an atomic vector of length 1"
+  )
+  # field of length > 1
+  expect_error(
+    dwapi::append_values_to_stream("ownerid", "datasetid", "streamid",
+                                   v=list(1)),
+    "streamed must be an atomic vector of length 1"
   )
 })

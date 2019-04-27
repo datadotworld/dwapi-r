@@ -135,15 +135,14 @@ append_record_to_stream <- function(owner_id, dataset_id,
                                     retry_quiet = FALSE) {
 
   if (!is.list(record)) {
-    stop(paste0("append_list_to_stream requires representation of the record ",
-                "as a list"))
+    stop(paste0("append_values_to_stream requires representation ",
+                "of the record as a list"))
   }
 
-  record <- lapply(record, function(element) {
-    if (!is.atomic(element) | length(element) != 1) {
+  purrr::walk(record, function(element) {
+    if (!is.atomic(element) || length(element) != 1) {
       stop("Each element of record must be an atomic vector of length 1")
     }
-    element
   })
 
   append_data_frame_to_stream(owner_id, dataset_id, stream_id,
@@ -184,11 +183,10 @@ append_values_to_stream <- function(owner_id, dataset_id,
 
   record <- list(...)
 
-  record <- lapply(record, function(element) {
-    if (!is.atomic(element) | length(element) != 1) {
+  purrr::walk(record, function(element) {
+    if (!is.atomic(element) || length(element) != 1) {
       stop("Each value to be streamed must be an atomic vector of length 1")
     }
-    element
   })
 
   append_record_to_stream(owner_id, dataset_id, stream_id,
