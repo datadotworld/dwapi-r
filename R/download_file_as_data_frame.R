@@ -41,8 +41,7 @@ download_file_as_data_frame <-
       download_status <-
         dwapi::download_file(dataset, file_name, tmp_path)
       if (download_status$category == "Success") {
-        ret <- utils::read.csv(file = tmp_path, header = TRUE)
-        ret
+        readr::read_csv(tmp_path)
       } else {
         stop(sprintf(
           "Failed to download %s (HTTP Error: %s)",

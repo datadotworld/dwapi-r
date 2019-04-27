@@ -58,7 +58,11 @@ dw_test_that("SPARQL query making the correct HTTR request", {
       query_params = query_parameters
     )
   )
-  expect_equal(is.data.frame(response), TRUE)
-  expected <- read.csv(mock_response_path)
-  expect_equal(all(expected == as.data.frame(response)), TRUE)
+  expect <- readr::read_csv(mock_response_path)
+  purrr::walk2(expect, response, function(expect_col, response_col) {
+    expect_equal(expect_col, response_col)
+  })
+  expect_equal(0,
+               length(base::setdiff(class(tibble::tibble()), class(response))))
+  expect_equal(0, ncol(dplyr::select_if(response, is.factor)))
 })

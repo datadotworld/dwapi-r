@@ -40,8 +40,11 @@ dw_test_that("get_table_as_dataframe making the correct HTTR request", {
     dwapi::download_table_as_data_frame(
       dataset = dataset, table_name = "tableid")
   )
-  expect <-
-    as.data.frame(readr::read_csv(mock_response_path))
-  actual <- as.data.frame(response)
-  expect_equal(all(expect == actual), TRUE)
+  expect <- readr::read_csv(mock_response_path)
+  purrr::walk2(expect, response, function(expect_col, response_col) {
+    expect_equal(expect_col, response_col)
+  })
+  expect_equal(0,
+               length(base::setdiff(class(tibble::tibble()), class(response))))
+  expect_equal(0, ncol(dplyr::select_if(response, is.factor)))
 })

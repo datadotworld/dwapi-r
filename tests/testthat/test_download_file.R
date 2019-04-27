@@ -47,8 +47,9 @@ dw_test_that("downloadFile making the correct HTTR request", {
       output = tmp_output
     )
   )
-  expect <-
-    as.data.frame(readr::read_csv(mock_response_local_path))
-  actual <- as.data.frame(readr::read_csv(tmp_output))
-  expect_equal(all(expect == actual), TRUE)
+  expect <- readr::read_csv(mock_response_local_path)
+  actual <- readr::read_csv(tmp_output)
+  purrr::walk2(expect, actual, function(expect_col, response_col) {
+    expect_equal(expect_col, response_col)
+  })
 })
