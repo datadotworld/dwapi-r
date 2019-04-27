@@ -22,14 +22,16 @@ https://data.world"
 #' @param file_name File name, including file extension.
 #' @return Server response message.
 #' @examples
-#' df = data.frame(a = c(1,2,3),b = c(4,5,6))
+#' df = data.frame(a = c(1,2,3), b = c(4,5,6))
 #' \dontrun{
 #'   dwapi::upload_data_frame(file_name = 'sample.csv',
 #'     data_frame = df, dataset = 'user/dataset')
+#'   df %>% dwapi::upload_data_frame(file_name = 'sample.csv',
+#'     dataset = 'user/dataset')
 #' }
 #' @export
 upload_data_frame <-
-  function(dataset, data_frame, file_name) {
+  function(data_frame, dataset, file_name) {
     if (!is.data.frame(data_frame)) {
       stop("input is not a data frame")
     }
