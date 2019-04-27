@@ -73,14 +73,12 @@ add_file.file_batch_update_request <-
     url,
     description = NULL,
     labels = NULL) {
-    existing_files <- request$files
-    # O(N) ?
-    existing_files[[length(existing_files) + 1]] <-
-      dwapi::file_create_or_update_request(name,
-        url = url,
-        description = description,
-        labels = labels)
-    request$files <- existing_files
+    request$files <-
+      c(request$files,
+        list(dwapi::file_create_or_update_request(name,
+                                                  url = url,
+                                                  description = description,
+                                                  labels = labels)))
     request
   }
 
@@ -92,12 +90,10 @@ add_file.dataset_create_request <-
     url,
     description = NULL,
     labels = NULL) {
-    existing_files <- request$files
-    # O(N) ?
-    existing_files[[length(existing_files) + 1]] <-
-      dwapi::file_create_request(
-        name, url, description = description, labels = labels)
-    request$files <- existing_files
+    request$files <-
+      c(request$files,
+        list(dwapi::file_create_request(
+          name, url, description = description, labels = labels)))
     request
   }
 
@@ -109,12 +105,10 @@ add_file.dataset_replace_request <-
     url,
     description = NULL,
     labels = NULL) {
-    existing_files <- request$files
-    # O(N) ?
-    existing_files[[length(existing_files) + 1]] <-
-      dwapi::file_create_request(
-        name, url, description = description, labels = labels)
-    request$files <- existing_files
+    request$files <-
+      c(request$files,
+        list(dwapi::file_create_request(
+          name, url, description = description, labels = labels)))
     request
   }
 
@@ -126,13 +120,14 @@ add_file.dataset_update_request <-
     url = NULL,
     description = NULL,
     labels = NULL) {
-    existing_files <- request$files
-    # O(N) ?
-    existing_files[[length(existing_files) + 1]] <-
-      dwapi::file_create_or_update_request(name,
-        url = url,
-        description = description,
-        labels = labels)
-    request$files <- existing_files
+    request$files <- c(
+      request$files,
+      list(
+        dwapi::file_create_or_update_request(name,
+                                             url = url,
+                                             description = description,
+                                             labels = labels)
+      )
+    )
     request
   }
