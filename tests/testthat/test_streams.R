@@ -182,13 +182,14 @@ test_that("Invalid record scenarios", {
 test_that("Invalid values scenarios", {
   # field of length > 1
   expect_error(
-    dwapi::append_values_to_stream("ownerid", "datasetid", "streamid", v=1:2),
+    dwapi::append_values_to_stream("ownerid", "datasetid",
+                                   "streamid", v = 1:2),
     "streamed must be an atomic vector of length 1"
   )
   # field of length > 1
   expect_error(
     dwapi::append_values_to_stream("ownerid", "datasetid", "streamid",
-                                   v=list(1)),
+                                   v = list(1)),
     "streamed must be an atomic vector of length 1"
   )
 })

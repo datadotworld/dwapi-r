@@ -36,8 +36,8 @@ test_that("add_file to a file_batch_update_request", {
 
 test_that("add_file to a dataset_create_request", {
   request <- dwapi::dataset_create_request(
-    title='datasetid',
-    visibility = 'OPEN')
+    title = "datasetid",
+    visibility = "OPEN")
   expect_equal(0, length(request$files))
   request <-
     dwapi::add_file(request = request,
@@ -56,8 +56,8 @@ test_that("add_file to a dataset_create_request", {
 
 test_that("add_file to a dataset_replace_request", {
   request <- dwapi::dataset_replace_request(
-    title='datasetid',
-    visibility = 'OPEN')
+    title = "datasetid",
+    visibility = "OPEN")
   expect_equal(0, length(request$files))
   request <-
     dwapi::add_file(request = request,
@@ -91,4 +91,3 @@ test_that("add_file to a dataset_update_request", {
   expect_equal("file.csv", request$files[[1]]$name)
   expect_equal("file2.csv", request$files[[2]]$name)
 })
-
