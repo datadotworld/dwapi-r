@@ -21,13 +21,15 @@ https://data.world"
 #' #' \strong{EXPERIMENTAL}: This is an experimental feature and
 #' backwards-compability is not guaranteed in future releases.
 #'
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param query SPARQL query.
 #' @param query_params List of named query parameters.
 #' @return Data frame with data from query results.
 #' @examples
 #' \dontrun{
-#'  dwapi::sparql(dataset="user/dataset",
+#'  dwapi::sparql("user", "dataset",
 #'    query="SELECT *
 #'           WHERE {
 #'             ?s ?p ?o .
@@ -42,10 +44,10 @@ https://data.world"
 #'   queryParameters = list("$v1"=5.5))
 #' }
 #' @export
-sparql <- function(dataset, query, query_params = list()) {
-  url <- sprintf("%s/sparql/%s",
+sparql <- function(owner_id, dataset_id, query, query_params = list()) {
+  url <- sprintf("%s/sparql/%s/%s",
     getOption("dwapi.query_url"),
-    extract_dataset_key(dataset))
+    owner_id, dataset_id)
   request_query <- list(query = query)
   if (length(query_params) > 0) {
     request_query$parameters <-

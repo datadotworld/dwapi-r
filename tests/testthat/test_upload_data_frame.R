@@ -34,9 +34,8 @@ dw_test_that("uploadDataFrame making the correct HTTR request", {
     `mime::guess_type` = function(...)
       NULL,
     dwapi::upload_data_frame(
-      dataset = "ownerid/datasetid",
-      file_name = "df.csv",
-      data_frame = df
+      df, "ownerid", "datasetid",
+      file_name = "df.csv"
     )
   )
   expect_equal(class(response), "success_message")

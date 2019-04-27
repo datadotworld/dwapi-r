@@ -17,7 +17,9 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Update an existing project.
-#' @param project Project URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param project_id Project unique identifier
 #' @param project_update_req Request object of type \code{\link{project_update_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
@@ -25,17 +27,16 @@ https://data.world"
 #'   objective = 'UPDATED OBJECTIVE !')
 #'
 #' \dontrun{
-#'   dwapi::update_project(project_update_req = request,
-#'     dataset = 'user/project')
+#'   dwapi::update_project('user', 'project', project_update_req = request)
 #' }
 #' @export
 update_project <-
-  function(project,
+  function(owner_id, project_id,
            project_update_req) {
     url <- sprintf(
-      "%s/projects/%s",
+      "%s/projects/%s/%s",
       getOption("dwapi.api_url"),
-      extract_project_key(project))
+      owner_id, project_id)
     auth <- sprintf("Bearer %s", auth_token())
     response <-
       httr::PATCH(

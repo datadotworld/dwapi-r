@@ -18,18 +18,16 @@ https://data.world"
 
 dw_test_that("downloadFileAsDataFrame making the correct HTTR request", {
   mock_response_path <- "resources/file1.csv"
-  dataset <- "ownerid/datasetid"
+  owner <- "ownerid"
+  dataset <- "datasetid"
   response <- with_mock(
     `httr::GET` = function(url, header, progress, user_agent)  {
       expect_equal(url,
-        sprintf(
           paste(
             "https://api.data.world/v0/file_download/",
             "ownerid/datasetid/file1.csv",
             sep = ""
-          ),
-          dataset
-        ))
+          ))
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
       return(
@@ -39,7 +37,7 @@ dw_test_that("downloadFileAsDataFrame making the correct HTTR request", {
     },
     `mime::guess_type` = function(...)
       NULL,
-    dwapi::download_file_as_data_frame(dataset = dataset,
+    dwapi::download_file_as_data_frame(owner, dataset,
       file_name = "file1.csv")
   )
   expect <- readr::read_csv(mock_response_path)

@@ -17,20 +17,22 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Download a dataset table onto a data frame.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param table_name Table name.
 #' @return Data frame with data from table.
 #' @seealso \code{\link{list_tables}}
 #' @examples
 #' \dontrun{
-#'   table_df <- dwapi::download_table_as_data_frame("user/dataset", "table")
+#'   table_df <- dwapi::download_table_as_data_frame("user", "dataset", "table")
 #' }
 #' @export
-download_table_as_data_frame <- function(dataset, table_name) {
+download_table_as_data_frame <- function(owner_id, dataset_id, table_name) {
   url <- sprintf(
-    "%s/tables/%s/%s/rows",
+    "%s/tables/%s/%s/%s/rows",
     getOption("dwapi.query_url"),
-    extract_dataset_key(dataset),
+    owner_id, dataset_id,
     table_name
   )
   auth <- sprintf("Bearer %s", auth_token())

@@ -17,20 +17,22 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Download a dataset as a zip archive and store at the specified path.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param output_path Local file path where dataset zip file will be saved.
 #' @return Server response message.
 #' @examples
 #' \dontrun{
-#'   dwapi::download_dataset(dataset = 'user/dataset',
+#'   dwapi::download_dataset('user', 'dataset',
 #'    output_path = tempfile(fileext = 'zip'))
 #' }
 #' @export
-download_dataset <- function(dataset, output_path) {
+download_dataset <- function(owner_id, dataset_id, output_path) {
   url <- paste0(
     getOption("dwapi.api_url"),
     "/", "download", "/", # to avoid lintr errors
-    extract_dataset_key(dataset)
+    owner_id, "/", dataset_id
   )
   response <-
     httr::GET(
@@ -45,8 +47,8 @@ download_dataset <- function(dataset, output_path) {
     writeBin(raw, output_path)
   } else {
     stop(sprintf(
-      "Failed to download dataset %s (HTTP Error: %s)",
-      dataset,
+      "Failed to download dataset %s/%s (HTTP Error: %s)",
+      owner_id, dataset_id,
       response$status_code
     ))
   }

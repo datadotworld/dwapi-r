@@ -17,19 +17,21 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Retrieve schema information for a dataset table.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param table_name Table name.
 #' @return Object of type \code{\link{table_schema_response}}.
 #' @seealso \code{\link{list_tables}}
 #' @examples
 #' \dontrun{
-#'   table_schema <- dwapi::get_table_schema("user/dataset", "table")
+#'   table_schema <- dwapi::get_table_schema("user", "dataset", "table")
 #' }
 #' @export
-get_table_schema <- function(dataset, table_name) {
-  url <- sprintf("%s/tables/%s/%s/schema",
+get_table_schema <- function(owner_id, dataset_id, table_name) {
+  url <- sprintf("%s/tables/%s/%s/%s/schema",
     getOption("dwapi.query_url"),
-    extract_dataset_key(dataset),
+    owner_id, dataset_id,
     table_name)
   auth <- sprintf("Bearer %s", auth_token())
   response <- httr::GET(

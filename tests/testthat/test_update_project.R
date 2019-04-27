@@ -30,7 +30,7 @@ dw_test_that("update_project making the correct HTTR request", {
     },
     `mime::guess_type` = function(...)
       NULL,
-    dwapi::update_project("ownerid/datasetid",
+    dwapi::update_project("ownerid", "datasetid",
                           project_update_req = request)
   )
   expect_equal(class(response), "success_message")

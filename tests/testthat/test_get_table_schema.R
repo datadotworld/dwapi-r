@@ -33,7 +33,7 @@ dw_test_that("get_table_schema making the correct HTTR request", {
     },
     `mime::guess_type` = function(...)
       NULL,
-    dwapi::get_table_schema("ownerid/datasetid", "tableid")
+    dwapi::get_table_schema("ownerid", "datasetid", "tableid")
   )
   expect_equal(class(response), "table_schema_response")
   expect_length(response$fields, 2)

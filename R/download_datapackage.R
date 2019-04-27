@@ -22,29 +22,28 @@ https://data.world"
 #' Learn more about the Data Package specification at
 #' \url{http://frictionlessdata.io/data-packages/}.
 #'
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param output_path Directory path, where data package will be saved.
 #' @examples
 #' \dontrun{
 #'   dwapi::download_datapackage(
-#'     dataset = "user/dataset",
+#'     "user", "dataset",
 #'     output_path = tempdir())
 #' }
 #' @export
-download_datapackage <- function(dataset, output_path = NULL) {
-  dataset_key <- extract_dataset_key(dataset)
-  ds_key_parts <- unlist(strsplit(dataset_key, "/", fixed = TRUE))
+download_datapackage <- function(owner_id, dataset_id, output_path = NULL) {
   if (is.null(output_path)) {
     output_path <- path.expand(file.path(
       getOption("dwapi.cache_dir"),
-      ds_key_parts[[1]],
-      ds_key_parts[[2]],
+      owner_id, dataset_id,
       "latest"
     ))
   }
-  url <- sprintf("%s/datapackage/%s",
+  url <- sprintf("%s/datapackage/%s/%s",
     getOption("dwapi.download_url"),
-    dataset)
+    owner_id, dataset_id)
   response <- httr::GET(
     url,
     httr::add_headers(Authorization = sprintf("Bearer %s", auth_token())),

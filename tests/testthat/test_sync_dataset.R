@@ -27,7 +27,7 @@ dw_test_that("sync making the correct HTTR request", {
     },
     `mime::guess_type` = function(...)
       NULL,
-    dwapi::sync(dataset = "ownerid/datasetid")
+    dwapi::sync("ownerid", "datasetid")
   )
   expect_equal(class(response), "success_message")
 })

@@ -37,7 +37,7 @@ dw_test_that("addFilesBySource making the correct HTTR request", {
     },
     `mime::guess_type` = function(...)
       NULL,
-    dwapi::add_files_by_source(dataset = "ownerid/datasetid",
+    dwapi::add_files_by_source("ownerid", "datasetid",
       file_batch_update_req = request)
   )
   expect_equal(class(response), "success_message")
@@ -61,7 +61,7 @@ dw_test_that("addFileBySource making the correct HTTR request", {
     `mime::guess_type` = function(...)
       NULL,
     dwapi::add_file_by_source(
-      dataset = "ownerid/datasetid",
+      "ownerid", "datasetid",
       name = "file.csv",
       url = "https://data.world/some_file.csv"
     )

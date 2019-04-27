@@ -33,7 +33,7 @@ dw_test_that("getDataset making the correct HTTR request", {
     },
     `mime::guess_type` = function(...)
       NULL,
-    dwapi::get_dataset("ownerid/datasetid")
+    dwapi::get_dataset("ownerid", "datasetid")
   )
   expect_equal(class(response), "dataset_summary_response")
   expect_equal(response$id, "datasetid")

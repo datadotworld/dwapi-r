@@ -17,16 +17,18 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Fetch latest files from source and update dataset.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' \dontrun{
-#'   dwapi::sync(dataset='user/dataset')
+#'   dwapi::sync('user', 'dataset')
 #' }
 #' @export
-sync <- function(dataset) {
-  url <- sprintf("%s/datasets/%s/sync", getOption("dwapi.api_url"),
-    extract_dataset_key(dataset))
+sync <- function(owner_id, dataset_id) {
+  url <- sprintf("%s/datasets/%s/%s/sync", getOption("dwapi.api_url"),
+                 owner_id, dataset_id)
   auth <- sprintf("Bearer %s", auth_token())
   response <-
     httr::POST(

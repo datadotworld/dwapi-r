@@ -24,17 +24,19 @@ https://data.world"
 #' \strong{EXPERIMENTAL}: This is an experimental feature and
 #' backwards-compability is not guaranteed in future releases.
 #'
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @return list of table names.
 #' @examples
 #' \dontrun{
-#'   tables <- dwapi::list_tables("user/dataset")
+#'   tables <- dwapi::list_tables("user", "dataset")
 #' }
 #' @export
-list_tables <- function(dataset) {
-  url <- sprintf("%s/tables/%s",
+list_tables <- function(owner_id, dataset_id) {
+  url <- sprintf("%s/tables/%s/%s",
     getOption("dwapi.query_url"),
-    extract_dataset_key(dataset))
+    owner_id, dataset_id)
   auth <- sprintf("Bearer %s", auth_token())
   response <- httr::GET(
     url,

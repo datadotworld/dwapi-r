@@ -17,7 +17,9 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Add a single file to a dataset.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param name File name including the file extension. If a file by that name already
 #'  exists in the dataset, the file will be updated/overwritten.
 #' @param url Source URL of file.
@@ -29,7 +31,7 @@ https://data.world"
 #' }
 #' @export
 add_file_by_source <-
-  function(dataset, name, url) {
+  function(owner_id, dataset_id, name, url) {
     request <- dwapi::file_batch_update_request()
     request <-
       dwapi::add_file(request = request,
@@ -37,14 +39,16 @@ add_file_by_source <-
         url = url)
     ret <-
       dwapi::add_files_by_source(
-        dataset = dataset,
+        owner_id = owner_id, dataset_id = dataset_id,
         file_batch_update_req = request
       )
     ret
   }
 
 #' Add one or more files to a dataset.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param file_batch_update_req Object of type \code{\link{file_batch_update_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
@@ -57,12 +61,12 @@ add_file_by_source <-
 #' }
 #' @export
 add_files_by_source <-
-  function(dataset,
+  function(owner_id, dataset_id,
     file_batch_update_req) {
     api_url <-
       sprintf(
-        "%s/datasets/%s/files", getOption("dwapi.api_url"),
-        extract_dataset_key(dataset))
+        "%s/datasets/%s/%s/files", getOption("dwapi.api_url"),
+        owner_id, dataset_id)
     content_type_header <- "application/json"
     auth_header <- sprintf("Bearer %s", auth_token())
     response <-

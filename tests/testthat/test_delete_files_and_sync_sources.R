@@ -32,7 +32,7 @@ dw_test_that("deleteFilesAndSyncSources making the correct HTTR request", {
     `mime::guess_type` = function(...)
       NULL,
     dwapi::delete_files(
-      dataset = "ownerid/datasetid",
+      "ownerid", "datasetid",
       file_names = list("file1.csv", "file2.csv")
     )
   )
@@ -51,7 +51,7 @@ dw_test_that("deleteFileAndSyncSources making the correct HTTR request", {
     `mime::guess_type` = function(...)
       NULL,
     dwapi::delete_file(
-      dataset = "ownerid/datasetid",
+      "ownerid", "datasetid",
       file_name = "file.csv")
   )
   expect_equal(class(response), "success_message")

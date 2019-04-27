@@ -17,18 +17,20 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Download dataset file onto a data frame.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param file_name File name, including file extension.
 #' @return Data frame with the contents of CSV file.
 #' @examples
 #' \dontrun{
 #'   my_df <- dwapi::download_file_as_data_frame(
-#'     dataset = 'user/dataset',
+#'     'user', 'dataset',
 #'     file_name = 'file.csv')
 #' }
 #' @export
 download_file_as_data_frame <-
-  function(dataset, file_name) {
+  function(owner_id, dataset_id, file_name) {
     if (!endsWith(file_name, ".csv")) {
       stop("only support csv extension files.")
     }
@@ -39,7 +41,7 @@ download_file_as_data_frame <-
     }
     tryCatch({
       download_status <-
-        dwapi::download_file(dataset, file_name, tmp_path)
+        dwapi::download_file(owner_id, dataset_id, file_name, tmp_path)
       if (download_status$category == "Success") {
         readr::read_csv(tmp_path)
       } else {

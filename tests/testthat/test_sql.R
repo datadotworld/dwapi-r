@@ -18,13 +18,14 @@ https://data.world"
 
 dw_test_that("SQL query making the correct HTTR request", {
   sql_query <- "SELECT * FROM TableName LIMIT 10"
-  dataset <- "ownerid/datasetid"
+  owner <- "ownerid"
+  dataset <- "datasetid"
   mock_response_path <- "resources/file1.csv"
   query_parameters <- list("value1", 1L, 1, TRUE, 1.5)
   response <- with_mock(
     `httr::GET` = function(url, query, header, user_agent)  {
       expect_equal(url,
-        sprintf("https://query.data.world/sql/%s", dataset))
+        sprintf("https://query.data.world/sql/%s/%s", owner, dataset))
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(header$headers[["Accept"]], "text/csv")
       expect_equal(query[["query"]], sql_query)
@@ -49,7 +50,7 @@ dw_test_that("SQL query making the correct HTTR request", {
     `mime::guess_type` = function(...)
       NULL,
     dwapi::sql(
-      dataset = dataset,
+      owner, dataset,
       query = sql_query,
       query_params = query_parameters
     )

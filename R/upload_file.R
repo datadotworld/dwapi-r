@@ -17,21 +17,23 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Upload a single file to a dataset.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param path File path on local file system.
 #' @param file_name File name, including file extension.
 #' @return Server response message.
 #' @examples
 #' \dontrun{
-#'   dwapi::upload_file(file_name = 'file.csv',
-#'     path = 'file.csv', dataset = 'user/dataset')
+#'   dwapi::upload_file('user', 'dataset', file_name = 'file.csv',
+#'     path = 'file.csv')
 #' }
 #' @export
 upload_file <-
-  function(dataset, path, file_name) {
-    url <- sprintf("%s/uploads/%s/files/%s",
+  function(owner_id, dataset_id, path, file_name) {
+    url <- sprintf("%s/uploads/%s/%s/files/%s",
       getOption("dwapi.api_url"),
-      extract_dataset_key(dataset),
+      owner_id, dataset_id,
       file_name)
     auth <- sprintf("Bearer %s", auth_token())
     content_type <- "application/octet-stream"
@@ -48,18 +50,20 @@ upload_file <-
   }
 
 #' Upload one or more files to a dataset.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param paths List of file paths on local file system.
 #' @return Server response message.
 #' @examples
 #' \dontrun{
-#'   dwapi::upload_files(dataset = 'user/dataset',
+#'   dwapi::upload_files('user', 'dataset',
 #'     paths = c('file1.csv', 'file2.csv'))
 #' }
 #' @export
-upload_files <- function(dataset, paths) {
-  url <- sprintf("%s/uploads/%s/files", getOption("dwapi.api_url"),
-    extract_dataset_key(dataset))
+upload_files <- function(owner_id, dataset_id, paths) {
+  url <- sprintf("%s/uploads/%s/%s/files", getOption("dwapi.api_url"),
+                 owner_id, dataset_id)
   auth <- sprintf("Bearer %s", auth_token())
   content_type <- "multipart/form-data"
   body_values <- lapply(paths, function(path)

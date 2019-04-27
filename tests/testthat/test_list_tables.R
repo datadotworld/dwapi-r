@@ -34,7 +34,7 @@ dw_test_that("list_tables making the correct HTTR request", {
     },
     `mime::guess_type` = function(...)
       NULL,
-    dwapi::list_tables("ownerid/datasetid")
+    dwapi::list_tables("ownerid", "datasetid")
   )
   expect_equal(response, c("table1", "table2"))
 })
