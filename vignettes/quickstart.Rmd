@@ -6,11 +6,12 @@ vignette: >
   %\VignetteIndexEntry{dwapi quickstart}
   %\VignetteEncoding{UTF-8}
 ---
-```{r, echo = FALSE}
+```{r, echo = FALSE, purl = FALSE}
 knitr::opts_chunk$set(
   collapse = FALSE,
   comment = "##",
-  eval = FALSE
+  eval = FALSE,
+  purl = FALSE
 )
 ```
 
