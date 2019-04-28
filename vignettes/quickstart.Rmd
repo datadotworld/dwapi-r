@@ -7,8 +7,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 ```{r, echo = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-CONFIGURED <- Sys.getenv("DW_AUTH_TOKEN", unset = "") != ""
 knitr::opts_chunk$set(
   collapse = FALSE,
   comment = "##",
