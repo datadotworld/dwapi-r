@@ -8,7 +8,7 @@
      working_directory: ~/dwapi-r
 
      docker:
-       - image: dataworld/r-devtools
+       - image: rocker/tidyverse
 
      steps:
        - checkout
@@ -16,15 +16,11 @@
 
        - run:
            name: Install dwapi-r
-           command: RDscript -e 'install.packages("devtools"); devtools::install()'
+           command: Rscript -e 'devtools::install()'
 
        - run:
            name: Lint
            command: Rscript -e 'lintr::expect_lint_free()'
-
-       - run:
-           name: Check against devel version
-           command: RDscript -e 'devtools::check()'
 
        - run:
            name: Check against release version
@@ -32,7 +28,7 @@
 
        - run:
            name: Collect test coverage stats
-           command: Rscript -e 'library(covr); x <- package_coverage(); to_cobertura(x, filename = "build/reports/cobertura.xml"); coverage <- percent_coverage(x); q(status = coverage < 75);'
+           command: Rscript -e 'x <- covr::package_coverage(); covr::to_cobertura(x, filename = "build/reports/cobertura.xml"); coverage <- covr::percent_coverage(x); q(status = coverage < 75);'
 
        - run:
            name: Build
