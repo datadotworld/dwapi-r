@@ -12,14 +12,13 @@ CONFIGURED <- Sys.getenv("DW_AUTH_TOKEN", unset = "") != ""
 knitr::opts_chunk$set(
   collapse = FALSE,
   comment = "##",
-  purl = NOT_CRAN & CONFIGURED,
-  eval = NOT_CRAN & CONFIGURED
+  eval = FALSE
 )
 ```
 
 ## Configuration
 
-Make sure to configure the library at the begining of every new R session.
+Make sure to configure the library at the beginning of every new R session.
 To do so, invoke `dwapi::configure()` passing the data.world authentication token obtained at https://data.world/settings/advanced
 
 ### DO NOT SHARE YOUR AUTHENTICATION TOKEN
@@ -40,7 +39,7 @@ dwapi::configure(auth_token = Sys.getenv("DW_AUTH_TOKEN"))
 ## Creating datasets and updating datasets
 
 Use `dwapi::create_dataset()` to create a new dataset.
-The library includes number of constructor functions to facilitate the praparation of complex requests like this. The example here is `dwapi::dataset_create_request()`.
+The library includes number of constructor functions to facilitate the preparation of complex requests like this. The example here is `dwapi::dataset_create_request()`.
 ```{r create_dataset}
 create_cars_dataset <- dwapi::dataset_create_request(
   title = sprintf("My cars dataset %s", runif(1)),
@@ -66,7 +65,7 @@ dwapi::update_dataset(cars_dataset$owner, cars_dataset$id, update_cars_dataset)
 Files can be added via URL, from the local file system, or directly as a data frame.
 ```{r upload_data_frame}
 upload_response <- dwapi::upload_data_frame(cars_dataset$owner, cars_dataset$id, cars, "cars.csv")
-Sys.sleep(10) # Files are processed asyncronously.
+Sys.sleep(10) # Files are processed asynchronously.
 upload_response
 ```
 
