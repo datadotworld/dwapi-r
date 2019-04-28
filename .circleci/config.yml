@@ -13,6 +13,7 @@
      steps:
        - checkout
        - run: mkdir build build/reports build/dist
+       - run: apt-get update && apt-get install -y qpdf
 
        - run:
            name: Install dwapi-r
