@@ -14,18 +14,19 @@
        - checkout
        - run: mkdir build build/reports build/dist
        - run: apt-get update && apt-get install -y qpdf
+       - run: Rscript -e 'devtools::install_github("r-lib/revdepcheck")'
 
        - run:
            name: Install dwapi-r
            command: Rscript -e 'devtools::install()'
 
        - run:
-           name: Lint
-           command: Rscript -e 'lintr::expect_lint_free()'
+           name: Perform standard package build checks
+           command: Rscript -e 'devtools::check()'
 
        - run:
-           name: Check against release version
-           command: Rscript -e 'devtools::check()'
+           name: Lint
+           command: Rscript -e 'lintr::expect_lint_free()'
 
        - run:
            name: Collect test coverage stats
@@ -37,7 +38,7 @@
 
        - run:
            name: Check reverse dependencies
-           command: Rscript -e 'devtools::revdep_check(); devtools::revdep_check_print_problems()'
+           command: Rscript -e 'revdepcheck::revdep_check(timeout=60*2)'
 
        - store_artifacts:
            path: ~/dwapi-r/build/dist
@@ -46,3 +47,7 @@
        - store_artifacts:
            path: ~/dwapi-r/build/reports
            destination: reports
+
+       - store_artifacts:
+           path: ~/dwapi-r/revdep
+           destination: revdep
