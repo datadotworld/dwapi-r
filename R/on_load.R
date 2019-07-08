@@ -16,12 +16,21 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
+create_url <- function(subdomain) {
+  environment <- Sys.getenv("DW_ENVIRONMENT")
+  if (environment == "") {
+    return(paste("https://", subdomain, ".data.world/v0", sep=""))
+  }
+
+  return(paste("https://", subdomain, ".", environment, ".data.world/v0", sep=""))
+}
+
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.dwapi <- list(
-    dwapi.api_url      = "https://api.data.world/v0",
-    dwapi.query_url    = "https://query.data.world",
-    dwapi.download_url = "https://download.data.world",
+    dwapi.api_url      = create_url("api"),
+    dwapi.query_url    = create_url("query"),
+    dwapi.download_url = create_url("download"),
     dwapi.cache_dir    = path.expand(file.path("~", ".dw", "cache"))
   )
   toset <- !(names(op.dwapi) %in% names(op))
