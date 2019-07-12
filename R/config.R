@@ -33,17 +33,19 @@ https://data.world"
 #' your .Renviron file. For example:
 #'
 #' \code{
-#'   dwapi::configure(auth_token = Sys.getenv("DW_AUTH_TOKEN"))
+#'   dwapi::configure(auth_token = Sys.getenv("DW_AUTH_TOKEN"), api_environment = "data.wolrd")
 #' }
 #'
 #' @param auth_token data.world's API authentication token.
+#' @param api_environment data.world's API environment (optional, defaults to data.world).
 #' @examples
-#' dwapi::configure(auth_token = "YOUR_API_TOKEN_HERE")
+#' dwapi::configure(auth_token = "YOUR_API_TOKEN_HERE", api_environment = "YOUR_DW_API_ENVIRONMENT_HERE")
 #' @export
-configure <- function(auth_token = NULL) {
+configure <- function(auth_token = NULL, api_environment = "data.world") {
   if (!is.null(auth_token)) {
     options(dwapi.auth_token = auth_token)
   }
+  options(dwapi.environment = api_environment)
   invisible()
 }
 
@@ -63,4 +65,14 @@ auth_token <- function() {
       "before any functions can be invoked. ",
       "To configure, use dwapi::configure()."))
   }
+}
+
+#' Return the currently configured API environment
+#'
+#' Used by internal functions to obtain api environment required
+#' for genrating api base url. Will default to data.world if not explicitly set by user.
+#'
+#' @return API environment
+api_environment <- function() {
+    return(getOption("dwapi.environment"))
 }

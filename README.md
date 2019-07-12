@@ -47,12 +47,12 @@ devtools::install_github("datadotworld/dwapi-r", build_vignettes = TRUE)
 First, users must obtain an API authentication token at: https://data.world/settings/advanced
 
 **IMPORTANT**: For your security, do not include your API authentication token in code that
-is intended to be shared with others.
+is intended to be shared with others. api_environment is optional and would default to data.world if not set.
 
 To configure the package, use `dwapi::configure`:
 ```R
 > library(dwapi)
-> dwapi::configure(auth_token = "YOUR_TOKEN_GOES_HERE")
+> dwapi::configure(auth_token = "YOUR_TOKEN_GOES_HERE", api_environment = "YOUR_DW_API_ENVIRONMENT_HERE")
 ```
 
 # Next
