@@ -22,7 +22,7 @@ create_url <- function(subdomain) {
     return(paste("https://", subdomain, ".data.world/v0", sep=""))
   }
 
-  return(paste("https://", subdomain, ".", environment, ".data.world/v0", sep=""))
+  paste("https://", subdomain, ".", environment, ".data.world/v0", sep="")
 }
 
 .onLoad <- function(libname, pkgname) {
