@@ -16,6 +16,15 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
+create_url <- function(subdomain) {
+  api_environment <- getOption("dwapi.environment")
+  # Append `.data.world` to non-datadotworld environments 
+  environment_url <- ifelse(api_environment == "data.world", api_environment, paste(api_environment, ".data.world", sep=""))
+  url <- (paste("https://", subdomain, ".", environment_url, "/v0", sep=""))
+
+  return(url)
+}
+
 #' Library configuration tool.
 #'
 #' Configuration is not persistent and must be performed for
@@ -45,7 +54,12 @@ configure <- function(auth_token = NULL, api_environment = "data.world") {
   if (!is.null(auth_token)) {
     options(dwapi.auth_token = auth_token)
   }
+
   options(dwapi.environment = api_environment)
+  options(dwapi.api_url = create_url("api"))
+  options(dwapi.query_url = create_url("query"))
+  options(dwapi.download_url = create_url("download"))
+
   invisible()
 }
 
