@@ -19,22 +19,36 @@ https://data.world"
 create_url <- function(subdomain) {
   environment <- Sys.getenv("DW_ENVIRONMENT")
   if (environment == "") {
-    return(paste("https://", subdomain, ".data.world/v0", sep=""))
+    return(paste("https://", subdomain, ".data.world/v0", sep = ""))
   }
 
-  paste("https://", subdomain, ".", environment, ".data.world/v0", sep="")
+  paste("https://", subdomain, ".", environment, ".data.world/v0", sep = "")
 }
 
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.dwapi <- list(
-    dwapi.api_url      = create_url("api"),
-    dwapi.query_url    = create_url("query"),
-    dwapi.download_url = create_url("download"),
+    dwapi.api_url      = ifelse(
+      Sys.getenv("DW_API_HOST") == "",
+      create_url("api"),
+      Sys.getenv("DW_API_HOST")
+    ),
+    dwapi.query_url    = ifelse(
+      Sys.getenv("DW_QUERY_HOST") == "",
+      create_url("query"),
+      Sys.getenv("DW_QUERY_HOST")
+    ),
+    dwapi.download_url = ifelse(
+      Sys.getenv("DW_DOWNLOAD_HOST") == "",
+      create_url("download"),
+      Sys.getenv("DW_DOWNLOAD_HOST")
+    ),
     dwapi.cache_dir    = path.expand(file.path("~", ".dw", "cache"))
   )
   toset <- !(names(op.dwapi) %in% names(op))
-  if (any(toset)) options(op.dwapi[toset])
+
+  if (any(toset))
+    options(op.dwapi[toset])
 
   invisible()
 }
