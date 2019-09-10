@@ -19,10 +19,10 @@ https://data.world"
 create_url <- function(subdomain) {
   environment <- Sys.getenv("DW_ENVIRONMENT")
   if (environment == "") {
-    return(paste("https://", subdomain, ".data.world/v0", sep = ""))
+    return(paste("https://", subdomain, ".data.world", sep = ""))
   }
 
-  paste("https://", subdomain, ".", environment, ".data.world/v0", sep = "")
+  paste("https://", subdomain, ".data.world", sep = "")
 }
 
 .onLoad <- function(libname, pkgname) {
@@ -30,7 +30,7 @@ create_url <- function(subdomain) {
   op.dwapi <- list(
     dwapi.api_url      = ifelse(
       Sys.getenv("DW_API_HOST") == "",
-      create_url("api"),
+      paste(create_url("api"), "/v0", sep = ""),
       Sys.getenv("DW_API_HOST")
     ),
     dwapi.query_url    = ifelse(
