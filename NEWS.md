@@ -6,6 +6,10 @@
 
 * Wrapper function `download_dataset()` for /download/{owner}/{id} API endpoint
 
+# 0.1.4
+
+* Configurable hostnames via the DW_ENVIRONMENT, DW_DOWNLOAD_HOST, DW_QUERY_HOST, and DW_API_HOST environmental variables.
+
 # 0.1.3
 
 * Wrapper functions for Streams API:
