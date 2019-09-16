@@ -21,8 +21,7 @@ create_url <- function(subdomain) {
   if (environment == "") {
     return(paste("https://", subdomain, ".data.world", sep = ""))
   }
-
-  paste("https://", subdomain, ".data.world", sep = "")
+  return(paste("https://", environment, ".", subdomain, ".data.world", sep = ""))
 }
 
 .onLoad <- function(libname, pkgname) {
@@ -50,5 +49,6 @@ create_url <- function(subdomain) {
   if (any(toset))
     options(op.dwapi[toset])
 
-  invisible()
+  invisible(op.dwapi)
+
 }
