@@ -1,3 +1,7 @@
+# 0.2.2
+
+* Environmental variable updates, version cleanup, unused imports removal.
+
 # 0.2.1
 
 * Change `download_file*()` to use API rather than legacy download.data.world endpoint
