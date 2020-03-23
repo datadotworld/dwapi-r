@@ -24,7 +24,7 @@ https://data.world"
 #' request <- dwapi::dataset_create_request(
 #'   title='testdataset', visibility = 'OPEN',
 #'   description = 'Test Dataset by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
-#'   license_string = 'Public Domain')
+#'   license = 'Public Domain')
 #'
 #' request <- dwapi::add_file(request = request, name = 'file4.csv',
 #'   url = 'https://data.world/file4.csv')

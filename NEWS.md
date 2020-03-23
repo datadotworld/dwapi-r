@@ -5,6 +5,9 @@
   automatically have `stringsAsFactors=FALSE`
 * functions that take a dataset or project reference represent that reference consistently
   with separate owner_id and dataset_id (or project_id) parameters
+* Minor refactorings for consistency across the package:
+  * `dataset_*_request()` functions now take an (optional) parameter of `license=` rather than `license_string=`
+  * `tags=` parameter on dataset functions is universally a character vector
 
 # 0.2.1
 

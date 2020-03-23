@@ -43,7 +43,7 @@ The library includes number of constructor functions to facilitate the preparati
 create_cars_dataset <- dwapi::dataset_create_request(
   title = sprintf("My cars dataset %s", runif(1)),
   visibility = "PRIVATE",
-  license_string = "Other"
+  license = "Other"
 )
 
 cars_dataset <- dwapi::create_dataset(Sys.getenv("DW_USER"), create_cars_dataset)

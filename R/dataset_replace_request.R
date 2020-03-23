@@ -23,7 +23,7 @@ https://data.world"
 #' @param summary (optional) Dataset summary (markdown supported).
 #' @param tags (optional) List of dataset tags (letters, numbers and spaces).
 #' @param files (optional) List of \code{\link{file_create_request}} objects.
-#' @param license_string Dataset license ("Public Domain", "PDDL", "CC-0",
+#' @param license Dataset license ("Public Domain", "PDDL", "CC-0",
 #' "CC-BY", "ODC-BY", "CC-BY-SA", "ODC-ODbL", "CC BY-NC-SA" or Other).
 #' @return Request object of type \code{dataset_replace_request}.
 #' @seealso \code{\link{replace_dataset}}, \code{\link{add_file}}
@@ -36,7 +36,7 @@ dataset_replace_request <-
     description = NULL,
     summary = NULL,
     tags = NULL,
-    license_string = NULL,
+    license = NULL,
     visibility,
     files = NULL) {
     is.nothing <- function(x)
@@ -56,8 +56,8 @@ dataset_replace_request <-
     if (!is.nothing(tags)) {
       me$tags <- tags
     }
-    if (!is.nothing(license_string)) {
-      me$license <- license_string
+    if (!is.nothing(license)) {
+      me$license <- license
     }
     if (!is.null(files)) {
       me$files <- files

@@ -16,10 +16,10 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
-#' Upload a single file to a dataset.
+#' Upload a single file to a dataset or project.
 #' @param owner_id User name and unique identifier of the creator of a
 #' dataset or project
-#' @param dataset_id Dataset unique identifier
+#' @param dataset_id Unique identifier of dataset or project
 #' @param path File path on local file system.
 #' @param file_name File name, including file extension.
 #' @return Server response message.

@@ -4,8 +4,7 @@
 \alias{get_insights}
 \title{Get insights for a project.}
 \usage{
-get_insights(project_owner, project_id, limit = NULL,
-  next_page_token = NULL)
+get_insights(project_owner, project_id, limit = NULL, next_page_token = NULL)
 }
 \arguments{
 \item{project_owner}{username of the owner of the project.}

@@ -3,7 +3,6 @@
 \docType{package}
 \name{dwapi}
 \alias{dwapi}
-\alias{dwapi-package}
 \title{dwapi: A client for data.world's REST API.}
 \description{
 The dwapi package makes it easy to access and work with data.world's REST API.

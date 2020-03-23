@@ -16,8 +16,8 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
-#' Return the current dwapi version
-#' @return Current package version
+# Return the current dwapi version
+# @return Current package version
 sdk_version <- function() {
   is.nothing <- function(x)
     is.null(x)

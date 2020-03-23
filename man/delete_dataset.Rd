@@ -20,7 +20,6 @@ Delete a dataset
 }
 \examples{
 \dontrun{
-  dwapi::delete_dataset(
-    dataset = 'user', 'dataset')
+  dwapi::delete_dataset('user', 'dataset')
 }
 }

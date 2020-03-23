@@ -33,7 +33,7 @@ https://data.world"
 #'
 #' dataset_create_req <- dwapi::dataset_create_request(title='coffeeCounty',
 #'   visibility = 'OPEN', description = 'coffee county , AL - census income' ,
-#'   tags = c('rsdk', 'sdk', 'arr') , license_string = 'Public Domain')
+#'   tags = c('rsdk', 'sdk', 'arr') , license = 'Public Domain')
 #'
 #' dataset_create_req <- dwapi::add_file(request = dataset_create_req,
 #'   name = 'file4.csv', url = 'https://data.world/file4.csv')

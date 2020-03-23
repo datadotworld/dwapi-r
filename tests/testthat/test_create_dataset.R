@@ -22,7 +22,7 @@ dw_test_that("createDataset making the correct HTTR request", {
     visibility = "OPEN",
     description = "it's data",
     tags = c("rsdk", "sdk", "arr"),
-    license_string = "Public Domain"
+    license = "Public Domain"
   )
   response <- with_mock(
     `httr::POST` = function(url, body, header, user_agent)  {

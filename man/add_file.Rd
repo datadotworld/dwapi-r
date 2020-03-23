@@ -11,20 +11,15 @@
 \usage{
 add_file(request, name, url, description = NULL, labels = NULL)
 
-\method{add_file}{default}(request, name, url, description = NULL,
-  labels = NULL)
+\method{add_file}{default}(request, name, url, description = NULL, labels = NULL)
 
-\method{add_file}{file_batch_update_request}(request, name, url,
-  description = NULL, labels = NULL)
+\method{add_file}{file_batch_update_request}(request, name, url, description = NULL, labels = NULL)
 
-\method{add_file}{dataset_create_request}(request, name, url,
-  description = NULL, labels = NULL)
+\method{add_file}{dataset_create_request}(request, name, url, description = NULL, labels = NULL)
 
-\method{add_file}{dataset_replace_request}(request, name, url,
-  description = NULL, labels = NULL)
+\method{add_file}{dataset_replace_request}(request, name, url, description = NULL, labels = NULL)
 
-\method{add_file}{dataset_update_request}(request, name, url = NULL,
-  description = NULL, labels = NULL)
+\method{add_file}{dataset_update_request}(request, name, url = NULL, description = NULL, labels = NULL)
 }
 \arguments{
 \item{request}{Request object and container for files.}
@@ -66,7 +61,7 @@ file_batch_update_req <- dwapi::add_file(request = file_batch_update_req,
 
 dataset_create_req <- dwapi::dataset_create_request(title='coffeeCounty',
   visibility = 'OPEN', description = 'coffee county , AL - census income' ,
-  tags = c('rsdk', 'sdk', 'arr') , license_string = 'Public Domain')
+  tags = c('rsdk', 'sdk', 'arr') , license = 'Public Domain')
 
 dataset_create_req <- dwapi::add_file(request = dataset_create_req,
   name = 'file4.csv', url = 'https://data.world/file4.csv')

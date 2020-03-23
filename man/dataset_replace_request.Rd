@@ -4,8 +4,15 @@
 \alias{dataset_replace_request}
 \title{Create request object for replacing existing datasets.}
 \usage{
-dataset_replace_request(title, description = NULL, summary = NULL,
-  tags = NULL, license_string = NULL, visibility, files = NULL)
+dataset_replace_request(
+  title,
+  description = NULL,
+  summary = NULL,
+  tags = NULL,
+  license = NULL,
+  visibility,
+  files = NULL
+)
 }
 \arguments{
 \item{title}{Dataset title}
@@ -16,7 +23,7 @@ dataset_replace_request(title, description = NULL, summary = NULL,
 
 \item{tags}{(optional) List of dataset tags (letters, numbers and spaces).}
 
-\item{license_string}{Dataset license ("Public Domain", "PDDL", "CC-0",
+\item{license}{Dataset license ("Public Domain", "PDDL", "CC-0",
 "CC-BY", "ODC-BY", "CC-BY-SA", "ODC-ODbL", "CC BY-NC-SA" or Other).}
 
 \item{visibility}{Dataset visibility ("PRIVATE" or "OPEN").}

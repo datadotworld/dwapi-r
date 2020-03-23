@@ -4,9 +4,16 @@
 \alias{project_replace_request}
 \title{Create request object for replacement of existing projects.}
 \usage{
-project_replace_request(title, visibility = c("PRIVATE", "OPEN"),
-  objective = NULL, summary = NULL, tags = character(),
-  license = NULL, files = list(), linked_datasets = list())
+project_replace_request(
+  title,
+  visibility = c("PRIVATE", "OPEN"),
+  objective = NULL,
+  summary = NULL,
+  tags = character(),
+  license = NULL,
+  files = list(),
+  linked_datasets = list()
+)
 }
 \arguments{
 \item{title}{Project title.}

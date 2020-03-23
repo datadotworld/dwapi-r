@@ -4,8 +4,7 @@
 \alias{update_table_schema}
 \title{Update table schema.}
 \usage{
-update_table_schema(owner_id, dataset_id, table_name,
-  table_schema_update_req)
+update_table_schema(owner_id, dataset_id, table_name, table_schema_update_req)
 }
 \arguments{
 \item{owner_id}{User name and unique identifier of the creator of a

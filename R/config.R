@@ -47,13 +47,13 @@ configure <- function(auth_token = NULL) {
   invisible()
 }
 
-#' Return the currently configured API authentication token
-#'
-#' Used by internal functions to obtain auth token required
-#' to make API requests. Will fail with an user error to
-#' educate users on how to configure their token.
-#'
-#' @return API token
+# Return the currently configured API authentication token
+#
+# Used by internal functions to obtain auth token required
+# to make API requests. Will fail with an user error to
+# educate users on how to configure their token.
+#
+# @return API token
 auth_token <- function() {
   if (!is.null(getOption("dwapi.auth_token"))) {
     return(getOption("dwapi.auth_token"))

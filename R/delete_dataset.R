@@ -23,8 +23,7 @@ https://data.world"
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' \dontrun{
-#'   dwapi::delete_dataset(
-#'     dataset = 'user', 'dataset')
+#'   dwapi::delete_dataset('user', 'dataset')
 #' }
 #' @export
 delete_dataset <-

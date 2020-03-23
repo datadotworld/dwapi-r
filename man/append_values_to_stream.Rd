@@ -4,8 +4,14 @@
 \alias{append_values_to_stream}
 \title{Append a record, consisting of named parameters, to a stream.}
 \usage{
-append_values_to_stream(owner_id, dataset_id, stream_id, retry_times = 3,
-  retry_quiet = FALSE, ...)
+append_values_to_stream(
+  owner_id,
+  dataset_id,
+  stream_id,
+  retry_times = 3,
+  retry_quiet = FALSE,
+  ...
+)
 }
 \arguments{
 \item{owner_id}{User name and unique identifier of the creator of a
