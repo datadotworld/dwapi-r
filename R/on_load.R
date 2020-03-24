@@ -16,16 +16,39 @@ permissions and limitations under the License.
 This product includes software developed at data.world, Inc.
 https://data.world"
 
+create_url <- function(subdomain) {
+  environment <- Sys.getenv("DW_ENVIRONMENT")
+  if (environment == "") {
+    return(paste("https://", subdomain, ".data.world", sep = ""))
+  }
+  return(paste("https://", environment, ".", subdomain, ".data.world", sep = ""))
+}
+
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.dwapi <- list(
-    dwapi.api_url      = "https://api.data.world/v0",
-    dwapi.query_url    = "https://query.data.world",
-    dwapi.download_url = "https://download.data.world",
+    dwapi.api_url      = ifelse(
+      Sys.getenv("DW_API_HOST") == "",
+      paste(create_url("api"), "/v0", sep = ""),
+      Sys.getenv("DW_API_HOST")
+    ),
+    dwapi.query_url    = ifelse(
+      Sys.getenv("DW_QUERY_HOST") == "",
+      create_url("query"),
+      Sys.getenv("DW_QUERY_HOST")
+    ),
+    dwapi.download_url = ifelse(
+      Sys.getenv("DW_DOWNLOAD_HOST") == "",
+      create_url("download"),
+      Sys.getenv("DW_DOWNLOAD_HOST")
+    ),
     dwapi.cache_dir    = path.expand(file.path("~", ".dw", "cache"))
   )
   toset <- !(names(op.dwapi) %in% names(op))
-  if (any(toset)) options(op.dwapi[toset])
 
-  invisible()
+  if (any(toset))
+    options(op.dwapi[toset])
+
+  invisible(op.dwapi)
+
 }
