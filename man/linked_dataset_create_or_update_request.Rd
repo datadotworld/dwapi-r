@@ -13,7 +13,8 @@ linked_dataset_create_or_update_request(owner, id)
 \item{id}{Unique identifier of dataset.}
 }
 \value{
-Request object of type \code{linked_dataset_create_or_update_request}.
+Request object of
+type \code{linked_dataset_create_or_update_request}.
 }
 \description{
 Create request object for new linked datasets, or updates to existing

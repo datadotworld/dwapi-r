@@ -18,7 +18,8 @@ https://data.world"
 
 #' Create a new dataset.
 #' @param owner_id data.world user name of the dataset owner.
-#' @param create_dataset_req Request object of type \code{\link{dataset_create_request}}.
+#' @param create_dataset_req Request object of
+#'  type \code{\link{dataset_create_request}}.
 #' @return Object of type \code{\link{create_dataset_response}}.
 #' @examples
 #' request <- dwapi::dataset_create_request(

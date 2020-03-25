@@ -35,6 +35,7 @@ https://data.world"
 #'             ?s ?p ?o .
 #'           } LIMIT 10")
 #'
+# nolint start
 #' dwapi::sparql(dataset="user/dataset",
 #'   query="SELECT *
 #'          WHERE {
@@ -43,6 +44,7 @@ https://data.world"
 #'          } LIMIT 10",
 #'   queryParameters = list("$v1"=5.5))
 #' }
+# nolint end
 #' @export
 sparql <- function(owner_id, dataset_id, query, query_params = list()) {
   url <- sprintf("%s/sparql/%s/%s",

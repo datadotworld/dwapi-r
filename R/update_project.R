@@ -20,7 +20,8 @@ https://data.world"
 #' @param owner_id User name and unique identifier of the creator of a
 #' dataset or project
 #' @param project_id Project unique identifier
-#' @param project_update_req Request object of type \code{\link{project_update_request}}.
+#' @param project_update_req Request object of
+#' type \code{\link{project_update_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' request <- dwapi::project_update_request(

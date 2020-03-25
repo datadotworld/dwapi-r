@@ -12,7 +12,8 @@ file_create_or_update_request(
 )
 }
 \arguments{
-\item{file_name}{File name including the file extension. If a file by that name already
+\item{file_name}{File name including the file extension. If a file by
+that name already
 exists in the dataset, the file will be updated/overwritten.}
 
 \item{url}{(optional) Source URL for file.}
@@ -36,5 +37,6 @@ file_create_or_update_req <- dwapi::file_create_or_update_request(
   labels = list("raw data", "clean data"))
 }
 \seealso{
-\code{\link{file_batch_update_request}}, \code{\link{update_dataset}}
+\code{\link{file_batch_update_request}},
+ \code{\link{update_dataset}}
 }

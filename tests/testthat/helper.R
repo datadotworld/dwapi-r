@@ -45,19 +45,20 @@ success_message_response <- function() {
 success_message_with_content <-
   function(path_to_local_content, content_type) {
     content <- readBin(path_to_local_content,  what = "raw", n = 1e6)
-    return (structure(
+    structure(
       list(
         status_code = 200,
         content = content,
         headers = list("Content-Type", content_type)
       ),
       class = "response"
-    ))
+    )
   }
 
 error_message_with_content <-
   function(error_code, request_id, message) {
-    content_string <- error_message_json(error_code, request_id, message) #nolint
+    content_string <- error_message_json(error_code,
+                                         request_id, message)
     bc <- rawConnection(raw(0), "r+")
     writeBin(content_string, bc)
     rv <- rawConnectionValue(bc)

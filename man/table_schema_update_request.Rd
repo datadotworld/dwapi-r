@@ -7,7 +7,8 @@
 table_schema_update_request(fields)
 }
 \arguments{
-\item{fields}{List of \code{\link{table_schema_field_update_request}} objects.}
+\item{fields}{List
+of \code{\link{table_schema_field_update_request}} objects.}
 }
 \value{
 Object of type \code{table_schema_update_request}.
@@ -16,7 +17,8 @@ Object of type \code{table_schema_update_request}.
 Create request object for updating table schema.
 }
 \examples{
-field_update_req <- dwapi::table_schema_field_update_request("field", "new desc")
+field_update_req <- dwapi::table_schema_field_update_request(
+ "field", "new desc")
 schema_update_req <- dwapi::table_schema_update_request(c(field_update_req))
 }
 \seealso{

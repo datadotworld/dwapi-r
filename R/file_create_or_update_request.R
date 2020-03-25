@@ -17,14 +17,16 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Create object for adding/updating a dataset file.
-#' @param file_name File name including the file extension. If a file by that name already
+#' @param file_name File name including the file extension. If a file by
+#' that name already
 #' exists in the dataset, the file will be updated/overwritten.
 #' @param url (optional) Source URL for file.
 #' @param description (optional) File description.
 #' @param labels (optional) List of file labels ("raw data", "documentation",
 #' "visualization", "clean data", "script" or "report").
 #' @return Object of type \code{file_create_or_update_request}.
-#' @seealso \code{\link{file_batch_update_request}}, \code{\link{update_dataset}}
+#' @seealso \code{\link{file_batch_update_request}},
+#'  \code{\link{update_dataset}}
 #' @examples
 #' file_create_or_update_req <- dwapi::file_create_or_update_request(
 #'   file_name = "file.csv",
@@ -56,7 +58,8 @@ file_create_or_update_request <- function(file_name,
 }
 
 #' Create object for adding a dataset file.
-#' @param file_name File name including the file extension. If a file by that name already
+#' @param file_name File name including the file extension. If a file by
+#' that name already
 #' exists in the dataset, the file will be updated/overwritten.
 #' @param url Source URL for file.
 #' @param description (optional) File description.

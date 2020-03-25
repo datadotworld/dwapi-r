@@ -2,7 +2,8 @@
 % Please edit documentation in R/user_info_response.R
 \name{check_user_info_response}
 \alias{check_user_info_response}
-\title{Validate \code{get_user} response object, returning the object if valid, and stopping with an error message if invalid.}
+\title{Validate \code{get_user} response object, returning the object if valid,
+and stopping with an error message if invalid.}
 \usage{
 check_user_info_response(object)
 }
@@ -13,5 +14,6 @@ check_user_info_response(object)
 the object
 }
 \description{
-Validate \code{get_user} response object, returning the object if valid, and stopping with an error message if invalid.
+Validate \code{get_user} response object, returning the object if valid,
+and stopping with an error message if invalid.
 }

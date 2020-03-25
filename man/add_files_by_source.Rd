@@ -12,7 +12,8 @@ dataset or project}
 
 \item{dataset_id}{Dataset unique identifier}
 
-\item{file_batch_update_req}{Object of type \code{\link{file_batch_update_request}}.}
+\item{file_batch_update_req}{Object of
+type \code{\link{file_batch_update_request}}.}
 }
 \value{
 Object of type \code{\link{success_message}}.

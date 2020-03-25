@@ -12,7 +12,8 @@ dataset or project}
 
 \item{dataset_id}{Dataset unique identifier}
 
-\item{dataset_replace_req}{Request object of type \code{\link{dataset_replace_request}}.}
+\item{dataset_replace_req}{Request object of
+type \code{\link{dataset_replace_request}}.}
 }
 \value{
 Object of type \code{\link{success_message}}.

@@ -41,7 +41,8 @@ Request object of type \code{project_replace_request}.
 Create request object for replacement of existing projects.
 }
 \examples{
-request <- dwapi::project_replace_request(title='My Project', visibility = 'OPEN',
+request <- dwapi::project_replace_request(title='My Project',
+  visibility = 'OPEN',
   objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 }
 \seealso{

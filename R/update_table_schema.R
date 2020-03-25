@@ -21,9 +21,11 @@ https://data.world"
 #' dataset or project
 #' @param dataset_id Dataset unique identifier
 #' @param table_name Table name.
-#' @param table_schema_update_req Request object of type \code{\link{table_schema_update_request}}
+#' @param table_schema_update_req Request object of
+#' type \code{\link{table_schema_update_request}}
 #' @examples
-#' field_update_req <- dwapi::table_schema_field_update_request("field", "new desc")
+#' field_update_req <- dwapi::table_schema_field_update_request(
+#' "field", "new desc")
 #' schema_update_req <- dwapi::table_schema_update_request(c(field_update_req))
 #' \dontrun{
 #'   dwapi::update_table_schema("user", "dataset", "table", schema_update_req)

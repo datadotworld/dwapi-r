@@ -21,7 +21,8 @@ https://data.world"
 #' @param owner_id data.world user name of the project owner.
 #' @param project_id identifier to use for the new project, or identifier of
 #' existing project to replace with the newly created project.
-#' @param replace_project_req Request object of type \code{\link{project_replace_request}}.
+#' @param replace_project_req Request object of
+#'  type \code{\link{project_replace_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' request <- dwapi::project_replace_request(

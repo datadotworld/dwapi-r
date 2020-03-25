@@ -39,7 +39,8 @@ https://data.world"
 #'   name = 'file4.csv', url = 'https://data.world/file4.csv')
 #'
 #' dataset_replace_req <- dwapi::dataset_replace_request(visibility = 'OPEN',
-#'   description = 'updated description', title = 'updated title', files = list())
+#'   description = 'updated description',
+#'   title = 'updated title', files = list())
 #'
 #' dataset_replace_req <- dwapi::add_file(request = dataset_replace_req,
 #'   name = 'file4.csv', url = 'https://data.world/file4.csv',
@@ -67,7 +68,7 @@ add_file.default <-
 
 #' @describeIn add_file Add a file to a file_batch_update_request objects
 #' @export
-add_file.file_batch_update_request <-
+add_file.file_batch_update_request <- # nolint
   function(request,
     name,
     url,
@@ -84,7 +85,7 @@ add_file.file_batch_update_request <-
 
 #' @describeIn add_file Add a file to a dataset_create_request object
 #' @export
-add_file.dataset_create_request <-
+add_file.dataset_create_request <- # nolint
   function(request,
     name,
     url,
@@ -99,7 +100,7 @@ add_file.dataset_create_request <-
 
 #' @describeIn add_file Add a file to a dataset_replace_request object
 #' @export
-add_file.dataset_replace_request <-
+add_file.dataset_replace_request <- # nolint
   function(request,
     name,
     url,
@@ -114,7 +115,7 @@ add_file.dataset_replace_request <-
 
 #' @describeIn add_file Add a file to a dataset_update_request object
 #' @export
-add_file.dataset_update_request <-
+add_file.dataset_update_request <- # nolint
   function(request,
     name,
     url = NULL,

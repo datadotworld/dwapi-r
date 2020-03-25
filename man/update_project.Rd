@@ -12,7 +12,8 @@ dataset or project}
 
 \item{project_id}{Project unique identifier}
 
-\item{project_update_req}{Request object of type \code{\link{project_update_request}}.}
+\item{project_update_req}{Request object of
+type \code{\link{project_update_request}}.}
 }
 \value{
 Object of type \code{\link{success_message}}.

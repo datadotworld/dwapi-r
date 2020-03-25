@@ -18,14 +18,16 @@ dataset_update_request(
 
 \item{summary}{(optional) Dataset summary (markdown supported).}
 
-\item{tags}{(optional) Character vector of dataset tags (letters, numbers and spaces).}
+\item{tags}{(optional) Character vector of dataset tags
+(letters, numbers and spaces).}
 
 \item{license}{(optional) Dataset license ("Public Domain", "PDDL", "CC-0",
 "CC-BY", "ODC-BY", "CC-BY-SA", "ODC-ODbL", "CC BY-NC-SA" or Other).}
 
 \item{visibility}{(optional) Dataset visibility ("PRIVATE" or "OPEN").}
 
-\item{files}{(optional) List of \code{\link{file_create_or_update_request}} objects.}
+\item{files}{(optional) List
+of \code{\link{file_create_or_update_request}} objects.}
 }
 \value{
 Request object of type \code{dataset_update_request}.
@@ -34,7 +36,8 @@ Request object of type \code{dataset_update_request}.
 Create request object for updating existing datasets.
 }
 \examples{
-request <- dwapi::dataset_update_request(description = 'description', summary = 'summary',
+request <- dwapi::dataset_update_request(description = 'description',
+  summary = 'summary',
   tags = list('sdk'), license = 'Public Domain')
 }
 \seealso{

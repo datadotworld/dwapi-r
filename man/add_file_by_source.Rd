@@ -12,7 +12,8 @@ dataset or project}
 
 \item{dataset_id}{Dataset unique identifier}
 
-\item{name}{File name including the file extension. If a file by that name already
+\item{name}{File name including the file extension. If a file by that name
+already
 exists in the dataset, the file will be updated/overwritten.}
 
 \item{url}{Source URL of file.}

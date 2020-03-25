@@ -19,10 +19,10 @@ https://data.world"
 # Return the current dwapi version
 # @return Current package version
 sdk_version <- function() {
-  is.nothing <- function(x)
+  is_nothing <- function(x)
     is.null(x)
   # nolint start
-  if (!is.nothing(utils::sessionInfo()$otherPkgs$dwapi)) {
+  if (!is_nothing(utils::sessionInfo()$otherPkgs$dwapi)) {
     ret <- utils::sessionInfo()$otherPkgs$dwapi$Version
   } else {
     ret <- "X.X.X"
@@ -131,7 +131,7 @@ convert_to_sparql_literal <- function(v) {
 #' character, and FALSE otherwise. If \code{value} is NULL, then a singleton
 #' TRUE vector is returned.
 #' @keywords internal
-is.blank <- function(value) {
+is_blank <- function(value) {
 
   if (is.null(value)) {
     TRUE

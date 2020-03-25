@@ -18,7 +18,8 @@ https://data.world"
 
 #' Create a new project.
 #' @param owner_id data.world user name of the project owner.
-#' @param create_project_req Request object of type \code{\link{project_create_request}}.
+#' @param create_project_req Request object of
+#'  type \code{\link{project_create_request}}.
 #' @return Object of type \code{\link{create_project_response}}.
 #' @examples
 #' request <- dwapi::project_create_request(

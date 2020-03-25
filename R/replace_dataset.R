@@ -20,7 +20,8 @@ https://data.world"
 #' @param owner_id User name and unique identifier of the creator of a
 #' dataset or project
 #' @param dataset_id Dataset unique identifier
-#' @param dataset_replace_req Request object of type \code{\link{dataset_replace_request}}.
+#' @param dataset_replace_req Request object of
+#'  type \code{\link{dataset_replace_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' dataset_replace_req <- dwapi::dataset_replace_request(visibility = 'OPEN',

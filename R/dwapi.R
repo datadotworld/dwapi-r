@@ -18,7 +18,8 @@ https://data.world"
 
 #' dwapi: A client for data.world's REST API.
 #'
-#' The dwapi package makes it easy to access and work with data.world's REST API.
+#' The dwapi package makes it easy to access and work with data.world's
+#' REST API.
 #'
 #' @section Configuration:
 #'
@@ -26,7 +27,8 @@ https://data.world"
 #'
 #' Make sure to configure authentication at the begining of every new R session.
 #'
-#' API authentication tokens can be obtained at \url{https://data.world/settings/advanced}
+#' API authentication tokens can be obtained
+#' at \url{https://data.world/settings/advanced}
 #'
 #' @section API functions:
 #'
@@ -96,7 +98,8 @@ https://data.world"
 #'
 #' @section Request object constructors:
 #'
-#' Complex requests are facilitated by request object constructors. The main ones are:
+#' Complex requests are facilitated by request object constructors.
+#'  The main ones are:
 #' \enumerate{
 #'   \item \code{\link{dataset_create_request}}
 #'   \item \code{\link{dataset_update_request}}

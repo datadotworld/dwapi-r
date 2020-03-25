@@ -9,7 +9,8 @@ create_dataset(owner_id, create_dataset_req)
 \arguments{
 \item{owner_id}{data.world user name of the dataset owner.}
 
-\item{create_dataset_req}{Request object of type \code{\link{dataset_create_request}}.}
+\item{create_dataset_req}{Request object of
+type \code{\link{dataset_create_request}}.}
 }
 \value{
 Object of type \code{\link{create_dataset_response}}.

@@ -7,7 +7,8 @@
 file_batch_update_request(file_sources = list())
 }
 \arguments{
-\item{file_sources}{(optional) List of \code{\link{file_create_or_update_request}} objects.}
+\item{file_sources}{(optional) List
+of \code{\link{file_create_or_update_request}} objects.}
 }
 \value{
 Object of type \code{file_batch_update_request}.

@@ -20,8 +20,9 @@ https://data.world"
 #' @param owner_id User name and unique identifier of the creator of a
 #' dataset or project
 #' @param dataset_id Dataset unique identifier
-#' @param name File name including the file extension. If a file by that name already
-#'  exists in the dataset, the file will be updated/overwritten.
+#' @param name File name including the file extension. If a file by that name
+#' already
+#' exists in the dataset, the file will be updated/overwritten.
 #' @param url Source URL of file.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
@@ -49,7 +50,8 @@ add_file_by_source <-
 #' @param owner_id User name and unique identifier of the creator of a
 #' dataset or project
 #' @param dataset_id Dataset unique identifier
-#' @param file_batch_update_req Object of type \code{\link{file_batch_update_request}}.
+#' @param file_batch_update_req Object of
+#'  type \code{\link{file_batch_update_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' request <- dwapi::file_batch_update_request()

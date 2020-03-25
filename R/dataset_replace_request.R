@@ -39,7 +39,7 @@ dataset_replace_request <-
     license = NULL,
     visibility,
     files = NULL) {
-    is.nothing <- function(x)
+    is_nothing <- function(x)
       is.null(x) || is.na(x) || is.nan(x)
     if (visibility != "PRIVATE" & visibility != "OPEN") {
       stop("visibility have to be either PRIVATE or OPEN")
@@ -47,16 +47,16 @@ dataset_replace_request <-
     me <- list()
     me$visibility <- visibility
     me$title <- title
-    if (!is.nothing(description)) {
+    if (!is_nothing(description)) {
       me$description <- description
     }
-    if (!is.nothing(summary)) {
+    if (!is_nothing(summary)) {
       me$summary <- summary
     }
-    if (!is.nothing(tags)) {
+    if (!is_nothing(tags)) {
       me$tags <- tags
     }
-    if (!is.nothing(license)) {
+    if (!is_nothing(license)) {
       me$license <- license
     }
     if (!is.null(files)) {

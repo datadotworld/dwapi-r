@@ -20,7 +20,8 @@ https://data.world"
 #' @param owner_id User name and unique identifier of the creator of a
 #' dataset or project
 #' @param dataset_id Dataset unique identifier
-#' @param dataset_update_req Request object of type \code{\link{dataset_update_request}}.
+#' @param dataset_update_req Request object of
+#' type \code{\link{dataset_update_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' request <- dwapi::dataset_update_request(visibility = 'OPEN',

@@ -41,7 +41,8 @@ Request object of type \code{project_create_request}.
 Create request object for new projects.
 }
 \examples{
-request <- dwapi::project_create_request(title='My Project', visibility = 'OPEN',
+request <- dwapi::project_create_request(title='My Project',
+  visibility = 'OPEN',
   objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 }
 \seealso{

@@ -23,12 +23,14 @@ dataset_create_request(
 
 \item{summary}{(optional) Dataset summary (markdown supported).}
 
-\item{tags}{(optional) Character vector of dataset tags (letters, numbers and spaces).}
+\item{tags}{(optional) Character vector of dataset
+tags (letters, numbers and spaces).}
 
 \item{license}{Dataset license ("Public Domain", "PDDL", "CC-0",
 "CC-BY", "ODC-BY", "CC-BY-SA", "ODC-ODbL", "CC BY-NC-SA" or Other).}
 
-\item{file_create_requests}{(optional) List of \code{\link{file_create_request}} objects.}
+\item{file_create_requests}{(optional) List
+of \code{\link{file_create_request}} objects.}
 }
 \value{
 Request object of type \code{dataset_create_request}.
@@ -37,8 +39,9 @@ Request object of type \code{dataset_create_request}.
 Create request object for new datasets.
 }
 \examples{
-request <- dwapi::dataset_create_request(title='datasetid', visibility = 'OPEN',
-  description = 'description', tags = c('sdk') , license = 'Public Domain')
+request <- dwapi::dataset_create_request(title='datasetid',
+ visibility = 'OPEN',
+ description = 'description', tags = c('sdk') , license = 'Public Domain')
 request <- dwapi::add_file(request = request, name = 'file.csv',
   url = 'http://data.world/file.csv')
 }

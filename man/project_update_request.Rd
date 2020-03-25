@@ -41,7 +41,8 @@ Request object of type \code{project_update_request}.
 Create request object to update existing projects.
 }
 \examples{
-request <- dwapi::project_update_request(title='My Project', visibility = 'OPEN',
+request <- dwapi::project_update_request(title='My Project',
+  visibility = 'OPEN',
   objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 }
 \seealso{
