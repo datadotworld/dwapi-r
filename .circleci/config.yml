@@ -14,7 +14,6 @@
        - checkout
        - run: mkdir build build/reports build/dist
        - run: apt-get update && apt-get install -y qpdf
-       - run: Rscript -e 'devtools::install_github("r-lib/revdepcheck")'
 
        - run:
            name: Install dwapi-r
@@ -35,10 +34,6 @@
        - run:
            name: Build
            command: Rscript -e 'devtools::build(path = "build/dist")'
-
-       - run:
-           name: Check reverse dependencies
-           command: Rscript -e 'revdepcheck::revdep_check(timeout=60*2)'
 
        - store_artifacts:
            path: ~/dwapi-r/build/dist
