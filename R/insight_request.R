@@ -122,17 +122,17 @@ insight_update_request <-
 
   }
 
-validate_insight_request_params <- function(title, image_url,
+validate_insight_request_params <- function(title, image_url, # nolint
                                             embed_url, markdown_body) {
-  if (is.blank(title)) {
+  if (is_blank(title)) {
     stop("title can't be null or empty")
   }
-  if (all(is.blank(image_url), is.blank(embed_url),
-          is.blank(markdown_body))) {
+  if (all(is_blank(image_url), is_blank(embed_url),
+          is_blank(markdown_body))) {
     stop("Must provide one of image_url, embed_url, or markdown_body")
   }
-  if (sum(!is.blank(image_url), !is.blank(embed_url),
-          !is.blank(markdown_body)) > 1) {
+  if (sum(!is_blank(image_url), !is_blank(embed_url),
+          !is_blank(markdown_body)) > 1) {
     stop("Must provide only one of image_url, embed_url, or markdown_body")
   }
 }

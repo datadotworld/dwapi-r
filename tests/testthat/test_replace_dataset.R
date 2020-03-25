@@ -32,7 +32,7 @@ dw_test_that("replaceDataset making the correct HTTR request", {
     },
     `mime::guess_type` = function(...)
       NULL,
-    dwapi::replace_dataset("ownerid/datasetid",
+    dwapi::replace_dataset("ownerid", "datasetid",
       dataset_replace_req = request)
   )
   expect_equal(class(response), "success_message")

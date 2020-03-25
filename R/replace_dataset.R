@@ -17,20 +17,23 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Replace an existing dataset.
-#' @param dataset Dataset URL or path.
-#' @param dataset_replace_req Request object of type \code{\link{dataset_replace_request}}.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
+#' @param dataset_replace_req Request object of
+#'  type \code{\link{dataset_replace_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' dataset_replace_req <- dwapi::dataset_replace_request(visibility = 'OPEN',
 #'  description = 'UPDATED DESCRIPTION !', title = 'Updated Title')
 #' \dontrun{
-#'   dwapi::replace_dataset('user/dataset', dataset_replace_req)
+#'   dwapi::replace_dataset('user', 'dataset', dataset_replace_req)
 #' }
 #' @export
 replace_dataset <-
-  function(dataset, dataset_replace_req) {
-    url <- sprintf("%s/datasets/%s", getOption("dwapi.api_url"),
-      extract_dataset_key(dataset))
+  function(owner_id, dataset_id, dataset_replace_req) {
+    url <- sprintf("%s/datasets/%s/%s", getOption("dwapi.api_url"),
+                   owner_id, dataset_id)
     message(url)
     auth <- sprintf("Bearer %s", auth_token())
     response <-

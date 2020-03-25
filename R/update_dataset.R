@@ -17,25 +17,27 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Update an existing dataset.
-#' @param dataset Dataset URL or path.
-#' @param dataset_update_req Request object of type \code{\link{dataset_update_request}}.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
+#' @param dataset_update_req Request object of
+#' type \code{\link{dataset_update_request}}.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' request <- dwapi::dataset_update_request(visibility = 'OPEN',
 #'   description = 'UPDATED DESCRIPTION !')
 #'
 #' \dontrun{
-#'   dwapi::update_dataset(dataset_update_req = request,
-#'     dataset = 'user/dataset')
+#'   dwapi::update_dataset('user', 'dataset', dataset_update_req = request)
 #' }
 #' @export
 update_dataset <-
-  function(dataset,
+  function(owner_id, dataset_id,
     dataset_update_req) {
     url <- sprintf(
-      "%s/datasets/%s",
+      "%s/datasets/%s/%s",
       getOption("dwapi.api_url"),
-      extract_dataset_key(dataset))
+      owner_id, dataset_id)
     message(url)
     auth <- sprintf("Bearer %s", auth_token())
     response <-

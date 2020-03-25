@@ -4,10 +4,13 @@
 \alias{get_table_schema}
 \title{Retrieve schema information for a dataset table.}
 \usage{
-get_table_schema(dataset, table_name)
+get_table_schema(owner_id, dataset_id, table_name)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{table_name}{Table name.}
 }
@@ -19,7 +22,7 @@ Retrieve schema information for a dataset table.
 }
 \examples{
 \dontrun{
-  table_schema <- dwapi::get_table_schema("user/dataset", "table")
+  table_schema <- dwapi::get_table_schema("user", "dataset", "table")
 }
 }
 \seealso{

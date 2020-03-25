@@ -7,7 +7,8 @@
 file_create_request(file_name, url, description = NULL, labels = NULL)
 }
 \arguments{
-\item{file_name}{File name including the file extension. If a file by that name already
+\item{file_name}{File name including the file extension. If a file by
+that name already
 exists in the dataset, the file will be updated/overwritten.}
 
 \item{url}{Source URL for file.}

@@ -36,7 +36,8 @@ get_optional_elements <- function() {
   c("avatarUrl", "displayName")
 }
 
-#' Validate \code{get_user} response object, returning the object if valid, and stopping with an error message if invalid.
+#' Validate \code{get_user} response object, returning the object if valid,
+#' and stopping with an error message if invalid.
 #' @param object Object of type \code{\link{user_info_response}}.
 #' @return the object
 check_user_info_response <- function(object) {

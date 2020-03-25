@@ -21,12 +21,12 @@ create_url <- function(subdomain) {
   if (environment == "") {
     return(paste("https://", subdomain, ".data.world", sep = ""))
   }
-  return(paste("https://", environment, ".", subdomain, ".data.world", sep = ""))
+  paste("https://", environment, ".", subdomain, ".data.world", sep = "")
 }
 
-.onLoad <- function(libname, pkgname) {
+.onLoad <- function(libname, pkgname) { # nolint
   op <- options()
-  op.dwapi <- list(
+  op_dwapi <- list(
     dwapi.api_url      = ifelse(
       Sys.getenv("DW_API_HOST") == "",
       paste(create_url("api"), "/v0", sep = ""),
@@ -44,11 +44,11 @@ create_url <- function(subdomain) {
     ),
     dwapi.cache_dir    = path.expand(file.path("~", ".dw", "cache"))
   )
-  toset <- !(names(op.dwapi) %in% names(op))
+  toset <- !(names(op_dwapi) %in% names(op))
 
   if (any(toset))
-    options(op.dwapi[toset])
+    options(op_dwapi[toset])
 
-  invisible(op.dwapi)
+  invisible(op_dwapi)
 
 }

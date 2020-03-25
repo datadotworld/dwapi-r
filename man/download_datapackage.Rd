@@ -4,10 +4,13 @@
 \alias{download_datapackage}
 \title{Download data package.}
 \usage{
-download_datapackage(dataset, output_path = NULL)
+download_datapackage(owner_id, dataset_id, output_path = NULL)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{output_path}{Directory path, where data package will be saved.}
 }
@@ -19,7 +22,7 @@ Learn more about the Data Package specification at
 \examples{
 \dontrun{
   dwapi::download_datapackage(
-    dataset = "user/dataset",
+    "user", "dataset",
     output_path = tempdir())
 }
 }

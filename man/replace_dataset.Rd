@@ -4,12 +4,16 @@
 \alias{replace_dataset}
 \title{Replace an existing dataset.}
 \usage{
-replace_dataset(dataset, dataset_replace_req)
+replace_dataset(owner_id, dataset_id, dataset_replace_req)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
 
-\item{dataset_replace_req}{Request object of type \code{\link{dataset_replace_request}}.}
+\item{dataset_id}{Dataset unique identifier}
+
+\item{dataset_replace_req}{Request object of
+type \code{\link{dataset_replace_request}}.}
 }
 \value{
 Object of type \code{\link{success_message}}.
@@ -21,6 +25,6 @@ Replace an existing dataset.
 dataset_replace_req <- dwapi::dataset_replace_request(visibility = 'OPEN',
  description = 'UPDATED DESCRIPTION !', title = 'Updated Title')
 \dontrun{
-  dwapi::replace_dataset('user/dataset', dataset_replace_req)
+  dwapi::replace_dataset('user', 'dataset', dataset_replace_req)
 }
 }

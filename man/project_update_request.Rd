@@ -4,9 +4,16 @@
 \alias{project_update_request}
 \title{Create request object to update existing projects.}
 \usage{
-project_update_request(title = NULL, visibility = NULL, objective = NULL,
-  summary = NULL, tags = NULL, license = NULL, files = NULL,
-  linked_datasets = NULL)
+project_update_request(
+  title = NULL,
+  visibility = NULL,
+  objective = NULL,
+  summary = NULL,
+  tags = NULL,
+  license = NULL,
+  files = NULL,
+  linked_datasets = NULL
+)
 }
 \arguments{
 \item{title}{Project title.}
@@ -34,7 +41,8 @@ Request object of type \code{project_update_request}.
 Create request object to update existing projects.
 }
 \examples{
-request <- dwapi::project_update_request(title='My Project', visibility = 'OPEN',
+request <- dwapi::project_update_request(title='My Project',
+  visibility = 'OPEN',
   objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 }
 \seealso{

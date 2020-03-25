@@ -5,8 +5,12 @@
 \title{Search for library items owned by, liked by, or contributed-to by
 the currently authenticated user.}
 \usage{
-get_user_library_item(type = c("datasets", "projects"), role = c("own",
-  "liked", "contributing"), limit = NULL, next_page_token = NULL)
+get_user_library_item(
+  type = c("datasets", "projects"),
+  role = c("own", "liked", "contributing"),
+  limit = NULL,
+  next_page_token = NULL
+)
 }
 \arguments{
 \item{type}{the type of asset (one of: datasets, projects)}

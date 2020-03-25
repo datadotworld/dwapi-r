@@ -20,13 +20,14 @@ https://data.world"
 #' datasets.
 #' @param owner User name and unique identifier of the creator of the dataset.
 #' @param id Unique identifier of dataset.
-#' @return Request object of type \code{linked_dataset_create_or_update_request}.
+#' @return Request object of
+#' type \code{linked_dataset_create_or_update_request}.
 #' @seealso \code{\link{create_project}}
 #' @examples
 #' request <- dwapi::linked_dataset_create_or_update_request(
 #'   owner = 'ownerId', id = 'datasetId')
 #' @export
-linked_dataset_create_or_update_request <- function(owner, id) {
+linked_dataset_create_or_update_request <- function(owner, id) { # nolint
 
     ret <- list(
       owner = owner,

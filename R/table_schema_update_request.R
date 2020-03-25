@@ -17,11 +17,13 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Create request object for updating table schema.
-#' @param fields List of \code{\link{table_schema_field_update_request}} objects.
+#' @param fields List
+#' of \code{\link{table_schema_field_update_request}} objects.
 #' @return Object of type \code{table_schema_update_request}.
 #' @seealso \code{\link{update_table_schema}}
 #' @examples
-#' field_update_req <- dwapi::table_schema_field_update_request("field", "new desc")
+#' field_update_req <- dwapi::table_schema_field_update_request(
+#'  "field", "new desc")
 #' schema_update_req <- dwapi::table_schema_update_request(c(field_update_req))
 #' @export
 table_schema_update_request <- function(fields) {
@@ -37,9 +39,10 @@ table_schema_update_request <- function(fields) {
 #' @param description Table field description.
 #' @return Object of type \code{table_schema_field_update_request}
 #' @examples
-#' field_update_req <- dwapi::table_schema_field_update_request("field", "new desc")
+#' field_update_req <- dwapi::table_schema_field_update_request(
+#'  "field", "new desc")
 #' @export
-table_schema_field_update_request <- function(name, description) {
+table_schema_field_update_request <- function(name, description) { # nolint
   me <- list(
     name = name,
     description = description

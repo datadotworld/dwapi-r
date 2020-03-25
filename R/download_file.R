@@ -17,22 +17,24 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Download file from dataset onto the local file system.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param file_name File name, including file extension.
 #' @param output Local file path, where dataset file will be saved.
 #' @return Server response message.
 #' @examples
 #' \dontrun{
-#'   dwapi::download_file(dataset = 'user/dataset',
+#'   dwapi::download_file('user', 'dataset',
 #'    file_name = 'file.csv', output = tempfile(fileext = 'csv'))
 #' }
 #' @export
 download_file <-
-  function(dataset, file_name, output) {
+  function(owner_id, dataset_id, file_name, output) {
     url <- sprintf(
-      "%s/file_download/%s/%s",
+      "%s/file_download/%s/%s/%s",
       getOption("dwapi.api_url"),
-      extract_dataset_key(dataset),
+      owner_id, dataset_id,
       file_name
     )
     response <-

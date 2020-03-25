@@ -34,15 +34,11 @@ dataset_summary_response <- function(structure) {
     description = structure$description,
     summary = structure$summary,
     tags = structure$tags,
-    license = structure$license,
-    files = list()
+    license = structure$license
   )
-  if (length(structure$files) > 0) {
-    for (i in 1:length(structure$files)) {
-      me$files[[i]] <-
-        file_summary_response(structure$files[[i]])
-    }
-  }
+  me$files <- purrr::map(structure$files, function(f) {
+    file_summary_response(f)
+  })
   class(me) <- "dataset_summary_response"
   me
 }

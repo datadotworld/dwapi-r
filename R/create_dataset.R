@@ -18,13 +18,14 @@ https://data.world"
 
 #' Create a new dataset.
 #' @param owner_id data.world user name of the dataset owner.
-#' @param create_dataset_req Request object of type \code{\link{dataset_create_request}}.
+#' @param create_dataset_req Request object of
+#'  type \code{\link{dataset_create_request}}.
 #' @return Object of type \code{\link{create_dataset_response}}.
 #' @examples
 #' request <- dwapi::dataset_create_request(
 #'   title='testdataset', visibility = 'OPEN',
 #'   description = 'Test Dataset by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
-#'   license_string = 'Public Domain')
+#'   license = 'Public Domain')
 #'
 #' request <- dwapi::add_file(request = request, name = 'file4.csv',
 #'   url = 'https://data.world/file4.csv')

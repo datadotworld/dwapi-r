@@ -17,21 +17,26 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Update table schema.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param table_name Table name.
-#' @param table_schema_update_req Request object of type \code{\link{table_schema_update_request}}
+#' @param table_schema_update_req Request object of
+#' type \code{\link{table_schema_update_request}}
 #' @examples
-#' field_update_req <- dwapi::table_schema_field_update_request("field", "new desc")
+#' field_update_req <- dwapi::table_schema_field_update_request(
+#' "field", "new desc")
 #' schema_update_req <- dwapi::table_schema_update_request(c(field_update_req))
 #' \dontrun{
-#'   dwapi::update_table_schema("user/dataset", "table", schema_update_req)
+#'   dwapi::update_table_schema("user", "dataset", "table", schema_update_req)
 #' }
 #' @return Object of type \code{\link{success_message}}
 #' @export
-update_table_schema <- function(dataset, table_name, table_schema_update_req) {
-  url <- sprintf("%s/tables/%s/%s/schema",
+update_table_schema <- function(owner_id, dataset_id,
+                                table_name, table_schema_update_req) {
+  url <- sprintf("%s/tables/%s/%s/%s/schema",
     getOption("dwapi.query_url"),
-    extract_dataset_key(dataset),
+    owner_id, dataset_id,
     table_name)
   auth <- sprintf("Bearer %s", auth_token())
   response <- httr::PATCH(

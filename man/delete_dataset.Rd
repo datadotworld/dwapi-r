@@ -4,10 +4,13 @@
 \alias{delete_dataset}
 \title{Delete a dataset}
 \usage{
-delete_dataset(dataset)
+delete_dataset(owner_id, dataset_id)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 }
 \value{
 Object of type \code{\link{success_message}}.
@@ -17,7 +20,6 @@ Delete a dataset
 }
 \examples{
 \dontrun{
-  dwapi::delete_dataset(
-    dataset = 'user/dataset')
+  dwapi::delete_dataset('user', 'dataset')
 }
 }

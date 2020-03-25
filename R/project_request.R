@@ -30,7 +30,8 @@ https://data.world"
 #' @return Request object of type \code{project_create_request}.
 #' @seealso \code{\link{create_project}}
 #' @examples
-#' request <- dwapi::project_create_request(title='My Project', visibility = 'OPEN',
+#' request <- dwapi::project_create_request(title='My Project',
+#'   visibility = 'OPEN',
 #'   objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 #' @export
 project_create_request <-
@@ -71,7 +72,8 @@ project_create_request <-
 #' @return Request object of type \code{project_replace_request}.
 #' @seealso \code{\link{replace_project}}
 #' @examples
-#' request <- dwapi::project_replace_request(title='My Project', visibility = 'OPEN',
+#' request <- dwapi::project_replace_request(title='My Project',
+#'   visibility = 'OPEN',
 #'   objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 #' @export
 project_replace_request <-
@@ -112,7 +114,8 @@ project_replace_request <-
 #' @return Request object of type \code{project_update_request}.
 #' @seealso \code{\link{update_project}}
 #' @examples
-#' request <- dwapi::project_update_request(title='My Project', visibility = 'OPEN',
+#' request <- dwapi::project_update_request(title='My Project',
+#'   visibility = 'OPEN',
 #'   objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 #' @export
 project_update_request <-
@@ -142,7 +145,7 @@ project_update_request <-
 
   }
 
-validate_project_request_params <- function(visibility = c("PRIVATE", "OPEN"),
+validate_project_request_params <- function(visibility = c("PRIVATE", "OPEN"), # nolint
                                             tags,
                                             files, linked_datasets) {
 

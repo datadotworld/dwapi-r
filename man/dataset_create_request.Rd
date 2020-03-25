@@ -4,8 +4,15 @@
 \alias{dataset_create_request}
 \title{Create request object for new datasets.}
 \usage{
-dataset_create_request(title, visibility, description = "", summary = "",
-  tags = list(), license_string = "", file_create_requests = list())
+dataset_create_request(
+  title,
+  visibility,
+  description = "",
+  summary = "",
+  tags = character(),
+  license = "",
+  file_create_requests = list()
+)
 }
 \arguments{
 \item{title}{Dataset title (3 to 60 characters).}
@@ -16,12 +23,14 @@ dataset_create_request(title, visibility, description = "", summary = "",
 
 \item{summary}{(optional) Dataset summary (markdown supported).}
 
-\item{tags}{(optional) List of dataset tags (letters, numbers and spaces).}
+\item{tags}{(optional) Character vector of dataset
+tags (letters, numbers and spaces).}
 
-\item{license_string}{Dataset license ("Public Domain", "PDDL", "CC-0",
+\item{license}{Dataset license ("Public Domain", "PDDL", "CC-0",
 "CC-BY", "ODC-BY", "CC-BY-SA", "ODC-ODbL", "CC BY-NC-SA" or Other).}
 
-\item{file_create_requests}{(optional) List of \code{\link{file_create_request}} objects.}
+\item{file_create_requests}{(optional) List
+of \code{\link{file_create_request}} objects.}
 }
 \value{
 Request object of type \code{dataset_create_request}.
@@ -30,8 +39,9 @@ Request object of type \code{dataset_create_request}.
 Create request object for new datasets.
 }
 \examples{
-request <- dwapi::dataset_create_request(title='datasetid', visibility = 'OPEN',
-  description = 'description', tags = c('sdk') , license_string = 'Public Domain')
+request <- dwapi::dataset_create_request(title='datasetid',
+ visibility = 'OPEN',
+ description = 'description', tags = c('sdk') , license = 'Public Domain')
 request <- dwapi::add_file(request = request, name = 'file.csv',
   url = 'http://data.world/file.csv')
 }

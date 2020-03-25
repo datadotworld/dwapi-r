@@ -4,10 +4,13 @@
 \alias{download_file}
 \title{Download file from dataset onto the local file system.}
 \usage{
-download_file(dataset, file_name, output)
+download_file(owner_id, dataset_id, file_name, output)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{file_name}{File name, including file extension.}
 
@@ -21,7 +24,7 @@ Download file from dataset onto the local file system.
 }
 \examples{
 \dontrun{
-  dwapi::download_file(dataset = 'user/dataset',
+  dwapi::download_file('user', 'dataset',
    file_name = 'file.csv', output = tempfile(fileext = 'csv'))
 }
 }

@@ -8,39 +8,32 @@
      working_directory: ~/dwapi-r
 
      docker:
-       - image: dataworld/r-devtools
+       - image: rocker/tidyverse
 
      steps:
        - checkout
        - run: mkdir build build/reports build/dist
+       - run: apt-get update && apt-get install -y qpdf
 
        - run:
            name: Install dwapi-r
-           command: RDscript -e 'devtools::install()'
+           command: Rscript -e 'devtools::install()'
+
+       - run:
+           name: Perform standard package build checks
+           command: Rscript -e 'devtools::check()'
 
        - run:
            name: Lint
            command: Rscript -e 'lintr::expect_lint_free()'
 
        - run:
-           name: Check against devel version
-           command: RDscript -e 'devtools::check()'
-
-       - run:
-           name: Check against release version
-           command: Rscript -e 'devtools::check()'
-
-       - run:
            name: Collect test coverage stats
-           command: Rscript -e 'library(covr); x <- package_coverage(); to_cobertura(x, filename = "build/reports/cobertura.xml"); coverage <- percent_coverage(x); q(status = coverage < 75);'
+           command: Rscript -e 'x <- covr::package_coverage(); covr::to_cobertura(x, filename = "build/reports/cobertura.xml"); coverage <- covr::percent_coverage(x); q(status = coverage < 75);'
 
        - run:
            name: Build
            command: Rscript -e 'devtools::build(path = "build/dist")'
-
-       - run:
-           name: Check reverse dependencies
-           command: Rscript -e 'devtools::revdep_check(); devtools::revdep_check_print_problems()'
 
        - store_artifacts:
            path: ~/dwapi-r/build/dist
@@ -49,3 +42,7 @@
        - store_artifacts:
            path: ~/dwapi-r/build/reports
            destination: reports
+
+       - store_artifacts:
+           path: ~/dwapi-r/revdep
+           destination: revdep

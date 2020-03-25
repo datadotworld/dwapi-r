@@ -4,12 +4,16 @@
 \alias{add_file_by_source}
 \title{Add a single file to a dataset.}
 \usage{
-add_file_by_source(dataset, name, url)
+add_file_by_source(owner_id, dataset_id, name, url)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
 
-\item{name}{File name including the file extension. If a file by that name already
+\item{dataset_id}{Dataset unique identifier}
+
+\item{name}{File name including the file extension. If a file by that name
+already
 exists in the dataset, the file will be updated/overwritten.}
 
 \item{url}{Source URL of file.}

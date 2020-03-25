@@ -17,7 +17,8 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Create request object for adding or updating dataset files.
-#' @param file_sources (optional) List of \code{\link{file_create_or_update_request}} objects.
+#' @param file_sources (optional) List
+#'  of \code{\link{file_create_or_update_request}} objects.
 #' @return Object of type \code{file_batch_update_request}.
 #' @seealso \code{\link{add_files_by_source}}, \code{\link{add_file}}
 #' @examples

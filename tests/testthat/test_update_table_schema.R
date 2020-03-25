@@ -32,7 +32,7 @@ dw_test_that("update_table_schema making the correct HTTR request", {
     },
     `mime::guess_type` = function(...)
       NULL,
-    dwapi::update_table_schema("ownerid/datasetid", "tableid", request)
+    dwapi::update_table_schema("ownerid", "datasetid", "tableid", request)
   )
   expect_equal(class(response), "success_message")
 })

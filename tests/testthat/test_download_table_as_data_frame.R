@@ -18,15 +18,12 @@ https://data.world"
 
 dw_test_that("get_table_as_dataframe making the correct HTTR request", {
   mock_response_path <- "resources/file1.csv"
-  dataset <- "ownerid/datasetid"
+  owner <- "ownerid"
+  dataset <- "datasetid"
   response <- with_mock(
     `httr::GET` = function(url, header, progress, user_agent)  {
       expect_equal(
-        url,
-        sprintf(
-          "https://query.data.world/tables/ownerid/datasetid/tableid/rows",
-          dataset
-        )
+        url, "https://query.data.world/tables/ownerid/datasetid/tableid/rows"
       )
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
@@ -38,10 +35,13 @@ dw_test_that("get_table_as_dataframe making the correct HTTR request", {
     `mime::guess_type` = function(...)
       NULL,
     dwapi::download_table_as_data_frame(
-      dataset = dataset, table_name = "tableid")
+      owner, dataset, table_name = "tableid")
   )
-  expect <-
-    as.data.frame(readr::read_csv(mock_response_path))
-  actual <- as.data.frame(response)
-  expect_equal(all(expect == actual), TRUE)
+  expect <- readr::read_csv(mock_response_path)
+  purrr::walk2(expect, response, function(expect_col, response_col) {
+    expect_equal(expect_col, response_col)
+  })
+  expect_equal(0,
+               length(base::setdiff(class(tibble::tibble()), class(response))))
+  expect_equal(0, ncol(dplyr::select_if(response, is.factor)))
 })

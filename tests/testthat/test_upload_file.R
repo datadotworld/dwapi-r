@@ -33,9 +33,9 @@ dw_test_that("uploadFile making the correct HTTR request", {
     `mime::guess_type` = function(...)
       NULL,
     dwapi::upload_file(
+      "ownerid", "datasetid",
       file_name = "file1.csv",
-      path = local_path,
-      dataset = "ownerid/datasetid"
+      path = local_path
     )
   )
   expect_equal(class(response), "success_message")
@@ -54,13 +54,13 @@ dw_test_that("uploadFiles making the correct HTTR request", {
       expect_equal(curl::form_file(local_path1)$path, body[[1]]$path)
       expect_equal(curl::form_file(local_path2)$path, body[[2]]$path)
       expect_equal(user_agent$options$useragent, user_agent())
-      return(success_message_response())
+      success_message_response()
     },
     `mime::guess_type` = function(...)
       NULL,
     dwapi::upload_files(
-      dataset = "ownerid/datasetid",
-      paths = list (local_path1, local_path2)
+      "ownerid", "datasetid",
+      paths = list(local_path1, local_path2)
     )
   )
   expect_equal(class(response), "success_message")

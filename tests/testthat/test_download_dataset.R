@@ -18,12 +18,14 @@ https://data.world"
 
 dw_test_that("download_dataset produces valid directory structure", {
   mock_response_path <- "resources/dataset.zip"
-  dataset <- "jonloyens/an-intro-to-dataworld-dataset"
+  owner <- "jonloyens"
+  dataset <- "an-intro-to-dataworld-dataset"
   output_path <- tempfile()
   response <- with_mock(
     `httr::GET` = function(url, header, progress, user_agent)  {
       expect_equal(url,
-                   paste0("https://api.data.world/v0/download/", dataset))
+                   paste0("https://api.data.world/v0/download/",
+                          owner, "/", dataset))
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
       return(success_message_with_content(
@@ -31,7 +33,7 @@ dw_test_that("download_dataset produces valid directory structure", {
       )
     },
     `mime::guess_type` = function(...) NULL,
-    dwapi::download_dataset(dataset = dataset, output_path = output_path)
+    dwapi::download_dataset(owner, dataset, output_path = output_path)
   )
   expect_equal("OK", response$reason)
   expect_identical(

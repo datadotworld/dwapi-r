@@ -19,14 +19,14 @@ https://data.world"
 testthat::test_that("is.blank works", {
   testthat::expect_identical(
     c(TRUE, TRUE, TRUE, FALSE, FALSE),
-    is.blank(c(NA_character_, "", " ", "A", "A "))
+    is_blank(c(NA_character_, "", " ", "A", "A "))
   )
-  testthat::expect_equal(0, length(is.blank(character())))
+  testthat::expect_equal(0, length(is_blank(character())))
   testthat::expect_warning({
-    testthat::expect_identical(is.blank(c(1L, 2L, NA_integer_)),
+    testthat::expect_identical(is_blank(c(1L, 2L, NA_integer_)),
                                 c(FALSE, FALSE, TRUE))
     },
     regexp = "non-character.+integer"
   )
-  testthat::expect_true(is.blank(NULL))
+  testthat::expect_true(is_blank(NULL))
 })

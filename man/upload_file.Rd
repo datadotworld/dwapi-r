@@ -2,12 +2,15 @@
 % Please edit documentation in R/upload_file.R
 \name{upload_file}
 \alias{upload_file}
-\title{Upload a single file to a dataset.}
+\title{Upload a single file to a dataset or project.}
 \usage{
-upload_file(dataset, path, file_name)
+upload_file(owner_id, dataset_id, path, file_name)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Unique identifier of dataset or project}
 
 \item{path}{File path on local file system.}
 
@@ -17,11 +20,11 @@ upload_file(dataset, path, file_name)
 Server response message.
 }
 \description{
-Upload a single file to a dataset.
+Upload a single file to a dataset or project.
 }
 \examples{
 \dontrun{
-  dwapi::upload_file(file_name = 'file.csv',
-    path = 'file.csv', dataset = 'user/dataset')
+  dwapi::upload_file('user', 'dataset', file_name = 'file.csv',
+    path = 'file.csv')
 }
 }

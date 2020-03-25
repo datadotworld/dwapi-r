@@ -4,8 +4,14 @@
 \alias{append_record_to_stream}
 \title{Append a record, consisting of a list of depth one, to a stream.}
 \usage{
-append_record_to_stream(owner_id, dataset_id, stream_id, record,
-  retry_times = 3, retry_quiet = FALSE)
+append_record_to_stream(
+  owner_id,
+  dataset_id,
+  stream_id,
+  record,
+  retry_times = 3,
+  retry_quiet = FALSE
+)
 }
 \arguments{
 \item{owner_id}{User name and unique identifier of the creator of a

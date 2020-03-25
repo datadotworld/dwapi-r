@@ -9,7 +9,8 @@ create_dataset(owner_id, create_dataset_req)
 \arguments{
 \item{owner_id}{data.world user name of the dataset owner.}
 
-\item{create_dataset_req}{Request object of type \code{\link{dataset_create_request}}.}
+\item{create_dataset_req}{Request object of
+type \code{\link{dataset_create_request}}.}
 }
 \value{
 Object of type \code{\link{create_dataset_response}}.
@@ -21,7 +22,7 @@ Create a new dataset.
 request <- dwapi::dataset_create_request(
   title='testdataset', visibility = 'OPEN',
   description = 'Test Dataset by R-SDK', tags = c('rsdk', 'sdk', 'arr'),
-  license_string = 'Public Domain')
+  license = 'Public Domain')
 
 request <- dwapi::add_file(request = request, name = 'file4.csv',
   url = 'https://data.world/file4.csv')

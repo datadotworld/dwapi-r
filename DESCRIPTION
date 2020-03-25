@@ -1,6 +1,6 @@
 Package: dwapi
 Title: A Client for 'data.world' REST API
-Version: 0.2.2
+Version: 0.3.0
 Authors@R: c(
     person("Mark", "DiMarco", email = "mark.dimarco@data.world", role = c("aut")),
     person("Rafael", "Pereira", email = "rafael.pereira@data.world", role = c("aut", "cre")),
@@ -15,8 +15,11 @@ Imports:
     readr,
     rjson,
     jsonlite,
-    curl
-Suggests: 
+    curl,
+    purrr,
+    dplyr,
+    tibble
+Suggests:
     knitr,
     rmarkdown,
     testthat (>= 2.0.0),
@@ -26,5 +29,5 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/datadotworld/dwapi-r
 BugReports: https://github.com/datadotworld/dwapi-r/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr

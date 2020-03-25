@@ -27,13 +27,14 @@ test_that("should configure should set the token", {
 test_that("should set default urls", {
     options <- .onLoad()
     expect_equivalent(options["dwapi.api_url"], "https://api.data.world/v0")
-    expect_equivalent(options["dwapi.download_url"], "https://download.data.world")
+    expect_equivalent(options["dwapi.download_url"],
+                      "https://download.data.world")
     expect_equivalent(options["dwapi.query_url"], "https://query.data.world")
 })
 
 test_that("should allow environment to be overridden", {
-    getenvVar <- function(x) {
-        b <- .onLoad()
+    f <- function(x) {
+        .onLoad()
     }
     options <- with_mock(
         Sys.getenv = function(x) {
@@ -43,18 +44,19 @@ test_that("should allow environment to be overridden", {
                 ""
             )
         },
-        getenvVar()
+        f()
     )
     expect_equivalent(options["dwapi.api_url"], "https://x.api.data.world/v0")
-    expect_equivalent(options["dwapi.download_url"], "https://x.download.data.world")
+    expect_equivalent(options["dwapi.download_url"],
+                      "https://x.download.data.world")
     expect_equivalent(options["dwapi.query_url"], "https://x.query.data.world")
 })
 
 test_that("should allow DW_DOWNLOAD_HOST to be overridden", {
-    getenvVar <- function(x) {
-        b <- .onLoad()
+    f <- function(x) {
+        .onLoad()
     }
-    test = "http://test.download.url"
+    test <- "http://test.download.url"
     options <- with_mock(
         Sys.getenv = function(x) {
             ifelse(
@@ -63,7 +65,7 @@ test_that("should allow DW_DOWNLOAD_HOST to be overridden", {
                 ""
             )
         },
-        getenvVar()
+        f()
     )
     expect_equivalent(options["dwapi.download_url"], test)
 })

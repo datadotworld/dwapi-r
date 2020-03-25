@@ -33,13 +33,14 @@ https://data.world"
 #'
 #' dataset_create_req <- dwapi::dataset_create_request(title='coffeeCounty',
 #'   visibility = 'OPEN', description = 'coffee county , AL - census income' ,
-#'   tags = c('rsdk', 'sdk', 'arr') , license_string = 'Public Domain')
+#'   tags = c('rsdk', 'sdk', 'arr') , license = 'Public Domain')
 #'
 #' dataset_create_req <- dwapi::add_file(request = dataset_create_req,
 #'   name = 'file4.csv', url = 'https://data.world/file4.csv')
 #'
 #' dataset_replace_req <- dwapi::dataset_replace_request(visibility = 'OPEN',
-#'   description = 'updated description', title = 'updated title', files = list())
+#'   description = 'updated description',
+#'   title = 'updated title', files = list())
 #'
 #' dataset_replace_req <- dwapi::add_file(request = dataset_replace_req,
 #'   name = 'file4.csv', url = 'https://data.world/file4.csv',
@@ -67,72 +68,67 @@ add_file.default <-
 
 #' @describeIn add_file Add a file to a file_batch_update_request objects
 #' @export
-add_file.file_batch_update_request <-
+add_file.file_batch_update_request <- # nolint
   function(request,
     name,
     url,
     description = NULL,
     labels = NULL) {
-    existing_files <- request$files
-    # O(N) ?
-    existing_files[[length(existing_files) + 1]] <-
-      dwapi::file_create_or_update_request(name,
-        url = url,
-        description = description,
-        labels = labels)
-    request$files <- existing_files
+    request$files <-
+      c(request$files,
+        list(dwapi::file_create_or_update_request(name,
+                                                  url = url,
+                                                  description = description,
+                                                  labels = labels)))
     request
   }
 
 #' @describeIn add_file Add a file to a dataset_create_request object
 #' @export
-add_file.dataset_create_request <-
+add_file.dataset_create_request <- # nolint
   function(request,
     name,
     url,
     description = NULL,
     labels = NULL) {
-    existing_files <- request$files
-    # O(N) ?
-    existing_files[[length(existing_files) + 1]] <-
-      dwapi::file_create_request(
-        name, url, description = description, labels = labels)
-    request$files <- existing_files
+    request$files <-
+      c(request$files,
+        list(dwapi::file_create_request(
+          name, url, description = description, labels = labels)))
     request
   }
 
 #' @describeIn add_file Add a file to a dataset_replace_request object
 #' @export
-add_file.dataset_replace_request <-
+add_file.dataset_replace_request <- # nolint
   function(request,
     name,
     url,
     description = NULL,
     labels = NULL) {
-    existing_files <- request$files
-    # O(N) ?
-    existing_files[[length(existing_files) + 1]] <-
-      dwapi::file_create_request(
-        name, url, description = description, labels = labels)
-    request$files <- existing_files
+    request$files <-
+      c(request$files,
+        list(dwapi::file_create_request(
+          name, url, description = description, labels = labels)))
     request
   }
 
 #' @describeIn add_file Add a file to a dataset_update_request object
 #' @export
-add_file.dataset_update_request <-
+add_file.dataset_update_request <- # nolint
   function(request,
     name,
     url = NULL,
     description = NULL,
     labels = NULL) {
-    existing_files <- request$files
-    # O(N) ?
-    existing_files[[length(existing_files) + 1]] <-
-      dwapi::file_create_or_update_request(name,
-        url = url,
-        description = description,
-        labels = labels)
-    request$files <- existing_files
+    request$files <- c(
+      request$files,
+      list(
+        dwapi::file_create_or_update_request(name,
+                                             url = url,
+                                             description = description,
+                                             labels = labels)
+      )
+    )
     request
   }

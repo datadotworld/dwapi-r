@@ -4,9 +4,15 @@
 \alias{insight_create_request}
 \title{Create insight object for new insights}
 \usage{
-insight_create_request(title, description = NULL, image_url = NULL,
-  embed_url = NULL, markdown_body = NULL, source_link = NULL,
-  data_source_links = NULL)
+insight_create_request(
+  title,
+  description = NULL,
+  image_url = NULL,
+  embed_url = NULL,
+  markdown_body = NULL,
+  source_link = NULL,
+  data_source_links = NULL
+)
 }
 \arguments{
 \item{title}{Insight title}

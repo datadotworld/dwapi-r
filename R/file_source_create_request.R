@@ -29,7 +29,7 @@ file_source_create_request <- function(url) {
 #' Create object for adding/updating dataset file sources.
 #' @param url Source URL of file.
 #' @return Object of type \code{file_source_create_or_update_request}.
-file_source_create_or_update_request <- function(url) {
+file_source_create_or_update_request <- function(url) { # nolint
   if (url == "") {
     stop("url is required")
   }

@@ -17,19 +17,23 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Upload a data frame as a file to a dataset.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param data_frame Data frame object.
 #' @param file_name File name, including file extension.
 #' @return Server response message.
 #' @examples
-#' df = data.frame(a = c(1,2,3),b = c(4,5,6))
+#' df = data.frame(a = c(1,2,3), b = c(4,5,6))
 #' \dontrun{
 #'   dwapi::upload_data_frame(file_name = 'sample.csv',
-#'     data_frame = df, dataset = 'user/dataset')
+#'     data_frame = df, owner_id = 'user', dataset_id = 'dataset')
+#'   df %>% dwapi::upload_data_frame('user', 'dataset',
+#'     file_name = 'sample.csv')
 #' }
 #' @export
 upload_data_frame <-
-  function(dataset, data_frame, file_name) {
+  function(data_frame, owner_id, dataset_id, file_name) {
     if (!is.data.frame(data_frame)) {
       stop("input is not a data frame")
     }
@@ -50,7 +54,7 @@ upload_data_frame <-
         row.names = FALSE
       )
       ret <-
-        dwapi::upload_file(dataset, tmp_path, file_name)
+        dwapi::upload_file(owner_id, dataset_id, tmp_path, file_name)
       ret
     },
       finally = {

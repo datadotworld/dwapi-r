@@ -17,13 +17,15 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Execute SQL query against a dataset.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param query SQL query.
 #' @param query_params List of positional query parameters.
 #' @return Data frame with data from query results.
 #' @examples
 #' \dontrun{
-#'   dwapi::sql(dataset="user/dataset",
+#'   dwapi::sql("user", "dataset",
 #'     query="SELECT *
 #'            FROM TableName
 #'            LIMIT 10")
@@ -35,10 +37,10 @@ https://data.world"
 #'     queryParameters = list("value", 5.0))
 #' }
 #' @export
-sql <- function(dataset, query, query_params = list()) {
-  url <- sprintf("%s/sql/%s",
+sql <- function(owner_id, dataset_id, query, query_params = list()) {
+  url <- sprintf("%s/sql/%s/%s",
     getOption("dwapi.query_url"),
-    extract_dataset_key(dataset))
+    owner_id, dataset_id)
   request_query <- list(query = query)
   if (length(query_params) > 0) {
     named_query_params <- list()

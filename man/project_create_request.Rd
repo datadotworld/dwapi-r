@@ -4,9 +4,16 @@
 \alias{project_create_request}
 \title{Create request object for new projects.}
 \usage{
-project_create_request(title, visibility = c("PRIVATE", "OPEN"),
-  objective = NULL, summary = NULL, tags = character(), license = NULL,
-  files = list(), linked_datasets = list())
+project_create_request(
+  title,
+  visibility = c("PRIVATE", "OPEN"),
+  objective = NULL,
+  summary = NULL,
+  tags = character(),
+  license = NULL,
+  files = list(),
+  linked_datasets = list()
+)
 }
 \arguments{
 \item{title}{Project title.}
@@ -34,7 +41,8 @@ Request object of type \code{project_create_request}.
 Create request object for new projects.
 }
 \examples{
-request <- dwapi::project_create_request(title='My Project', visibility = 'OPEN',
+request <- dwapi::project_create_request(title='My Project',
+  visibility = 'OPEN',
   objective = 'objective', tags = c('sdk') , license = 'Public Domain')
 }
 \seealso{

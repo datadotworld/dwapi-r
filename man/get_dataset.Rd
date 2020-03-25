@@ -4,10 +4,13 @@
 \alias{get_dataset}
 \title{Retrieve dataset information.}
 \usage{
-get_dataset(dataset)
+get_dataset(owner_id, dataset_id)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 }
 \value{
 Object of type \code{\link{dataset_summary_response}}.
@@ -17,6 +20,6 @@ Retrieve dataset information.
 }
 \examples{
 \dontrun{
-  dwapi::get_dataset(dataset = "user/dataset")
+  dwapi::get_dataset("user", "dataset")
 }
 }

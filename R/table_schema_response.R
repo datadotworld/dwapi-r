@@ -24,12 +24,9 @@ table_schema_response <- function(structure) {
   me <- list(
     fields = list()
   )
-  if (length(structure$fields) > 0) {
-    for (i in 1:length(structure$fields)) {
-      me$fields[[i]] <-
-        table_schema_field_response(structure$fields[[i]])
-    }
-  }
+  me$fields <- purrr::map(structure$fields, function(field) {
+    table_schema_field_response(field)
+  })
   class(me) <- "table_schema_response"
   me
 }

@@ -17,21 +17,23 @@ This product includes software developed at data.world, Inc.
 https://data.world"
 
 #' Delete a single file from a dataset.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param file_name File name, including the file extension.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' \dontrun{
-#'   dwapi::delete_file(dataset = 'user/dataset',
+#'   dwapi::delete_file('user', 'dataset',
 #'     file_name = 'file.csv')
 #' }
 #' @export
 delete_file <-
-  function(dataset, file_name) {
+  function(owner_id, dataset_id, file_name) {
     api_url <-
-      sprintf("%s/datasets/%s/files/%s",
+      sprintf("%s/datasets/%s/%s/files/%s",
         getOption("dwapi.api_url"),
-        extract_dataset_key(dataset),
+        owner_id, dataset_id,
         file_name)
     auth <- sprintf("Bearer %s", auth_token())
     response <-
@@ -45,17 +47,19 @@ delete_file <-
   }
 
 #' Delete one or more files from a dataset.
-#' @param dataset Dataset URL or path.
+#' @param owner_id User name and unique identifier of the creator of a
+#' dataset or project
+#' @param dataset_id Dataset unique identifier
 #' @param file_names List of file names, including file extensions.
 #' @return Object of type \code{\link{success_message}}.
 #' @examples
 #' \dontrun{
-#'   dwapi::delete_files(dataset = 'user/dataset',
+#'   dwapi::delete_files('user', 'dataset',
 #'     file_names = list('file1.csv', 'file2.csv'))
 #' }
 #' @export
 delete_files <-
-  function(dataset, file_names) {
+  function(owner_id, dataset_id, file_names) {
     query_param <-
       lapply(file_names, function(name)
         sprintf("name=%s", name))
@@ -65,8 +69,8 @@ delete_files <-
       api_url <-
         paste(
           sprintf(
-            "%s/datasets/%s/files?", getOption("dwapi.api_url"),
-            extract_dataset_key(dataset)),
+            "%s/datasets/%s/%s/files?", getOption("dwapi.api_url"),
+            owner_id, dataset_id),
           paste0(query_param, collapse = "&"),
           sep = ""
         )

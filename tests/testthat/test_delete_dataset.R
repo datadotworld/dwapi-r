@@ -26,7 +26,7 @@ dw_test_that("delete_dataset making the correct HTTP request", {
       success_message_response()
     },
     `mime::guess_type` = function(...) NULL,
-    dwapi::delete_dataset("ownerid/datasetid")
+    dwapi::delete_dataset("ownerid", "datasetid")
   )
   expect_equal(class(response), "success_message")
 })

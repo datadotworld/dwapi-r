@@ -18,5 +18,6 @@ Object of type \code{table_schema_field_update_request}
 Create request object for updating table schema fields.
 }
 \examples{
-field_update_req <- dwapi::table_schema_field_update_request("field", "new desc")
+field_update_req <- dwapi::table_schema_field_update_request(
+ "field", "new desc")
 }

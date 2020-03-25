@@ -6,20 +6,18 @@ vignette: >
   %\VignetteIndexEntry{dwapi quickstart}
   %\VignetteEncoding{UTF-8}
 ---
-```{r, echo = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-CONFIGURED <- Sys.getenv("DW_AUTH_TOKEN", unset = "") != ""
+```{r, echo = FALSE, purl = FALSE}
 knitr::opts_chunk$set(
   collapse = FALSE,
   comment = "##",
-  purl = NOT_CRAN & CONFIGURED,
-  eval = NOT_CRAN & CONFIGURED
+  eval = FALSE,
+  purl = FALSE
 )
 ```
 
 ## Configuration
 
-Make sure to configure the library at the begining of every new R session.
+Make sure to configure the library at the beginning of every new R session.
 To do so, invoke `dwapi::configure()` passing the data.world authentication token obtained at https://data.world/settings/advanced
 
 ### DO NOT SHARE YOUR AUTHENTICATION TOKEN
@@ -40,12 +38,12 @@ dwapi::configure(auth_token = Sys.getenv("DW_AUTH_TOKEN"))
 ## Creating datasets and updating datasets
 
 Use `dwapi::create_dataset()` to create a new dataset.
-The library includes number of constructor functions to facilitate the praparation of complex requests like this. The example here is `dwapi::dataset_create_request()`.
+The library includes number of constructor functions to facilitate the preparation of complex requests like this. The example here is `dwapi::dataset_create_request()`.
 ```{r create_dataset}
 create_cars_dataset <- dwapi::dataset_create_request(
   title = sprintf("My cars dataset %s", runif(1)),
   visibility = "PRIVATE",
-  license_string = "Other"
+  license = "Other"
 )
 
 cars_dataset <- dwapi::create_dataset(Sys.getenv("DW_USER"), create_cars_dataset)
@@ -58,15 +56,15 @@ update_cars_dataset <- dwapi::dataset_update_request(
   description = "This is a dataset created from R's cars dataset."
 )
 
-dwapi::update_dataset(cars_dataset$uri, update_cars_dataset)
+dwapi::update_dataset(cars_dataset$owner, cars_dataset$id, update_cars_dataset)
 ```
 
 ## Uploading files
 
 Files can be added via URL, from the local file system, or directly as a data frame.
 ```{r upload_data_frame}
-upload_response <- dwapi::upload_data_frame(cars_dataset$uri, cars, "cars.csv")
-Sys.sleep(10) # Files are processed asyncronously.
+upload_response <- dwapi::upload_data_frame(cars_dataset$owner, cars_dataset$id, cars, "cars.csv")
+Sys.sleep(10) # Files are processed asynchronously.
 upload_response
 ```
 
@@ -76,11 +74,11 @@ Datasets can be queried using SQL and SPARQL.
 Once again, it's important to keep the concept of tables and their names in mind.
 ```{r query}
 sql_query <- "SELECT * FROM cars"
-dwapi::sql(cars_dataset$uri, sql_query)
+dwapi::sql(cars_dataset$owner, cars_dataset$id, sql_query)
 ```
 
 ```{r cleanup, echo = FALSE}
-dwapi::delete_dataset(cars_dataset$uri)
+dwapi::delete_dataset(cars_dataset$owner, cars_dataset$id)
 ```
 
 ## Next

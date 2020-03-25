@@ -13,7 +13,8 @@ replace_project(owner_id, project_id, replace_project_req)
 \item{project_id}{identifier to use for the new project, or identifier of
 existing project to replace with the newly created project.}
 
-\item{replace_project_req}{Request object of type \code{\link{project_replace_request}}.}
+\item{replace_project_req}{Request object of
+type \code{\link{project_replace_request}}.}
 }
 \value{
 Object of type \code{\link{success_message}}.

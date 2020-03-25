@@ -4,10 +4,13 @@
 \alias{delete_file}
 \title{Delete a single file from a dataset.}
 \usage{
-delete_file(dataset, file_name)
+delete_file(owner_id, dataset_id, file_name)
 }
 \arguments{
-\item{dataset}{Dataset URL or path.}
+\item{owner_id}{User name and unique identifier of the creator of a
+dataset or project}
+
+\item{dataset_id}{Dataset unique identifier}
 
 \item{file_name}{File name, including the file extension.}
 }
@@ -19,7 +22,7 @@ Delete a single file from a dataset.
 }
 \examples{
 \dontrun{
-  dwapi::delete_file(dataset = 'user/dataset',
+  dwapi::delete_file('user', 'dataset',
     file_name = 'file.csv')
 }
 }

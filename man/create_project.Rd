@@ -9,7 +9,8 @@ create_project(owner_id, create_project_req)
 \arguments{
 \item{owner_id}{data.world user name of the project owner.}
 
-\item{create_project_req}{Request object of type \code{\link{project_create_request}}.}
+\item{create_project_req}{Request object of
+type \code{\link{project_create_request}}.}
 }
 \value{
 Object of type \code{\link{create_project_response}}.
