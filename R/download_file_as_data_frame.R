@@ -21,6 +21,9 @@ https://data.world"
 #' dataset or project
 #' @param dataset_id Dataset unique identifier
 #' @param file_name File name, including file extension.
+#' @param col_types column types specified in the same manner as the
+#' col_types parameter of readr::read_csv(), or pass NULL (the default) to
+#' detect column types automatically from the data.world table schema
 #' @return Data frame with the contents of CSV file.
 #' @examples
 #' \dontrun{
@@ -30,7 +33,7 @@ https://data.world"
 #' }
 #' @export
 download_file_as_data_frame <-
-  function(owner_id, dataset_id, file_name, col_types=NULL) {
+  function(owner_id, dataset_id, file_name, col_types = NULL) {
     if (!endsWith(file_name, ".csv")) {
       stop("only support csv extension files.")
     }

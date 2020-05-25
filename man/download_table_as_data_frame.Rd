@@ -18,6 +18,10 @@ dataset or project}
 \item{dataset_id}{Dataset unique identifier}
 
 \item{table_name}{Table name.}
+
+\item{col_types}{column types specified in the same manner as the
+col_types parameter of readr::read_csv(), or pass NULL (the default) to
+detect column types automatically from the data.world table schema}
 }
 \value{
 Data frame with data from table.
