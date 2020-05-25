@@ -1,0 +1,25 @@
+{
+  "fields": [
+    {
+      "name": "a",
+      "title": "a",
+      "rdfType": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    {
+      "name": "b",
+      "title": "b",
+      "rdfType": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    {
+      "name": "c",
+      "title": "c",
+      "description": "Column c",
+      "rdfType": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
+      "name": "d",
+      "title": "d",
+      "rdfType": "http://www.w3.org/2001/XMLSchema#date"
+    }
+  ]
+}

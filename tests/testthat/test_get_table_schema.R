@@ -18,7 +18,7 @@ https://data.world"
 
 dw_test_that("get_table_schema making the correct HTTR request", {
   response <- with_mock(
-    `httr::GET` = function(url, header, user_agent)  {
+    `httr::GET` = function(url, header, progress, user_agent)  {
       expect_equal(url,
         "https://query.data.world/tables/ownerid/datasetid/tableid/schema")
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")

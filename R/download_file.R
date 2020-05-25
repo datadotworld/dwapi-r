@@ -40,7 +40,7 @@ download_file <-
     response <-
       httr::GET(
         url,
-        httr::add_headers(Authorization = sprintf("Bearer %s", auth_token())),
+        httr::add_headers(Authorization = paste0("Bearer ", auth_token())),
         httr::progress(),
         httr::user_agent(user_agent())
       )

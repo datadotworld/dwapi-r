@@ -28,7 +28,8 @@ https://data.world"
 #'   table_df <- dwapi::download_table_as_data_frame("user", "dataset", "table")
 #' }
 #' @export
-download_table_as_data_frame <- function(owner_id, dataset_id, table_name) {
+download_table_as_data_frame <- function(owner_id, dataset_id,
+                                         table_name, col_types=NULL) {
   url <- sprintf(
     "%s/tables/%s/%s/%s/rows",
     getOption("dwapi.query_url"),
@@ -47,7 +48,8 @@ download_table_as_data_frame <- function(owner_id, dataset_id, table_name) {
     text <- httr::content(x = response,
       as = "text",
       encoding = "UTF-8")
-    ret <- readr::read_csv(text)
+    ret <- parse_downloaded_csv(text, owner_id,
+                                dataset_id, table_name, col_types = col_types)
   } else {
     stop(
       sprintf(

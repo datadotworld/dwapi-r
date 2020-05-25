@@ -22,15 +22,23 @@ dw_test_that("get_table_as_dataframe making the correct HTTR request", {
   dataset <- "datasetid"
   response <- with_mock(
     `httr::GET` = function(url, header, progress, user_agent)  {
-      expect_equal(
-        url, "https://query.data.world/tables/ownerid/datasetid/tableid/rows"
-      )
+      if (url == paste0(
+        "https://query.data.world/tables/ownerid/datasetid/tableid/rows"
+      )) {
+        expected <- success_message_with_content(
+          mock_response_path, "application/csv")
+      } else if (url == paste0(
+        "https://query.data.world/tables/ownerid/datasetid/tableid/schema"
+      )) {
+        expected <- success_message_with_content(
+          "resources/query.data.world/file1.schema.json",
+          "application/json")
+      } else {
+        fail(paste0("Invalid url: ", url))
+      }
       expect_equal(header$headers[["Authorization"]], "Bearer API_TOKEN")
       expect_equal(user_agent$options$useragent, user_agent())
-      return(
-        success_message_with_content(
-          mock_response_path, "application/csv")
-      )
+      expected
     },
     `mime::guess_type` = function(...)
       NULL,

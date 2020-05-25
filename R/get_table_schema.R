@@ -33,11 +33,10 @@ get_table_schema <- function(owner_id, dataset_id, table_name) {
     getOption("dwapi.query_url"),
     owner_id, dataset_id,
     table_name)
-  auth <- sprintf("Bearer %s", auth_token())
   response <- httr::GET(
     url,
-    httr::add_headers(`Content-Type` = "application/json",
-      Authorization = auth),
+    httr::add_headers(Authorization = paste0("Bearer ", auth_token())),
+    httr::progress(),
     httr::user_agent(user_agent())
   )
   if (response$status_code == 200) {

@@ -4,7 +4,12 @@
 \alias{download_table_as_data_frame}
 \title{Download a dataset table onto a data frame.}
 \usage{
-download_table_as_data_frame(owner_id, dataset_id, table_name)
+download_table_as_data_frame(
+  owner_id,
+  dataset_id,
+  table_name,
+  col_types = NULL
+)
 }
 \arguments{
 \item{owner_id}{User name and unique identifier of the creator of a
