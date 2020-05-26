@@ -1,3 +1,9 @@
+# 0.3.1
+
+* `download_file_as_data_frame()` and `download_table_as_data_frame()` now use the data.world
+  table schema api to set the column types of the imported file/table data; callers can also control
+  this explicitly with the `col_types=` parameter to both functions
+
 # 0.3.0
 
 * functions that return data frames return them as tibbles
