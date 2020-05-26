@@ -21,20 +21,22 @@ https://data.world"
 #' dataset or project
 #' @param dataset_id Dataset unique identifier
 #' @param file_name File name, including file extension.
+#' @param col_types column types specified in the same manner as the
+#' col_types parameter of readr::read_csv(), or pass NULL (the default) to
+#' detect column types automatically from the data.world table schema
 #' @return Data frame with the contents of CSV file.
 #' @examples
 #' \dontrun{
 #'   my_df <- dwapi::download_file_as_data_frame(
-#'     'user', 'dataset',
-#'     file_name = 'file.csv')
+#'     "user", "dataset",
+#'     file_name = "file.csv")
 #' }
 #' @export
 download_file_as_data_frame <-
-  function(owner_id, dataset_id, file_name) {
+  function(owner_id, dataset_id, file_name, col_types = NULL) {
     if (!endsWith(file_name, ".csv")) {
       stop("only support csv extension files.")
     }
-
     tmp_path <- tempfile(fileext = "csv")
     if (!dir.exists(dirname(tmp_path))) {
       dir.create(dirname(tmp_path), recursive = TRUE)
@@ -43,7 +45,10 @@ download_file_as_data_frame <-
       download_status <-
         dwapi::download_file(owner_id, dataset_id, file_name, tmp_path)
       if (download_status$category == "Success") {
-        readr::read_csv(tmp_path)
+        parse_downloaded_csv(
+          tmp_path, owner_id, dataset_id,
+          gsub(x = file_name, pattern = "(.+)\\.csv", replacement = "\\1"),
+          col_types)
       } else {
         stop(sprintf(
           "Failed to download %s (HTTP Error: %s)",
@@ -52,7 +57,36 @@ download_file_as_data_frame <-
         ))
       }
     },
-      finally = {
-        unlink(tmp_path, recursive = TRUE)
-      })
+    finally = {
+      unlink(tmp_path, recursive = TRUE)
+    })
   }
+
+parse_downloaded_csv <- function(csv, owner_id,
+                                 dataset_id, table_name, col_types = NULL) {
+  if (is.null(col_types)) {
+    ts <- get_table_schema(
+      owner_id, dataset_id,
+      table_name)
+    types <- purrr::map_chr(ts$fields, function(field_spec) {
+      rdf_type <- field_spec$rdf_type
+      rdf_type <- dplyr::case_when(
+        rdf_type == "http://www.w3.org/2001/XMLSchema#integer" ~ "i",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#string" ~ "c",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#boolean" ~ "l",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#decimal" ~ "d",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#float" ~ "d",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#double" ~ "d",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#dateTime" ~ "T",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#time" ~ "t",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#date" ~ "D",
+        TRUE ~ "c"
+      )
+      rdf_type
+    })
+    types <- paste0(types, collapse = "")
+  } else {
+    types <- col_types
+  }
+  readr::read_csv(csv, col_types = types)
+}

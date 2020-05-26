@@ -4,7 +4,12 @@
 \alias{download_table_as_data_frame}
 \title{Download a dataset table onto a data frame.}
 \usage{
-download_table_as_data_frame(owner_id, dataset_id, table_name)
+download_table_as_data_frame(
+  owner_id,
+  dataset_id,
+  table_name,
+  col_types = NULL
+)
 }
 \arguments{
 \item{owner_id}{User name and unique identifier of the creator of a
@@ -13,6 +18,10 @@ dataset or project}
 \item{dataset_id}{Dataset unique identifier}
 
 \item{table_name}{Table name.}
+
+\item{col_types}{column types specified in the same manner as the
+col_types parameter of readr::read_csv(), or pass NULL (the default) to
+detect column types automatically from the data.world table schema}
 }
 \value{
 Data frame with data from table.

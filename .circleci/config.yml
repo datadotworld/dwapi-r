@@ -14,6 +14,7 @@
        - checkout
        - run: mkdir build build/reports build/dist
        - run: apt-get update && apt-get install -y qpdf
+       - run: Rscript -e 'install.packages(c("mockery", "covr", "lintr"), dependencies=TRUE)'
 
        - run:
            name: Install dwapi-r
