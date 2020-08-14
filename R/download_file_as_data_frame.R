@@ -45,10 +45,15 @@ download_file_as_data_frame <-
       download_status <-
         dwapi::download_file(owner_id, dataset_id, file_name, tmp_path)
       if (download_status$category == "Success") {
-        parse_downloaded_csv(
-          tmp_path, owner_id, dataset_id,
-          gsub(x = file_name, pattern = "(.+)\\.csv", replacement = "\\1"),
-          col_types)
+        table_name <- get_table_names_for_file(owner_id, dataset_id, file_name)
+        if (length(table_name) != 1) {
+          stop(paste0("duplicate table names found for file ",
+                      file_name, ": [",
+                      paste0(table_name, collapse = ","),
+                      "]"))
+        }
+        parse_downloaded_csv(tmp_path, owner_id, dataset_id,
+                             table_name, col_types)
       } else {
         stop(sprintf(
           "Failed to download %s (HTTP Error: %s)",

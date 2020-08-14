@@ -58,3 +58,15 @@ get_table_schema <- function(owner_id, dataset_id, table_name) {
   }
   ret
 }
+
+#' @import dplyr
+get_table_names_for_file <- function(owner_id, dataset_id, file_name) {
+  q <- paste0("PREFIX dwo: <https://ontology.data.world/v0#> ",
+    "SELECT ?filename ?tablename {",
+    "[ a csvw:Table ; ",
+    "dwo:definedInFile/dwo:name ",
+    "?filename ; dwo:name ?tablename ]}")
+  sparql(owner_id, dataset_id, q) %>%
+    filter(filename == file_name) %>%
+    pull(tablename)
+}
