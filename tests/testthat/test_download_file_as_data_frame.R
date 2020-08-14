@@ -41,8 +41,13 @@ dw_test_that("downloadFileAsDataFrame making the correct HTTR request", {
       expect_equal(user_agent$options$useragent, user_agent())
       expected
     },
-    `mime::guess_type` = function(...)
-      NULL,
+    `mime::guess_type` = function(...) NULL,
+    `dwapi::sparql` = function(owner_id, dataset_id, q) {
+      tribble(
+        ~filename, ~tablename,
+        "file1.csv", "file1"
+      )
+    },
     dwapi::download_file_as_data_frame(owner, dataset,
       file_name = "file1.csv")
   )
@@ -80,8 +85,13 @@ dw_test_that("downloadFileAsDataFrame handles supplied col_types", {
       expect_equal(user_agent$options$useragent, user_agent())
       expected
     },
-    `mime::guess_type` = function(...)
-      NULL,
+    `mime::guess_type` = function(...) NULL,
+    `dwapi::sparql` = function(owner_id, dataset_id, q) {
+      tribble(
+        ~filename, ~tablename,
+        "file1.csv", "file1"
+      )
+    },
     dwapi::download_file_as_data_frame(owner, dataset,
                                        file_name = "file1.csv",
                                        col_types = "idcD")

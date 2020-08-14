@@ -40,3 +40,29 @@ dw_test_that("get_table_schema making the correct HTTR request", {
   expect_equal(names(response$fields[[1]]),
     c("name", "title", "description", "rdf_type"))
 })
+
+dw_test_that("get_table_names_for_file", {
+  mock_sparql <- function(owner_id, dataset_id, q) {
+    tribble(
+      ~filename, ~tablename,
+      "x", "t",
+      "xx", "tx",
+      "xx", "ty"
+    )
+  }
+  table_name <- with_mock(
+    `dwapi::sparql` = mock_sparql,
+    get_table_names_for_file("ownerid", "datasetid", "x")
+  )
+  expect_equal(table_name, "t")
+  table_name <- with_mock(
+    `dwapi::sparql` = mock_sparql,
+    get_table_names_for_file("ownerid", "datasetid", "xx")
+  )
+  expect_equal(table_name, c("tx", "ty"))
+  table_name <- with_mock(
+    `dwapi::sparql` = mock_sparql,
+    get_table_names_for_file("ownerid", "datasetid", "z")
+  )
+  expect_length(table_name, 0)
+})

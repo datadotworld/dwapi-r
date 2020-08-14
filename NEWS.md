@@ -1,3 +1,8 @@
+# 0.3.2
+
+* Fix an issue with `download_file_as_data_frame()` and `download_table_as_data_frame()`
+that occurs when the table name (for the table schema) is not the same as the file name.
+
 # 0.3.1
 
 * `download_file_as_data_frame()` and `download_table_as_data_frame()` now use the data.world
