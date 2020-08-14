@@ -64,3 +64,32 @@ download_table_as_data_frame <- function(owner_id, dataset_id,
   }
   ret
 }
+
+parse_downloaded_csv <- function(csv, owner_id,
+                                 dataset_id, table_name, col_types = NULL) {
+  if (is.null(col_types)) {
+    ts <- get_table_schema(
+      owner_id, dataset_id,
+      table_name)
+    types <- purrr::map_chr(ts$fields, function(field_spec) {
+      rdf_type <- field_spec$rdf_type
+      rdf_type <- dplyr::case_when(
+        rdf_type == "http://www.w3.org/2001/XMLSchema#integer" ~ "i",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#string" ~ "c",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#boolean" ~ "l",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#decimal" ~ "d",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#float" ~ "d",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#double" ~ "d",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#dateTime" ~ "T",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#time" ~ "t",
+        rdf_type == "http://www.w3.org/2001/XMLSchema#date" ~ "D",
+        TRUE ~ "c"
+      )
+      rdf_type
+    })
+    types <- paste0(types, collapse = "")
+  } else {
+    types <- col_types
+  }
+  readr::read_csv(csv, col_types = types)
+}
