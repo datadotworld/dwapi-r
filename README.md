@@ -28,7 +28,7 @@ intro_dataset <- dwapi::get_dataset(
 
 To get the current version from GitHub:
 ```R
-devtools::install_github("datadotworld/dwapi-r", build_vignettes = TRUE)
+devtools::install_github("datadotworld/dwapi-r", build_vignettes = TRUE, ref = "main")
 ```
 
 ## Configuration
